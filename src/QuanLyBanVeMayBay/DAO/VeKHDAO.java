@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author Thepi314
  */
 public class VeKHDAO {
-    public ArrayList<VeKH> getListVe() {
+    public ArrayList<VeKH> getListVeKH() {
         try {
             String sql = "SELECT * FROM vekh";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
@@ -54,7 +54,7 @@ public class VeKHDAO {
         return null;
     }
 
-    public ArrayList<VeKH> getVeTheoMaVe(int maVe) {
+    public ArrayList<VeKH> getVeKHTheoMaVe(int maVe) {
         try {
             String sql = "SELECT * FROM vekh WHERE maVe=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
@@ -74,7 +74,7 @@ public class VeKHDAO {
         return null;
     }
 
-    public ArrayList<VeKH> getVeTheoMaKhachHang(int maKH) {
+    public ArrayList<VeKH> getVeKHTheoMaKhachHang(int maKH) {
         try {
             String sql = "SELECT * FROM vekh WHERE maKH=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
@@ -137,21 +137,21 @@ public class VeKHDAO {
         return false;
     }
 
-    // public boolean nhapVeKHTuExcel(VeKH veKH) {
-    //     try {
-    //         String sql = "DELETE * FROM ve; " +
-    //                 "INSERT INTO ve(maVeKH, maVe, maKH) "
-    //                 + "VALUES (?, ?, ?)";
-    //         PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-    //         pre.setString(1, veKH.getMaVeKH());
-    //         pre.setString(2, veKH.getMaVe());
-    //         pre.setString(3, veKH.getMaKH());
-    //         pre.execute();
-    //         return true;
-    //     } catch (SQLException e) {
-    //     }
-    //     return false;
-    // }
+    public boolean nhapVeKHTuExcel(VeKH veKH) {
+        try {
+            String sql = "DELETE * FROM vekh; " +
+                    "INSERT INTO ve(maVeKH, maVe, maKH) "
+                    + "VALUES (?, ?, ?)";
+            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
+            pre.setInt(1, veKH.getMaVeKH());
+            pre.setInt(2, veKH.getMaVe());
+            pre.setInt(3, veKH.getMaKH());
+            pre.execute();
+            return true;
+        } catch (SQLException e) {
+        }
+        return false;
+    }
 
     public boolean xoaVeKH(int maVeKH) {
         try {

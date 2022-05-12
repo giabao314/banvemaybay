@@ -5,6 +5,8 @@
 package QuanLyBanVeMayBay.DTO;
 // import QuanLyBanVeMayBay.DTO.MayBay;
 
+import java.util.Date;
+
 /**
  *
  * @author Thepi314
@@ -15,14 +17,14 @@ public class ChuyenBay {
     private int maTuyenBay;
     private int maMayBay;
     private int soLgVeCL;
-    private String ngayCatCanh;
-    private String ngayHaCanh;
+    private Date ngayCatCanh;
+    private Date ngayHaCanh;
 
     public ChuyenBay() {
     }
 
-    public ChuyenBay(int maChuyenBay, int maTuyenBay, int maMayBay, int soLgVeCL, String ngayCatCanh,
-            String ngayHaCanh) {
+    public ChuyenBay(int maChuyenBay, int maTuyenBay, int maMayBay, int soLgVeCL, Date ngayCatCanh,
+            Date ngayHaCanh) {
         this.maChuyenBay = maChuyenBay;
         this.maTuyenBay = maTuyenBay;
         this.maMayBay = maMayBay;
@@ -63,19 +65,19 @@ public class ChuyenBay {
         this.soLgVeCL = soLgVeCL;
     }
 
-    public String getNgayCatCanh() {
+    public Date getNgayCatCanh() {
         return ngayCatCanh;
     }
 
-    public void setNgayCatCanh(String ngayCatCanh) {
+    public void setNgayCatCanh(Date ngayCatCanh) {
         this.ngayCatCanh = ngayCatCanh;
     }
 
-    public String getNgayHaCanh() {
+    public Date getNgayHaCanh() {
         return ngayHaCanh;
     }
 
-    public void setNgayHaCanh(String ngayHaCanh) {
+    public void setNgayHaCanh(Date ngayHaCanh) {
         this.ngayHaCanh = ngayHaCanh;
     }
 }

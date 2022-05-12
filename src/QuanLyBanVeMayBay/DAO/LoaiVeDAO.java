@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author Thepi314
  */
 public class LoaiVeDAO {
-    public ArrayList<LoaiVe> getDanhSachLoai() {
+    public ArrayList<LoaiVe> getDanhSachLoaiVe() {
         try {
             String sql = "SELECT * FROM loaive";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
@@ -36,7 +36,7 @@ public class LoaiVeDAO {
         return null;
     }
 
-    public boolean themLoai(LoaiVe loai) {
+    public boolean themLoaiVe(LoaiVe loai) {
         try {
             String sql = "insert into loaive(tenLoaiVe, donGia) "
                     + "values ("
@@ -51,7 +51,7 @@ public class LoaiVeDAO {
         return false;
     }
 
-    public boolean xoaLoai(int maLoaiVe) {
+    public boolean xoaLoaiVe(int maLoaiVe) {
         try {
             String sql = "DELETE FROM loaive WHERE maLoaiVe=" + maLoaiVe;
             Statement st = MyConnect.conn.createStatement();
@@ -62,7 +62,7 @@ public class LoaiVeDAO {
         return false;
     }
 
-    public boolean suaLoai(int maLoaiVe, String tenLoaiVe, int donGia) {
+    public boolean suaLoaiVe(int maLoaiVe, String tenLoaiVe, int donGia) {
         try {
             String sql = "UPDATE loaive SET tenLoaiVe='" + tenLoaiVe + "'" + ", donGia='" + donGia + "' WHERE MaLoai=" + maLoaiVe;
             Statement st = MyConnect.conn.createStatement();
