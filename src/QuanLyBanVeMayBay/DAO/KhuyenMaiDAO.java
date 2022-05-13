@@ -24,12 +24,10 @@ public class KhuyenMaiDAO {
                 KhuyenMaiDTO km = new KhuyenMaiDTO(); // tao doi tuong khach hang
                 kh.setMaKM(rs.getInt(1));
                 kh.setTenKM(rs.getString(2));
-                kh.setDienKienLoai(rs.getString(3));
-                kh.setDienKienSL(rs.getInt(4));
-                kh.setDienKienGia(rs.getint(5));
-                kh.setPhanTramKM(rs.getint(6));
-                kh.setNgayBD(rs.getString(7));
-                kh.setNgayKT(rs.getString(8));
+                kh.setDienKienGia(rs.getint(3));
+                kh.setPhanTramKM(rs.getint(4));
+                kh.setNgayBD(rs.getString(5));
+                kh.setNgayKT(rs.getString(6));
                 
                 return dskm;
             }
@@ -44,16 +42,14 @@ public class KhuyenMaiDAO {
         
         /*
         try{
-            String querySQL = "INSERT INTO khuyenmai VALUES(?,?,?,?,?,?,?)";
+            String querySQL = "INSERT INTO khuyenmai VALUES(?,?,?,?,?)";
             PreparedStatement prep = MyConnect.conn.prepareStatement(querySQL);
             // prep.setInt(1, km.getMaKM());
             prep.setString(1, km.getTenKM());
-            prep.setString(2, km.getDieuKienLoai());
-            prep.setInt(3, km.getDieuKienSL());
-            prep.setInt(4, km.getDieuKienGia());
-            prep.setint(5, km.getPhanTramKM());
-            prep.setString(6, km.getNgayBD());
-            prep.setString(7, km.getNgayKT());
+            prep.setInt(2, km.getDieuKienGia());
+            prep.setint(3, km.getPhanTramKM());
+            prep.setString(4, km.getNgayBD());
+            prep.setString(5, km.getNgayKT());
             
             check = prep.executeUpdate() > 0;
         }catch(SQLException ex){
@@ -83,16 +79,14 @@ public class KhuyenMaiDAO {
         boolean check = false;
         /*
         try{
-            String querySQL = "UPDATE khuyenmai SET tenKM = ?, dieuKienLoai = ?, dieuKienSL = ?, dieuKienGia = ?, phamTramKM = ?,ngayBD = ?, ngayKT = ? WHERE maKM = ?";
+            String querySQL = "UPDATE khuyenmai SET tenKM = ?,dieuKienGia = ?, phamTramKM = ?,ngayBD = ?, ngayKT = ? WHERE maKM = ?";
             PreparedStatement prep = MyConnect.conn.preparedStatement(querySQL);
             prep.setString(1, km.getTenKM());
-            prep.setString(2, km.getDieuKienLoai());
-            prep.setInt(3, km.getDieuKienSL());
-            prep.setInt(4, km.getDieuKienGia());
-            prep.setint(5, km.getPhanTramKM());
-            prep.setString(6, km.getNgayBD());
-            prep.setString(7, km.getNgayKT());
-            prep.setInt(8, maKM);
+            prep.setInt(2, km.getDieuKienGia());
+            prep.setint(3, km.getPhanTramKM());
+            prep.setString(4, km.getNgayBD());
+            prep.setString(5, km.getNgayKT());
+            prep.setInt(6, maKM);
         
             check = executeUpdate() > 0;
         }catch(SQLException ex){

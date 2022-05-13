@@ -11,8 +11,6 @@ package QuanLyBanVeMayBay.DTO;
 public class KhuyenMaiDTO {
     private int maKM;
     private String tenKM;
-    private String dieuKienLoai;
-    private int dieuKienSL;
     private int dieuKienGia;
     private int phanTramKM;
     private String ngayBD;
@@ -52,22 +50,6 @@ public class KhuyenMaiDTO {
     
     public void setNgayKT(String ngayKT){
         this.ngayKT = ngayKT;
-    }
-    
-    public String getDienKienLoai(){
-        return dieuKienLoai;
-    }
-    
-    public void setDieuKienLoai(String dieuKienLoai){
-        this.dieuKienLoai = dieuKienLoai;
-    }
-    
-    public int getDieuKienSL(){
-        return dieuKienSL;
-    }
-    
-    public void setDieuKienSL(int dieuKienSL){
-        this.dieuKienSL = dieuKienSL;
     }
     
     public int getDieuKienGia(){
