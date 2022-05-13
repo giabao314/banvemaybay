@@ -30,7 +30,7 @@ public class KhuyenMaiBUS {
     }
     
     
-    public boolean themKhuyenMai(String tenKM, String ngayBD, String ngayKT,String dieuKienLoai, int dieuKienSL, int dieuKienGia, int phanTramKM){
+    public boolean themKhuyenMai(String tenKM, String ngayBD, String ngayKT,int dieuKienGia, int phanTramKM){
         if(tenKM.trim().equals("")){
             JOptionPane.showMessageDialog(frame,"Vui lòng không để trống tên","Thông Báo",JOptionPane.ERROR_MESSAGE);
             return false;
@@ -47,8 +47,6 @@ public class KhuyenMaiBUS {
         
         KhuyenMaiDTO km = new KhuyenMaiDTO();
         km.setTenKM(tenKM);
-        km.setDieuKienLoai(dieuKienLoai);
-        km.setDieuKienSL(dieuKienSL);
         km.setDieuKienGia(dieuKienGia);
         km.setPhanTramKM(phanTramKM);
         km.setNgayBD(ngayBD);
@@ -64,7 +62,7 @@ public class KhuyenMaiBUS {
         return flag;
     }
     
-    public boolean suaKhuyenMai(int maKM,String tenKM, String ngayBD, String ngayKT,String dieuKienLoai, int dieuKienSL, int dieuKienGia, int phanTramKM){
+    public boolean suaKhuyenMai(int maKM,String tenKM, String ngayBD, String ngayKT,int dieuKienGia, int phanTramKM){
         if(tenKM.trim().equals("")){
             JOptionPane.showMessageDialog(frame,"Vui lòng không để trống tên","Thông Báo",JOptionPane.ERROR_MESSAGE);
             return false;
@@ -80,8 +78,6 @@ public class KhuyenMaiBUS {
         
         KhuyenMaiDTO km = new KhuyenMaiDTO();
         km.setTenKM(tenKM);
-        km.setDieuKienLoai(dieuKienLoai);
-        km.setDieuKienSL(dieuKienSL);
         km.setDieuKienGia(dieuKienGia);
         km.setPhanTramKM(phanTramKM);
         km.setNgayBD(ngayBD);
