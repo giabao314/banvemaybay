@@ -29,8 +29,8 @@ public class ChuyenBayDAO {
                 cb.setMaTuyenBay(rs.getInt(2));
                 cb.setMaMayBay(rs.getInt(3));
                 cb.setSoLgVeCL(rs.getInt(4));
-                cb.setNgayCatCanh(rs.getString(5));
-                cb.setNgayHaCanh(rs.getString(6));
+                cb.setNgayCatCanh(rs.getDate(5));
+                cb.setNgayHaCanh(rs.getDate(6));
                 dscb.add(cb);
             }
             return dscb;
@@ -53,8 +53,8 @@ public class ChuyenBayDAO {
                 cb.setMaTuyenBay(rs.getInt(2));
                 cb.setMaMayBay(rs.getInt(3));
                 cb.setSoLgVeCL(rs.getInt(4));
-                cb.setNgayCatCanh(rs.getString(5));
-                cb.setNgayHaCanh(rs.getString(6));
+                cb.setNgayCatCanh(rs.getDate(5));
+                cb.setNgayHaCanh(rs.getDate(6));
 
                 return cb;
             }
@@ -78,8 +78,8 @@ public class ChuyenBayDAO {
                 cb.setMaTuyenBay(rs.getInt(2));
                 cb.setMaMayBay(rs.getInt(3));
                 cb.setSoLgVeCL(rs.getInt(4));
-                cb.setNgayCatCanh(rs.getString(5));
-                cb.setNgayHaCanh(rs.getString(6));
+                cb.setNgayCatCanh(rs.getDate(5));
+                cb.setNgayHaCanh(rs.getDate(6));
 
                 dscb.add(cb);
             }
@@ -103,8 +103,8 @@ public class ChuyenBayDAO {
                 cb.setMaTuyenBay(rs.getInt(2));
                 cb.setMaMayBay(rs.getInt(3));
                 cb.setSoLgVeCL(rs.getInt(4));
-                cb.setNgayCatCanh(rs.getString(5));
-                cb.setNgayHaCanh(rs.getString(6));
+                cb.setNgayCatCanh(rs.getDate(5));
+                cb.setNgayHaCanh(rs.getDate(6));
 
                 dscb.add(cb);
             }
@@ -122,7 +122,7 @@ public class ChuyenBayDAO {
     // pre.setInt(1, ma);
     // ResultSet rs = pre.executeQuery();
     // if (rs.next()) {
-    // return rs.getString("HinhAnh");
+    // return rs.getDate("HinhAnh");
     // }
     // } catch (SQLException e) {
     // }
@@ -152,8 +152,8 @@ public class ChuyenBayDAO {
             pre.setInt(1, cb.getMaTuyenBay());
             pre.setInt(2, cb.getMaMayBay());
             pre.setInt(3, mb.getSoLgGhe());
-            pre.setString(4, cb.getNgayCatCanh());
-            pre.setString(5, cb.getNgayHaCanh());
+            pre.setDate(4, cb.getNgayCatCanh());
+            pre.setDate(5, cb.getNgayHaCanh());
             pre.execute();
             return true;
         } catch (SQLException e) {
@@ -170,8 +170,8 @@ public class ChuyenBayDAO {
             pre.setInt(1, cb.getMaTuyenBay());
             pre.setInt(2, cb.getMaMayBay());
             pre.setInt(3, cb.getSoLgVeCL());
-            pre.setString(4, cb.getNgayCatCanh());
-            pre.setString(5, cb.getNgayHaCanh());
+            pre.setDate(4, cb.getNgayCatCanh());
+            pre.setDate(5, cb.getNgayHaCanh());
             pre.execute();
             return true;
         } catch (SQLException e) {
@@ -200,8 +200,8 @@ public class ChuyenBayDAO {
             pre.setInt(1, cb.getMaTuyenBay());
             pre.setInt(2, cb.getMaMayBay());
             pre.setInt(3, cb.getSoLgVeCL());
-            pre.setString(4, cb.getNgayCatCanh());
-            pre.setString(5, cb.getNgayHaCanh());
+            pre.setDate(4, cb.getNgayCatCanh());
+            pre.setDate(5, cb.getNgayHaCanh());
             pre.execute();
             return true;
         } catch (SQLException e) {

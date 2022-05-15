@@ -40,13 +40,13 @@ public class Dialog extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/success.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/error.gif"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(260, 10, 350, 310);
 
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Ðăng Kí Tài Khoản Thành Công");
+        jLabel3.setText("Vui lòng điền mã nhân viên!");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(180, 350, 520, 70);
 

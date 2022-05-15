@@ -6,6 +6,7 @@ package QuanLyBanVeMayBay.BUS;
 
 import QuanLyBanVeMayBay.DAO.ChuyenBayDAO;
 import QuanLyBanVeMayBay.DTO.ChuyenBay;
+import Template.Dialog;
 import java.util.ArrayList;
 import java.util.Date;
 import QuanLyBanVeMayBay.DAO.MayBayDAO;
@@ -92,59 +93,81 @@ public class ChuyenBayBUS {
     // }
 
     public boolean themChuyenBay(String maTB, String maMB, Date ngayCC, Date ngayHC) {
-
+        if (maTB.equals("")) {
+            new MyDialog("Vui lòng chọn mã tuyến bay!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
+        if (maMB.equals("")) {
+            new MyDialog("Vui lòng chọn mã máy bay!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
+        if (ngayCC.compareTo(ngayHC) > 0 || ngayCC.compareTo(ngayHC) == 0) {
+            new MyDialog("Ngày kết thúc không hợp lệ!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
+        boolean flag = false;
         try {
             String[] maTBTemp = maTB.split(" - ");
             String[] maMBTemp = maMB.split(" - ");
-            
             int maTuyenBay = Integer.parseInt(maTBTemp[0]);
             int maMayBay = Integer.parseInt(maMBTemp[0]);
-            int soLgVeCL = Integer.parseInt();
-            int donGiaSP = Integer.parseInt(donGia);
-            ChuyenBay cb = new ChuyenBay();
-            cb.setTenSP(ten);
-            cb.setMaLoai(maLoai);
-            cb.setSoLuong(soLuongSP);
-            cb.setDonViTinh(donViTinh);
-            cb.setHinhAnh(anh);
-            cb.setDonGia(donGiaSP);
+            // Lấy ra số lượng ghế của máy bay có mã tương ứng và gán vào số lượng vé còn
+            // lại.
+            int soLgVeCL = Integer.parseInt(getMayBay(maMayBay).getSoLgGhe());
 
-            if (spDAO.themChuyenBay(sp)) {
-                new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);
-                return true;
-            } else {
-                new MyDialog("Thêm thất bại!", MyDialog.ERROR_DIALOG);
-                return false;
-            }
+            ChuyenBay cb = new ChuyenBay();
+            cb.setMaTuyenBay(maTuyenBay);
+            cb.setMaMayBay(maMayBay);
+            cb.setSoLgVeCL(soLgVeCL);
+            cb.setNgayCatCanh(ngayCC);
+            cb.setNgayHaCanh(ngayHC);
+
+            flag = cbDAO.themChuyenBay(cb);
         } catch (Exception e) {
-            new MyDialog("Nhập số hợp lệ cho Đơn giá và Số lượng!", MyDialog.ERROR_DIALOG);
+            new MyDialog("Vui lòng nhập số nguyên hợp lệ!", MyDialog.ERROR_DIALOG);
+            return false;
         }
-        return false;
+        if (flag) {
+            new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);
+            return true;
+        } else {
+            new MyDialog("Thêm thất bại!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
+        return flag;
     }
 
-    public boolean nhapChuyenBayTuExcel(String ten,
-            String loai,
-            String soLuong,
-            String donViTinh,
-            String anh,
-            String donGia) {
-
+    public boolean nhapChuyenBayTuExcel(String maTB, String maMB, Date ngayCC, Date ngayHC) {
+        if (maTB.equals("")) {
+            new MyDialog("Vui lòng chọn mã tuyến bay!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
+        if (maMB.equals("")) {
+            new MyDialog("Vui lòng chọn mã máy bay!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
+        if (ngayCC.compareTo(ngayHC) > 0 || ngayCC.compareTo(ngayHC) == 0) {
+            new MyDialog("Ngày kết thúc không hợp lệ!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
+        boolean flag = false;
         try {
-            String[] loaiTmp = loai.split(" - ");
-            int maLoai = Integer.parseInt(loaiTmp[0]);
-            int soLuongSP = Integer.parseInt(soLuong);
-            donGia = donGia.replace(",", "");
-            int donGiaSP = Integer.parseInt(donGia);
+            String[] maTBTemp = maTB.split(" - ");
+            String[] maMBTemp = maMB.split(" - ");
+            int maTuyenBay = Integer.parseInt(maTBTemp[0]);
+            int maMayBay = Integer.parseInt(maMBTemp[0]);
+            // Lấy ra số lượng ghế của máy bay có mã tương ứng và gán vào số lượng vé còn
+            // lại.
+            int soLgVeCL = Integer.parseInt(getMayBay(maMayBay).getSoLgGhe());
 
-            ChuyenBay sp = new ChuyenBay();
-            sp.setTenSP(ten);
-            sp.setMaLoai(maLoai);
-            sp.setSoLuong(soLuongSP);
-            sp.setDonViTinh(donViTinh);
-            sp.setHinhAnh(anh);
-            sp.setDonGia(donGiaSP);
+            ChuyenBay cb = new ChuyenBay();
+            cb.setMaTuyenBay(maTuyenBay);
+            cb.setMaMayBay(maMayBay);
+            cb.setSoLgVeCL(soLgVeCL);
+            cb.setNgayCatCanh(ngayCC);
+            cb.setNgayHaCanh(ngayHC);
 
-            spDAO.nhapChuyenBayTuExcel(sp);
+            cbDAO.nhapChuyenBayTuExcel(cb);
         } catch (Exception e) {
         }
         return false;
@@ -152,12 +175,12 @@ public class ChuyenBayBUS {
 
     public boolean xoaChuyenBay(String ma) {
         if (ma.trim().equals("")) {
-            new MyDialog("Chưa chọn sản phẩm để xoá!", MyDialog.ERROR_DIALOG);
+            new MyDialog("Chưa chọn chuyến bay để xoá!", MyDialog.ERROR_DIALOG);
             return false;
         }
 
         int maSP = Integer.parseInt(ma);
-        if (spDAO.xoaChuyenBay(maSP)) {
+        if (cbDAO.xoaChuyenBay(maSP)) {
             new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
             return true;
         }
@@ -166,51 +189,58 @@ public class ChuyenBayBUS {
         return false;
     }
 
-    public boolean suaChuyenBay(String ma,
-            String ten,
-            String loai,
-            String soLuong,
-            String donViTinh,
-            String anh,
-            String donGia) {
+    public boolean suaChuyenBay(String maCB, String maTB, String maMB, Date ngayCC, Date ngayHC) {
 
         try {
-            if (ma.trim().equals("")) {
-                new MyDialog("Chưa chọn sản phẩm để sửa!", MyDialog.ERROR_DIALOG);
+            if (maCB.trim().equals("")) {
+                new MyDialog("Chưa chọn chuyến bay để sửa!", MyDialog.ERROR_DIALOG);
                 return false;
             }
-            donGia = donGia.replace(",", "");
-            int maSP = Integer.parseInt(ma);
-            String[] loaiTmp = loai.split(" - ");
-            int maLoai = Integer.parseInt(loaiTmp[0]);
-            int soLuongSP = Integer.parseInt(soLuong);
-            int donGiaSP = Integer.parseInt(donGia);
-
-            if (maLoai == 0) {
-                new MyDialog("Vui lòng chọn Loại sản phẩm!", MyDialog.ERROR_DIALOG);
-                return false;
-            }
-
-            if (ten.trim().equals("")) {
-                new MyDialog("Tên SP không được để rỗng!", MyDialog.ERROR_DIALOG);
+            int maChuyenBay = Integer.parseInt(maCB);
+            String[] maTBTemp = maTB.split(" - ");
+            String[] maMBTemp = maMB.split(" - ");
+            int maTuyenBay = Integer.parseInt(maTBTemp[0]);
+            int maMayBay = Integer.parseInt(maMBTemp[0]);
+            // Lấy ra số lượng ghế của máy bay có mã tương ứng và gán vào số lượng vé còn
+            // lại.
+            int soLgVeCL = Integer.parseInt(getMayBay(maMayBay).getSoLgGhe());
+            
+            if (maTuyenBay == 0) {
+                new MyDialog("Mã tuyến bay không được để trống!", MyDialog.ERROR_DIALOG);
                 return false;
             }
 
-            if (donViTinh.trim().equals("")) {
-                new MyDialog("Vui lòng điền Đơn vị tính!", MyDialog.ERROR_DIALOG);
+            if (maMayBay == 0) {
+                new MyDialog("Vui lòng chọn mã máy bay", MyDialog.ERROR_DIALOG);
                 return false;
             }
 
-            ChuyenBay sp = new ChuyenBay();
-            sp.setMaSP(maSP);
-            sp.setTenSP(ten);
-            sp.setMaLoai(maLoai);
-            sp.setSoLuong(soLuongSP);
-            sp.setDonViTinh(donViTinh);
-            sp.setHinhAnh(anh);
-            sp.setDonGia(donGiaSP);
+            if (ngayCC.toString().trim().equals("")) {
+                new MyDialog("Vui lòng chọn ngày cất cánh!", MyDialog.ERROR_DIALOG);
+                return false;
+            }
 
-            if (spDAO.suaChuyenBay(sp)) {
+            if (ngayCC.toString().trim().equals("")) {
+                new MyDialog("Vui lòng chọn ngày hạ cánh!", MyDialog.ERROR_DIALOG);
+                return false;
+            }
+
+            if (ngayCC.compareTo(ngayHC) > 0 || ngayCC.compareTo(ngayHC) == 0) {
+                new MyDialog("Ngày kết thúc không hợp lệ!", MyDialog.ERROR_DIALOG);
+                return false;
+            }
+
+            ChuyenBay cb = new ChuyenBay();
+            cb.setMaChuyenBay(maChuyenBay);
+            cb.setMaTuyenBay(maTuyenBay);
+            cb.setMaMayBay(maMayBay);
+            cb.setSoLgVeCL(soLgVeCL);
+            cb.setNgayCatCanh(ngayCC);
+            cb.setNgayHaCanh(ngayHC);
+
+            // flag = cbDAO.themChuyenBay(cb);
+
+            if (cbDAO.suaChuyenBay(cb)) {
                 new MyDialog("Sửa thành công!", MyDialog.SUCCESS_DIALOG);
                 return true;
             } else {
@@ -223,12 +253,12 @@ public class ChuyenBayBUS {
         return false;
     }
 
-    public String getTenSP(int maSP) {
-        for (ChuyenBay sp : listChuyenBay) {
-            if (sp.getMaSP() == maSP) {
-                return sp.getTenSP();
-            }
-        }
-        return "";
-    }
+    // public String getTenSP(int maSP) {
+    //     for (ChuyenBay sp : listChuyenBay) {
+    //         if (sp.getMaSP() == maSP) {
+    //             return sp.getTenSP();
+    //         }
+    //     }
+    //     return "";
+    // }
 }
