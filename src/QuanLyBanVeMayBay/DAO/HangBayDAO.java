@@ -38,7 +38,7 @@ public class HangBayDAO {
     public boolean themHangBay(HangBayDTO hb) {
         try {
             String sql = "INSERT INTO hangbay VALUES (?,?)";
-            PreparedStatement prep = Myconnect.conn.preparedStatement(sql);
+            PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
             prep.setString(1, hb.getMaHang());
             prep.setString(2, hb.getTenHang());
 

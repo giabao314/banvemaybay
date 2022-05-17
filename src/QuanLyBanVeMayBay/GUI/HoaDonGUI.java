@@ -37,7 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class jijih extends JFrame {
+public class HoaDonGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtMaHD;
@@ -70,7 +70,7 @@ public class jijih extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					jijih frame = new jijih();
+					HoaDonGUI frame = new HoaDonGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,7 +82,7 @@ public class jijih extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public jijih() {
+	public HoaDonGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1211, 762);
 		contentPane = new JPanel();
