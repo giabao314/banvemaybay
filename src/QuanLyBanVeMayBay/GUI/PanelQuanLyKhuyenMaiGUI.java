@@ -6,7 +6,11 @@ package QuanLyBanVeMayBay.GUI;
 import java.util.ArrayList;
 import java.util.Vector;
 import QuanLyBanVeMayBay.BUS.KhuyenMaiBUS;
+<<<<<<< HEAD:src/QuanLyBanVeMayBay/GUI/PanelQuanLyKhuyenMaiGUI.java
 import QuanLyBanVeMayBay.DTO.KhuyenMai;
+=======
+import QuanLyBanVeMayBay.DTO.KhuyenMaiDTO;
+>>>>>>> 3a403fb064d671d6822f26a436ba6953f41ad50c:src/QuanLyBanVeMayBay/GUI/KhuyenMaiGUI.java
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -294,7 +298,13 @@ public class PanelQuanLyKhuyenMaiGUI extends javax.swing.JPanel {
         dtmKhuyenMai.setRowCount(0);
         ArrayList<KhuyenMai> dskm = khuyenmaiBUS.getListKhuyenMai();
         
+<<<<<<< HEAD:src/QuanLyBanVeMayBay/GUI/PanelQuanLyKhuyenMaiGUI.java
         for(KhuyenMai km : dskm){
+=======
+        tableKhuyenMai.setModel(dtmKhuyenMai);
+        
+        for(KhuyenMaiDTO km : dskm){
+>>>>>>> 3a403fb064d671d6822f26a436ba6953f41ad50c:src/QuanLyBanVeMayBay/GUI/KhuyenMaiGUI.java
             Vector vec = new Vector();
             vec.add(km.getMaKM());
             vec.add(km.getTenKM());

@@ -65,7 +65,7 @@ public class KhachHangBUS {
         ArrayList<KhachHang> dskh = new ArrayList();
         for(KhachHang kh : listKhachHang){
             String cancuoc = kh.getCanCuoc();
-            if(cancuoc.contains(canCuoc)){
+            if(cancuoc.equals(canCuoc)){
                 dskh.add(kh);
             }
         }
