@@ -5,18 +5,19 @@
 package QuanLyBanVeMayBay.DAO;
 
 import com.mysql.jdbc.Driver;
-import Template.Dialog;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Thepi314
  */
+
 public class MyConnect {
     public static Connection conn = null;
     private String severName;
@@ -34,15 +35,15 @@ public class MyConnect {
         try {
             com.mysql.jdbc.Driver driver = new Driver();
             conn = driver.connect(strConnect, pro);
+            System.out.print("Done!");
         } catch (SQLException ex) {
-            new Dialog("Không kết nối được tới CSDL!", Dialog.ERROR_DIALOG);
+            new JOptionPane("Không kết nối được tới CSDL!", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
 
     }
 
     private void docFileText() {
-        // Xử lý đọc file để lấy ra 4 tham số
         severName = "";
         dbName = "";
         userName = "";
