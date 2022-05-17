@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package QuanLyBanVeMayBay.DAO;
-import QuanLyBanVeMayBay.DTO.KhuyenMaiDTO;
+import QuanLyBanVeMayBay.DTO.KhuyenMai;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class KhuyenMaiDAO {
     
-    public ArrayList<KhuyenMaiDTO> getListKhuyenMai(){
+    public ArrayList<KhuyenMai> getListKhuyenMai(){
         /*try{
             String querySQL = "SELECT * FROM KhuyenMai";
             //connect database
@@ -37,7 +37,7 @@ public class KhuyenMaiDAO {
         return null;
     }
     
-    public boolean themKhuyenMai(KhuyenMaiDTO km){
+    public boolean themKhuyenMai(KhuyenMai km){
         boolean check = false;
         
         /*
@@ -75,7 +75,7 @@ public class KhuyenMaiDAO {
         return check;
     }
     
-    public boolean suaKhuyenMai(int maKH,KhuyenMaiDTO km){
+    public boolean suaKhuyenMai(int maKH,KhuyenMai km){
         boolean check = false;
         /*
         try{

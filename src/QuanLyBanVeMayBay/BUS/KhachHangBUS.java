@@ -4,7 +4,7 @@
  */
 package QuanLyBanVeMayBay.BUS;
 import QuanLyBanVeMayBay.DAO.KhachHangDAO;
-import QuanLyBanVeMayBay.DTO.KhachHangDTO;
+import QuanLyBanVeMayBay.DTO.KhachHang;
 
 
 import java.util.ArrayList;
@@ -13,23 +13,23 @@ import java.util.ArrayList;
  * @author hp
  */
 public class KhachHangBUS {
-    private ArrayList<KhachHangDTO> listKhachHang = null;
+    private ArrayList<KhachHang> listKhachHang = null;
     private KhachHangDAO khachHangDAO = new KhachHangDAO();
     
     public void docListKhachHang(){
         listKhachHang = khachHangDAO.getListKhachHang();
     }
     
-    public ArrayList<KhachHangDTO> getListKhachHang(){
+    public ArrayList<KhachHang> getListKhachHang(){
         if(listKhachHang == null){
             docListKhachHang();
         }
         return listKhachHang;
     }
     
-    public ArrayList<KhachHangDTO> timKiemKhachHangTheoTen(String tenKH){
-        ArrayList<KhachHangDTO> dskh = new ArrayList();
-        for(KhachHangDTO kh : listKhachHang){
+    public ArrayList<KhachHang> timKiemKhachHangTheoTen(String tenKH){
+        ArrayList<KhachHang> dskh = new ArrayList();
+        for(KhachHang kh : listKhachHang){
             String ho = kh.getHoKH();
             String ten = kh.getTenKH();
             if(ten.contains(tenKH)){
@@ -39,9 +39,9 @@ public class KhachHangBUS {
         return dskh;
     }
     
-    public ArrayList<KhachHangDTO> timKiemKhachHangTheoMa(String maKH){
-        ArrayList<KhachHangDTO> dskh = new ArrayList();
-        for(KhachHangDTO kh : listKhachHang){
+    public ArrayList<KhachHang> timKiemKhachHangTheoMa(String maKH){
+        ArrayList<KhachHang> dskh = new ArrayList();
+        for(KhachHang kh : listKhachHang){
             int ma = kh.getMaKH();
             if(ma == Integer.parseInt(maKH)){
                 dskh.add(kh);
@@ -50,9 +50,9 @@ public class KhachHangBUS {
         return dskh;
     }
     
-    public ArrayList<KhachHangDTO> timKiemKhachHangTheoSDT(String sdt){
-        ArrayList<KhachHangDTO> dskh = new ArrayList();
-        for(KhachHangDTO kh : listKhachHang){
+    public ArrayList<KhachHang> timKiemKhachHangTheoSDT(String sdt){
+        ArrayList<KhachHang> dskh = new ArrayList();
+        for(KhachHang kh : listKhachHang){
             String sodienthoai = kh.getSdt();
             if(sodienthoai.contains(sdt)){
                 dskh.add(kh);
@@ -61,9 +61,9 @@ public class KhachHangBUS {
         return dskh;
     }
     
-    public ArrayList<KhachHangDTO> timKiemKhachHangTheoCanCuoc(String canCuoc){
-        ArrayList<KhachHangDTO> dskh = new ArrayList();
-        for(KhachHangDTO kh : listKhachHang){
+    public ArrayList<KhachHang> timKiemKhachHangTheoCanCuoc(String canCuoc){
+        ArrayList<KhachHang> dskh = new ArrayList();
+        for(KhachHang kh : listKhachHang){
             String cancuoc = kh.getCanCuoc();
             if(cancuoc.contains(canCuoc)){
                 dskh.add(kh);
@@ -98,7 +98,7 @@ public class KhachHangBUS {
             return false;
         }
         
-        KhachHangDTO kh = new KhachHangDTO();
+        KhachHang kh = new KhachHang();
         kh.setHoKH(hoKH);
         kh.setTenKH(tenKH);
         kh.setGioiTinh(gioiTinh);
@@ -140,7 +140,7 @@ public class KhachHangBUS {
             return false;
         }
         
-        KhachHangDTO kh = new KhachHangDTO();
+        KhachHang kh = new KhachHang();
         kh.setHoKH(hoKH);
         kh.setTenKH(tenKH);
         kh.setGioiTinh(gioiTinh);

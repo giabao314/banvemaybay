@@ -18,7 +18,8 @@ import QuanLyBanVeMayBay.DAO.MayBayDAO;
 public class ChuyenBayBUS {
     private ArrayList<ChuyenBay> listCB = null;
     private ChuyenBayDAO cbDAO = new ChuyenBayDAO();
-
+    private MayBayDAO mbDAO = new MayBayDAO();
+    mbDAO.docListMayBay();
     public ChuyenBayBUS() {
         docListChuyenBay();
     }
@@ -113,7 +114,7 @@ public class ChuyenBayBUS {
             int maMayBay = Integer.parseInt(maMBTemp[0]);
             // Lấy ra số lượng ghế của máy bay có mã tương ứng và gán vào số lượng vé còn
             // lại.
-            int soLgVeCL = Integer.parseInt(getMayBay(maMayBay).getSoLgGhe());
+            int soLgVeCL = Integer.parseInt(mbDAO.getMayBay(maMayBay).getSoLgGhe());
 
             ChuyenBay cb = new ChuyenBay();
             cb.setMaTuyenBay(maTuyenBay);
@@ -158,7 +159,7 @@ public class ChuyenBayBUS {
             int maMayBay = Integer.parseInt(maMBTemp[0]);
             // Lấy ra số lượng ghế của máy bay có mã tương ứng và gán vào số lượng vé còn
             // lại.
-            int soLgVeCL = Integer.parseInt(getMayBay(maMayBay).getSoLgGhe());
+            int soLgVeCL = Integer.parseInt(mbDAO.getMayBay(maMayBay).getSoLgGhe());
 
             ChuyenBay cb = new ChuyenBay();
             cb.setMaTuyenBay(maTuyenBay);
@@ -203,7 +204,7 @@ public class ChuyenBayBUS {
             int maMayBay = Integer.parseInt(maMBTemp[0]);
             // Lấy ra số lượng ghế của máy bay có mã tương ứng và gán vào số lượng vé còn
             // lại.
-            int soLgVeCL = Integer.parseInt(getMayBay(maMayBay).getSoLgGhe());
+            int soLgVeCL = Integer.parseInt(mbDAO.getMayBay(maMayBay).getSoLgGhe());
             
             if (maTuyenBay == 0) {
                 new MyDialog("Mã tuyến bay không được để trống!", MyDialog.ERROR_DIALOG);

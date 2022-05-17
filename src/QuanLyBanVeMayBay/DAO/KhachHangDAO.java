@@ -4,7 +4,7 @@
  */
 package QuanLyBanVeMayBay.DAO;
 import java.util.ArrayList;
-import QuanLyBanVeMayBay.DTO.KhachHangDTO;
+import QuanLyBanVeMayBay.DTO.KhachHang;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.sql.PreparedStatement;
  */
 public class KhachHangDAO {
     
-    public ArrayList<KhachHangDTO> getListKhachHang(){
+    public ArrayList<KhachHang> getListKhachHang(){
         /*try{
             String querySQL = "SELECT * FROM KhachHang ";
             //connect database
@@ -39,8 +39,8 @@ public class KhachHangDAO {
         return null;
     }
     
-    public KhachHangDTO getKhachHang(int maKH){
-        KhachHangDTO kh = null;
+    public KhachHang getKhachHang(int maKH){
+        KhachHang kh = null;
         /* try{
             //connect db
             // conn = DriverManager.getConnection(url,userName,password);
@@ -64,7 +64,7 @@ public class KhachHangDAO {
         return kh;
     }
     
-    public boolean themKhachHang(KhachHangDTO kh){
+    public boolean themKhachHang(KhachHang kh){
         boolean check = false;
         
         /*
@@ -105,7 +105,7 @@ public class KhachHangDAO {
         return check;
     }
     
-    public boolean suaKhachHang(int maKH,KhachHangDTO kh){
+    public boolean suaKhachHang(int maKH,KhachHang kh){
         boolean check = false;
         /*
         try{
