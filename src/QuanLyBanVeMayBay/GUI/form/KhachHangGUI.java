@@ -6,7 +6,7 @@ package QuanLyBanVeMayBay.GUI.form;
 import java.util.ArrayList;
 import java.util.Vector;
 import QuanLyBanVeMayBay.BUS.KhachHangBUS;
-import QuanLyBanVeMayBay.DTO.KhachHangDTO;
+import QuanLyBanVeMayBay.DTO.KhachHang;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -18,12 +18,9 @@ public class KhachHangGUI extends javax.swing.JPanel {
      * Creates new form KhachHangGUI
      */
     KhachHangBUS khachhangBUS = new KhachHangBUS();
-<<<<<<< HEAD:src/QuanLyBanVeMayBay/GUI/KhachHangGUI.java
+    ArrayList<KhachHang> dskh = null;
     public KhachHangGUI() {
-=======
-    ArrayList<KhachHangDTO> dskh = null;
-    public KhachHangGUI {
->>>>>>> 3a403fb064d671d6822f26a436ba6953f41ad50c:src/QuanLyBanVeMayBay/GUI/KhachHangGUI.java
+   
         initComponents();
         getListKhachHang();
     }
@@ -56,8 +53,8 @@ public class KhachHangGUI extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jTextField8 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtTuKhoa = new javax.swing.JTextField();
+        txtLuaChon = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -190,9 +187,9 @@ public class KhachHangGUI extends javax.swing.JPanel {
                         .addGap(29, 104, Short.MAX_VALUE))))
         );
 
-        jTextField8.setText("jTextField8");
+        txtTuKhoa.setText("jTextField8");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã", "Tên", "Căn Cước", "Số Điện Thoại" }));
+        txtLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã", "Tên", "Căn Cước", "Số Điện Thoại" }));
 
         jButton4.setText("Tìm Kiếm");
 
@@ -246,9 +243,9 @@ public class KhachHangGUI extends javax.swing.JPanel {
                         .addGap(153, 153, 153)
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTuKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addComponent(jButton4))
                     .addGroup(layout.createSequentialGroup()
@@ -266,8 +263,8 @@ public class KhachHangGUI extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTuKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton4))
                     .addComponent(jLabel9))
                 .addGap(32, 32, 32)
@@ -337,7 +334,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
         
         tableKhachHang.setModel(dtmKhachHang);
         
-        for(KhachHangDTO kh : dskh){
+        for(KhachHang kh : dskh){
             Vector vec = new Vector();
             vec.add(kh.getMaKH());
             vec.add(kh.getHoKH());
@@ -404,7 +401,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
         
         tableKhachHang.setModel(dtmKhachHang);
         
-        for(KhachHangDTO kh : dskh){
+        for(KhachHang kh : dskh){
             Vector vec = new Vector();
             vec.add(kh.getMaKH());
             vec.add(kh.getHoKH());
@@ -425,7 +422,6 @@ public class KhachHangGUI extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -438,14 +434,15 @@ public class KhachHangGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTable tableKhachHang;
     private javax.swing.JTextField txtCanCuoc;
     private javax.swing.JTextField txtGioiTinh;
     private javax.swing.JTextField txtHoKH;
+    private javax.swing.JComboBox<String> txtLuaChon;
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtSoDienThoai;
     private javax.swing.JTextField txtTenKH;
+    private javax.swing.JTextField txtTuKhoa;
     // End of variables declaration//GEN-END:variables
 }

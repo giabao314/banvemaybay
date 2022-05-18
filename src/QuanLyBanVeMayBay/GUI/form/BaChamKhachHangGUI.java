@@ -4,7 +4,7 @@
  */
 package QuanLyBanVeMayBay.GUI.form;
 import QuanLyBanVeMayBay.BUS.KhachHangBUS;
-import QuanLyBanVeMayBay.DTO.KhachHangDTO;
+import QuanLyBanVeMayBay.DTO.KhachHang;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +19,7 @@ public class BaChamKhachHangGUI extends javax.swing.JPanel {
      */
     KhachHangBUS khachhangBUS = new KhachHangBUS();
     DefaultTableModel dtmKhachHang;
-    ArrayList<KhachHangDTO> dskh = null;
+    ArrayList<KhachHang> dskh = null;
     
     public BaChamKhachHangGUI() {
         initComponents();
@@ -166,7 +166,7 @@ public class BaChamKhachHangGUI extends javax.swing.JPanel {
         dskh = khachhangBUS.getListKhachHang();
         tableKhachHang.setModel(dtmKhachHang);
         
-        for(KhachHangDTO kh : dskh){
+        for(KhachHang kh : dskh){
             Vector vec = new Vector();
             vec.add(kh.getMaKH());
             vec.add(kh.getHoKH());
@@ -203,7 +203,7 @@ public class BaChamKhachHangGUI extends javax.swing.JPanel {
         
         tableKhachHang.setModel(dtmKhachHang);
         
-        for(KhachHangDTO kh : dskh){
+        for(KhachHang kh : dskh){
             Vector vec = new Vector();
             vec.add(kh.getMaKH());
             vec.add(kh.getHoKH());

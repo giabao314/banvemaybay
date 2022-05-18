@@ -24,9 +24,9 @@
                       <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextField8" min="-2" pref="147" max="-2" attributes="0"/>
+                      <Component id="txtTuKhoa" min="-2" pref="147" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="txtLuaChon" min="-2" pref="84" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -49,8 +49,8 @@
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTuKhoa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtLuaChon" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -264,12 +264,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="jTextField8">
+    <Component class="javax.swing.JTextField" name="txtTuKhoa">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField8"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="txtLuaChon">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">

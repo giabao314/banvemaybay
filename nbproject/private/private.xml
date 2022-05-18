@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/JavaProject_QuanLyBanVeMayBay/src/QuanLyBanVeMayBay/GUI/swing/ListMenu.java</file>
-            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/JavaProject_QuanLyBanVeMayBay/src/QuanLyBanVeMayBay/GUI/component/SubMenu.java</file>
-            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/JavaProject_QuanLyBanVeMayBay/src/QuanLyBanVeMayBay/GUI/main/Main.java</file>
-            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/JavaProject_QuanLyBanVeMayBay/src/QuanLyBanVeMayBay/GUI/component/Menu.java</file>
-            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/JavaProject_QuanLyBanVeMayBay/src/QuanLyBanVeMayBay/GUI/swing/MenuItem.java</file>
-=======
             <file>file:/E:/Netbeans%20Java%20Project/banvemaybay/src/QuanLyBanVeMayBay/DAO/MyConnect.java</file>
->>>>>>> 3a403fb064d671d6822f26a436ba6953f41ad50c
+            <file>file:/E:/Netbeans%20Java%20Project/banvemaybay/src/QuanLyBanVeMayBay/DAO/HangBayDAO.java</file>
+            <file>file:/E:/Netbeans%20Java%20Project/banvemaybay/src/QuanLyBanVeMayBay/DAO/ChuyenBayDAO.java</file>
         </group>
     </open-files>
 </project-private>
