@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  *
  * @author Thepi314
  */
-
 public class MyConnect {
+
     public static Connection conn = null;
     private String severName;
     private String dbName;
@@ -35,9 +35,9 @@ public class MyConnect {
         try {
             com.mysql.jdbc.Driver driver = new Driver();
             conn = driver.connect(strConnect, pro);
-            System.out.print("Done!");
+//            JOptionPane.showMessageDialog(null, "Đọc dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
-            new JOptionPane("Không kết nối được tới CSDL!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Đọc dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
 

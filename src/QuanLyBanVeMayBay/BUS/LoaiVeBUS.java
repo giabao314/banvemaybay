@@ -39,8 +39,8 @@ public class LoaiVeBUS {
                 int maLoaiVe = Integer.parseInt(ma);
                 for (LoaiVe lv : listLV) {
                     if (lv.getMaLoaiVe() == maLoaiVe) {
-                        return lv;
-                        // return lv.getMaLoaiVe() + " - " + lv.getTenLoaiVe();
+//                        return lv;
+//                         return lv.getMaLoaiVe() + " - " + lv.getTenLoaiVe();
                     }
                 }
             } catch (Exception e) {

@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Thepi314
  */
-public class LoaiVeGUI extends javax.swing.JPanel {
+public final class LoaiVeGUI extends javax.swing.JPanel {
 
     /**
      * Creates new form LoaiVeGUI
@@ -25,7 +25,14 @@ public class LoaiVeGUI extends javax.swing.JPanel {
 
     public LoaiVeGUI() {
         initComponents();
+        dtmLoaiVe = new DefaultTableModel();
+        dtmLoaiVe.addColumn("Mã loại Vé");
+        dtmLoaiVe.addColumn("Tên loại Vé");
+        dtmLoaiVe.addColumn("Ðon Giá Vé");
+        tblLoaiVe.setModel(dtmLoaiVe);
         getListLoaiVe();
+//        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -256,7 +263,6 @@ public class LoaiVeGUI extends javax.swing.JPanel {
         clickTableRowLoaiVe();
     }//GEN-LAST:event_tblLoaiVeMouseClicked
 
-
     public void themLoaiVe() {
         String tenLV = txtTenLoaiVe.getText();
         String donGia = txtDonGia.getText();
@@ -282,6 +288,7 @@ public class LoaiVeGUI extends javax.swing.JPanel {
         for (LoaiVe lv : dslv) {
             Vector v = new Vector();
             v.add(lv.getMaLoaiVe());
+            v.add(lv.getTenLoaiVe());
             v.add(lv.getDonGia());
             dtmLoaiVe.addRow(v);
         }

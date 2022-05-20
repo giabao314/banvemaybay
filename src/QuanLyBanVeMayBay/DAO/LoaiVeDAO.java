@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 public class LoaiVeDAO {
     public ArrayList<LoaiVe> getDanhSachLoaiVe() {
         try {
+//            new MyConnect();
             String sql = "SELECT * FROM loaive";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             ResultSet rs = pre.executeQuery();

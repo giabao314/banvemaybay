@@ -4,20 +4,32 @@
  */
 package QuanLyBanVeMayBay.GUI.main;
 
+import QuanLyBanVeMayBay.DAO.MyConnect;
+import QuanLyBanVeMayBay.GUI.form.LoaiVeGUI;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Thepi314
  */
-public class Main extends javax.swing.JFrame {
+public final class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
+    public void renderLayout() {
+        JPanel pnLoaiVe = new LoaiVeGUI();
+        jPanel1.setLayout(new BorderLayout());
+        jPanel1.add(pnLoaiVe, BorderLayout.CENTER);
+    }
+
     public Main() {
+//        new MyConnect();
         initComponents();
-        setBackground(new Color(0,0,0,0));
+        renderLayout();
+        setBackground(new Color(0, 0, 0, 0));
         menu3.initMoving(Main.this);
     }
 
@@ -33,6 +45,7 @@ public class Main extends javax.swing.JFrame {
         menu1 = new QuanLyBanVeMayBay.GUI.component.Menu();
         panelBorder1 = new QuanLyBanVeMayBay.GUI.swing.PanelBorder();
         menu3 = new QuanLyBanVeMayBay.GUI.component.Menu();
+        jPanel1 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout menu1Layout = new javax.swing.GroupLayout(menu1);
         menu1.setLayout(menu1Layout);
@@ -51,17 +64,30 @@ public class Main extends javax.swing.JFrame {
         panelBorder1.setBackground(new java.awt.Color(242, 242, 242));
         panelBorder1.setForeground(new java.awt.Color(242, 242, 242));
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 964, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(962, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,6 +116,7 @@ public class Main extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -108,16 +135,20 @@ public class Main extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        new MyConnect();
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(
+                new Runnable() {
             @Override
             public void run() {
                 new Main().setVisible(true);
             }
-        });
+        }
+        );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu3;
     private QuanLyBanVeMayBay.GUI.swing.PanelBorder panelBorder1;
