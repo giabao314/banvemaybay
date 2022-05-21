@@ -19,13 +19,21 @@ import java.sql.DriverManager;
  *
  * @author Thepi314
  */
-
 public class MyConnect {
+<<<<<<< HEAD
     public static Connection conn;
     private String severName = "localhost";
     private String dbName = "banvemaybay";
     private String userName = "root";
     private String password = "";
+=======
+
+    public static Connection conn = null;
+    private String severName;
+    private String dbName;
+    private String userName;
+    private String password;
+>>>>>>> 2b53277792b0d3406c387f54d3759cb45dfd859e
 
     public MyConnect() {
         //docFileText();
@@ -37,10 +45,14 @@ public class MyConnect {
         try {
             com.mysql.jdbc.Driver driver = new Driver();
             conn = driver.connect(strConnect, pro);
+<<<<<<< HEAD
 //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/banvemaybay", "root", "");
             System.out.print("Done!");
+=======
+//            JOptionPane.showMessageDialog(null, "Đọc dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+>>>>>>> 2b53277792b0d3406c387f54d3759cb45dfd859e
         } catch (SQLException ex) {
-            new JOptionPane("Không kết nối được tới CSDL!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Đọc dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
             
