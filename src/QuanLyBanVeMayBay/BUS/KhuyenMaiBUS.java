@@ -7,14 +7,14 @@ package QuanLyBanVeMayBay.BUS;
 import java.awt.Component;
 import java.util.ArrayList;
 import QuanLyBanVeMayBay.DAO.KhuyenMaiDAO;
-import QuanLyBanVeMayBay.DTO.KhuyenMaiDTO;
+import QuanLyBanVeMayBay.DTO.KhuyenMai;
 import javax.swing.JOptionPane;
 /**
  *
  * @author hp
  */
 public class KhuyenMaiBUS {
-    private ArrayList<KhuyenMaiDTO> listKhuyenMai = null;
+    private ArrayList<KhuyenMai> listKhuyenMai = null;
     private KhuyenMaiDAO khuyenMaiDAO = new KhuyenMaiDAO();
     private Component frame;
     
@@ -22,10 +22,15 @@ public class KhuyenMaiBUS {
         listKhuyenMai = khuyenMaiDAO.getListKhuyenMai();
     }
     
-    public ArrayList<KhuyenMaiDTO> getListKhuyenMai(){
+    public ArrayList<KhuyenMai> getListKhuyenMai(){
         if(listKhuyenMai == null){
             docListKhuyenMai();
         }
+        return listKhuyenMai;
+    }
+    
+    public ArrayList<KhuyenMai> listKM(){
+        docListKhuyenMai();
         return listKhuyenMai;
     }
     
@@ -45,7 +50,7 @@ public class KhuyenMaiBUS {
         }
 
         
-        KhuyenMaiDTO km = new KhuyenMaiDTO();
+        KhuyenMai km = new KhuyenMai();
         km.setTenKM(tenKM);
         km.setDieuKienGia(dieuKienGia);
         km.setPhanTramKM(phanTramKM);
@@ -76,7 +81,7 @@ public class KhuyenMaiBUS {
             return false;
         }
         
-        KhuyenMaiDTO km = new KhuyenMaiDTO();
+        KhuyenMai km = new KhuyenMai();
         km.setTenKM(tenKM);
         km.setDieuKienGia(dieuKienGia);
         km.setPhanTramKM(phanTramKM);

@@ -5,7 +5,7 @@
 package QuanLyBanVeMayBay.DAO;
 
 import QuanLyBanVeMayBay.DTO.ChuyenBay;
-import QuanLyBanVeMayBay.DAO.MayBay;
+import QuanLyBanVeMayBay.DAO.MayBayDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -145,7 +145,7 @@ public class ChuyenBayDAO {
 
     public boolean themChuyenBay(ChuyenBay cb) {
         try {
-            MayBay mb = getMayBay(cb.getMaMayBay());
+            MayBayDAO mb = getMayBay(cb.getMaMayBay());
             String sql = "INSERT INTO chuyenbay (maTuyenBay, maMayBay, soLgVeCL, ngayCatCanh, ngayHaCanh) "
                     + "VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);

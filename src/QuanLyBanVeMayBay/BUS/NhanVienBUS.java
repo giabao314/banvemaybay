@@ -16,7 +16,7 @@ public class NhanVienBUS {
 	      listNhanVien = nvDAO.getDanhSachNhanVien();
 	    }
 
-	    public static ArrayList<NhanVien> getDanhSachNhanVien() {
+	    public  ArrayList<NhanVien> getDanhSachNhanVien() {
 	        if (listNhanVien == null)
 	            docDanhSach();
 	        return listNhanVien;
@@ -124,6 +124,20 @@ public class NhanVienBUS {
 	        }
 	        return flag;
 	    }
+	    
+	    
+	    public static ArrayList<NhanVien> timNhanVien(String tuKhoa) {
+	        tuKhoa = tuKhoa.toLowerCase();
+	        ArrayList<NhanVien> dsnv = new ArrayList<>();
+	        for (NhanVien nv : listNhanVien) {
+	            if (nv.getHoNV().toLowerCase().contains(tuKhoa) || nv.getTenNV().toLowerCase().contains(tuKhoa) ||
+	                    nv.getGioiTinh().toLowerCase().contains(tuKhoa) || nv.getCanCuoc().toLowerCase().contains(tuKhoa) || Integer.toString(nv.getSdt()).contains(tuKhoa) || Integer.toString(nv.getLuong()).contains(tuKhoa)) {
+	                dsnv.add(nv);
+	            }
+	        }
+	        return dsnv;
+	    }
+
 
 	    public ArrayList<NhanVien> timKiemNhanVienTheoTen(String tenNV){
 	    	ArrayList<NhanVien> dsnv = new ArrayList<>();
