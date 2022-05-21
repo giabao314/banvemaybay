@@ -16,6 +16,7 @@ public class KhachHang {
     private String date;
     private String canCuoc;
     private String sdt;
+    private int tongChiTieu;
     
     public KhachHang(){
     
@@ -77,4 +78,11 @@ public class KhachHang {
         this.sdt = sdt;
     }
     
+    public int getTongChiTieu(){
+        return tongChiTieu;
+    }
+    
+    public void setTongChiTieu(int tongChiTieu){
+        this.tongChiTieu = tongChiTieu;
+    }
 }

@@ -13,14 +13,16 @@ import javax.swing.table.DefaultTableModel;
  * @author hp
  */
 public class KhuyenMaiGUI extends javax.swing.JPanel {
-    DefaultTableModel dtmKhuyenMai;
+    
     /**
      * Creates new form KhuyenMaiGUI
      */
+    private DefaultTableModel dtmKhuyenMai = new DefaultTableModel();
+    ArrayList<KhuyenMai> dskm = new ArrayList<>();
     KhuyenMaiBUS khuyenmaiBUS = new KhuyenMaiBUS();
     public KhuyenMaiGUI() {
         initComponents();
-        khuyenmaiBUS.getListKhuyenMai();
+        getListKhuyenMai();
     }
 
     /**
@@ -173,7 +175,9 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
         tableKhuyenMai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Không giảm giá", "0", ">0", "01/01/2022", "Null", "có hiệu lực"},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -183,6 +187,11 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                 "Mã KM", "Chương Trình", "Phần Trăm KM", "Điều Kiện", "Ngày Bắt Đầu", "Ngày Kết Thúc", "Tình Trạng"
             }
         ));
+        tableKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableKhuyenMaiMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableKhuyenMai);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -256,6 +265,11 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         xoaKhuyenMai();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tableKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKhuyenMaiMouseClicked
+        // TODO add your handling code here:
+        clickTableRowKM();
+    }//GEN-LAST:event_tableKhuyenMaiMouseClicked
     public void themKhuyenMai(){
         String tenCT = txtTenCT.getText();
         String giam = txtPhanTramGiam.getText();
@@ -266,6 +280,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         int dieuKienGia = Integer.parseInt(gia);
         
         khuyenmaiBUS.themKhuyenMai(tenCT, ngayBD, ngayKT,dieuKienGia,phanTramGiam);
+        showListKhuyenMai();
         
     }
     
@@ -281,23 +296,45 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         int dieuKienGia = Integer.parseInt(gia);
         
         khuyenmaiBUS.suaKhuyenMai(maKM,tenCT, ngayBD, ngayKT, dieuKienGia,phanTramGiam);
+        showListKhuyenMai();
     }
     
     public void xoaKhuyenMai(){
         String ma = txtMaKM.getText();
         int maKM = Integer.parseInt(ma);
+        int i = tableKhuyenMai.getSelectedRow();
         
-        khuyenmaiBUS.xoaKhuyenMai(maKM);
+        boolean check = khuyenmaiBUS.xoaKhuyenMai(maKM);
+        if(check){
+        dtmKhuyenMai.removeRow(i);
+        tableKhuyenMai.setModel(dtmKhuyenMai);
+        txtMaKM.setText("");
+        txtTenCT.setText("");
+        txtPhanTramGiam.setText("");
+        txtNgayBD.setText("");
+        txtNgayKT.setText("");
+        txtDieuKienGia.setText("");
+        }
     }
     
     public void getListKhuyenMai(){
         dtmKhuyenMai.setRowCount(0);
-        ArrayList<KhuyenMai> dskm = khuyenmaiBUS.getListKhuyenMai();
+        dskm = khuyenmaiBUS.getListKhuyenMai();
         
-        tableKhuyenMai.setModel(dtmKhuyenMai);
+        Vector<Object> header = new Vector<>();
+        header.add("Mã Khuyến Mãi");
+        header.add("Tên Khuyến Mãi");
+        header.add("Phần Trăm Khuyến Mãi");
+        header.add("Điều Kiện");
+        header.add("Ngày Bắt Đầu");
+        header.add("Ngày Kết Thúc");
+	if (dtmKhuyenMai.getRowCount() == 0) {
+            dtmKhuyenMai = new DefaultTableModel(header, 0);
+	}
+        
         
         for(KhuyenMai km : dskm){
-            Vector vec = new Vector();
+            Vector<Object> vec = new Vector<>();
             vec.add(km.getMaKM());
             vec.add(km.getTenKM());
             vec.add(km.getPhanTramKM());
@@ -307,6 +344,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
             
             dtmKhuyenMai.addRow(vec);
         }
+        tableKhuyenMai.setModel(dtmKhuyenMai);
     }
     
     public void clickTableRowKM(){
@@ -319,6 +357,35 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
             txtNgayBD.setText(tableKhuyenMai.getValueAt(row,4)+ "");
             txtNgayKT.setText(tableKhuyenMai.getValueAt(row,5)+ "");
         }
+    }
+    
+    public void showListKhuyenMai(){
+        dtmKhuyenMai.setRowCount(0);
+        dskm = khuyenmaiBUS.listKM();
+       
+        Vector<Object> header = new Vector<>();
+        header.add("Mã Khuyến Mãi");
+        header.add("Tên Khuyến Mãi");
+        header.add("Phần Trăm Khuyến Mãi");
+        header.add("Điều Kiện");
+        header.add("Ngày Bắt Đầu");
+        header.add("Ngày Kết Thúc");
+	if (dtmKhuyenMai.getRowCount() == 0) {
+            dtmKhuyenMai = new DefaultTableModel(header, 0);
+	}
+        
+        for(KhuyenMai km : dskm){
+            Vector<Object> vec = new Vector<>();
+            vec.add(km.getMaKM());
+            vec.add(km.getTenKM());
+            vec.add(km.getPhanTramKM());
+            vec.add(km.getDieuKienGia());
+            vec.add(km.getNgayBD());
+            vec.add(km.getNgayKT());
+            
+            dtmKhuyenMai.addRow(vec);
+        }
+        tableKhuyenMai.setModel(dtmKhuyenMai);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

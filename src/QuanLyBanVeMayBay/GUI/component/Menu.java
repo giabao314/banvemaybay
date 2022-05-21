@@ -33,20 +33,20 @@ public class Menu extends javax.swing.JPanel {
     }
 
     private void init() {
-        listMenu1.addItem(new Model_Menu("1", "Trang Ch?", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("2", "Ð?t Vé", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("3", "Hóa Ðon", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("4", "Khuy?n Mãi", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("5", "Th?ng Kê", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("1", "Trang Chủ", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("2", "Ðặt Vé", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("3", "Hóa Ðơn", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("4", "Khuyến Mãi", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("5", "Thống Kê", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
-        listMenu1.addItem(new Model_Menu("", "Qu?n Lý", Model_Menu.MenuType.TITLE));
+        listMenu1.addItem(new Model_Menu("", "Quản Lý", Model_Menu.MenuType.TITLE));
         listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
-        listMenu1.addItem(new Model_Menu("10", "Qu?n Lý Vé", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("10", "Qu?n Lý Vé Khách Hàng", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("6", "Qu?n Lý Chuy?n Bay", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("7", "Qu?n Lý Nhân Viên", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("8", "Qu?n Lý Khách Hàng", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("9", "Qu?n Lý Máy Bay", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("10", "Quản Lý Vé", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("10", "Quản Lý Vé Khách Hàng", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("6", "Quản Lý Chuyến Bay", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("7", "Quản Lý Nhân Viên", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("8", "Quản Lý Khách Hàng", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("9", "Quản Lý Máy Bay", Model_Menu.MenuType.MENU));
 
         listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
     }

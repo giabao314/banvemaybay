@@ -29,6 +29,11 @@ public class KhuyenMaiBUS {
         return listKhuyenMai;
     }
     
+    public ArrayList<KhuyenMai> listKM(){
+        docListKhuyenMai();
+        return listKhuyenMai;
+    }
+    
     
     public boolean themKhuyenMai(String tenKM, String ngayBD, String ngayKT,int dieuKienGia, int phanTramKM){
         if(tenKM.trim().equals("")){

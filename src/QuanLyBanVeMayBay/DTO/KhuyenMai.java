@@ -24,7 +24,7 @@ public class KhuyenMai {
         return maKM;
     }
     
-    public void setMaKH(int maKM){
+    public void setMaKM(int maKM){
         this.maKM = maKM;
     }
     

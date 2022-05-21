@@ -13,12 +13,13 @@ import javax.swing.table.DefaultTableModel;
  * @author hp
  */
 public class KhachHangGUI extends javax.swing.JPanel {
-    DefaultTableModel dtmKhachHang;
     /**
      * Creates new form KhachHangGUI
      */
+    
+    private DefaultTableModel dtmKhachHang = new DefaultTableModel();
     KhachHangBUS khachhangBUS = new KhachHangBUS();
-    ArrayList<KhachHang> dskh = null;
+    ArrayList<KhachHang> dskh = new ArrayList<>();
     public KhachHangGUI() {
    
         initComponents();
@@ -65,16 +66,22 @@ public class KhachHangGUI extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Mã Khách Hàng");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Họ Khách Hàng");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Tên Khách Hàng");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Giới Tính");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Ngày Sinh");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Căn Cước");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Số Điện Thoại");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -128,16 +135,15 @@ public class KhachHangGUI extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtSoDienThoai))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(36, 36, 36)
-                                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtSoDienThoai, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addGap(37, 37, 37)
-                                    .addComponent(txtCanCuoc, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabel6))
+                                .addGap(40, 40, 40)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCanCuoc, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                                    .addComponent(txtNgaySinh)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(162, 162, 162)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +153,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,6 +198,11 @@ public class KhachHangGUI extends javax.swing.JPanel {
         txtLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã", "Tên", "Căn Cước", "Số Điện Thoại" }));
 
         jButton4.setText("Tìm Kiếm");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         tableKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -306,6 +317,8 @@ public class KhachHangGUI extends javax.swing.JPanel {
         String soDienThoai = txtSoDienThoai.getText();
         
         khachhangBUS.themKhachHang(hoKH, tenKH, gioiTinh, ngaySinh, canCuoc, soDienThoai);
+        showListKhachHang();
+
     }
     
     public void suaKhachHang(){
@@ -319,23 +332,47 @@ public class KhachHangGUI extends javax.swing.JPanel {
         String soDienThoai = txtSoDienThoai.getText();
         
         khachhangBUS.suaKhachHang(maKH, hoKH, tenKH, gioiTinh, ngaySinh, canCuoc, soDienThoai);
+        showListKhachHang();
+        
     }
     
     public void xoaKhachHang(){
         String ma = txtMaKH.getText();
+        int i = tableKhachHang.getSelectedRow();
         int maKH = Integer.parseInt(ma);
         
         khachhangBUS.xoaKhachHang(maKH);
+        dtmKhachHang.removeRow(i);
+        tableKhachHang.setModel(dtmKhachHang);
+        txtMaKH.setText("");
+        txtHoKH.setText("");
+        txtTenKH.setText("");
+        txtGioiTinh.setText("");
+        txtNgaySinh.setText("");
+        txtCanCuoc.setText("");
+        txtSoDienThoai.setText("");
+        
     }
     
     public void getListKhachHang(){
+        try{
         dtmKhachHang.setRowCount(0);
         dskh = khachhangBUS.getListKhachHang();
         
-        tableKhachHang.setModel(dtmKhachHang);
+        Vector<Object> header = new Vector<>();
+        header.add("Mã Khách Hàng");
+        header.add("Họ Khách Hàng");
+        header.add("Tên Khách Hàng");
+        header.add("Giới Tính");
+        header.add("Ngày Sinh");
+        header.add("Căn Cước");
+	header.add("Số Điện Thoại");
+	if (dtmKhachHang.getRowCount() == 0) {
+            dtmKhachHang = new DefaultTableModel(header, 0);
+	}
         
         for(KhachHang kh : dskh){
-            Vector vec = new Vector();
+            Vector<Object> vec = new Vector<>();
             vec.add(kh.getMaKH());
             vec.add(kh.getHoKH());
             vec.add(kh.getTenKH());
@@ -345,6 +382,11 @@ public class KhachHangGUI extends javax.swing.JPanel {
             vec.add(kh.getSdt());
             
             dtmKhachHang.addRow(vec);
+            
+        }
+        tableKhachHang.setModel(dtmKhachHang);
+        }catch(Exception e){
+            
         }
     }
     
@@ -371,6 +413,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
         
         if(luaChon == "Mã"){
             dskh = khachhangBUS.timKiemKhachHangTheoMa(tuKhoa);
+            
             if(dskh == null){
                 //dialog k tim thay
             }
@@ -399,10 +442,20 @@ public class KhachHangGUI extends javax.swing.JPanel {
         
         dtmKhachHang.setRowCount(0);
         
-        tableKhachHang.setModel(dtmKhachHang);
+        Vector<Object> header = new Vector<>();
+        header.add("Mã Khách Hàng");
+        header.add("Họ Khách Hàng");
+        header.add("Tên Khách Hàng");
+        header.add("Giới Tính");
+        header.add("Ngày Sinh");
+        header.add("Căn Cước");
+	header.add("Số Điện Thoại");
+	if (dtmKhachHang.getRowCount() == 0) {
+            dtmKhachHang = new DefaultTableModel(header, 0);
+	}
         
         for(KhachHang kh : dskh){
-            Vector vec = new Vector();
+            Vector<Object> vec = new Vector<>();
             vec.add(kh.getMaKH());
             vec.add(kh.getHoKH());
             vec.add(kh.getTenKH());
@@ -413,6 +466,37 @@ public class KhachHangGUI extends javax.swing.JPanel {
             
             dtmKhachHang.addRow(vec);
         }
+        tableKhachHang.setModel(dtmKhachHang);
+    }
+    
+    public void showListKhachHang(){
+        dtmKhachHang.setRowCount(0);
+        dskh = khachhangBUS.listKH();
+        Vector<Object> header = new Vector<>();
+        header.add("Mã Khách Hàng");
+        header.add("Họ Khách Hàng");
+        header.add("Tên Khách Hàng");
+        header.add("Giới Tính");
+        header.add("Ngày Sinh");
+        header.add("Căn Cước");
+	header.add("Số Điện Thoại");
+	if (dtmKhachHang.getRowCount() == 0) {
+            dtmKhachHang = new DefaultTableModel(header, 0);
+	}
+        
+        for(KhachHang kh : dskh){
+            Vector<Object> vec = new Vector<>();
+            vec.add(kh.getMaKH());
+            vec.add(kh.getHoKH());
+            vec.add(kh.getTenKH());
+            vec.add(kh.getGioiTinh());
+            vec.add(kh.getDate());
+            vec.add(kh.getCanCuoc());
+            vec.add(kh.getSdt());
+            
+            dtmKhachHang.addRow(vec);
+        }
+        tableKhachHang.setModel(dtmKhachHang);
     }
     
     

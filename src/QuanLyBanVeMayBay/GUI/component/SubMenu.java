@@ -28,8 +28,8 @@ public class SubMenu extends javax.swing.JPanel {
     }
 
     private void init() {
-        listMenu1.addItem(new Model_Menu("1", "Ð?t Vé", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("2", "Hóa Ðon", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("1", "Ðặt Vé", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("2", "Hóa Ðơn", Model_Menu.MenuType.MENU));
     }
 
     /**

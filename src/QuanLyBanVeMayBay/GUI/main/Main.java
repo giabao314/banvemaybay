@@ -3,9 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package QuanLyBanVeMayBay.GUI.main;
-
 import java.awt.Color;
-
+import QuanLyBanVeMayBay.DAO.MyConnect;
 /**
  *
  * @author Thepi314
@@ -31,8 +30,12 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         menu1 = new QuanLyBanVeMayBay.GUI.component.Menu();
+        loaiVeDAO1 = new QuanLyBanVeMayBay.DAO.LoaiVeDAO();
+        loaiVeDAO2 = new QuanLyBanVeMayBay.DAO.LoaiVeDAO();
+        loaiVeDAO3 = new QuanLyBanVeMayBay.DAO.LoaiVeDAO();
         panelBorder1 = new QuanLyBanVeMayBay.GUI.swing.PanelBorder();
         menu3 = new QuanLyBanVeMayBay.GUI.component.Menu();
+        khuyenMaiGUI1 = new QuanLyBanVeMayBay.GUI.form.KhuyenMaiGUI();
 
         javax.swing.GroupLayout menu1Layout = new javax.swing.GroupLayout(menu1);
         menu1.setLayout(menu1Layout);
@@ -57,11 +60,17 @@ public class Main extends javax.swing.JFrame {
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(962, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(khuyenMaiGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 1355, Short.MAX_VALUE)
+            .addGroup(panelBorder1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(khuyenMaiGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,24 +99,8 @@ public class Main extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
         //</editor-fold>
-
+        new MyConnect();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -118,6 +111,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private QuanLyBanVeMayBay.GUI.form.KhuyenMaiGUI khuyenMaiGUI1;
+    private QuanLyBanVeMayBay.DAO.LoaiVeDAO loaiVeDAO1;
+    private QuanLyBanVeMayBay.DAO.LoaiVeDAO loaiVeDAO2;
+    private QuanLyBanVeMayBay.DAO.LoaiVeDAO loaiVeDAO3;
     private QuanLyBanVeMayBay.GUI.component.Menu menu1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu3;
     private QuanLyBanVeMayBay.GUI.swing.PanelBorder panelBorder1;
