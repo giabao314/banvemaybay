@@ -355,7 +355,7 @@ public class NhanVienGUI extends JFrame {
 //	            new MyDialog("HÃ£y chá»�n giá»›i tÃ­nh!", MyDialog.ERROR_DIALOG);
 //	            return;
 //	        }
-	        String ma = textField.getText();
+	        int ma = Integer.parseInt(textField.getText());
 	        String ho = textField_1.getText();
 	        String ten = textField_2.getText();
 	        String gioiTinh = Gioitinhnv.getSelectedItem() + "";
@@ -370,7 +370,7 @@ public class NhanVienGUI extends JFrame {
 	 
 	 
 	  private void xuLyXoaNhanVien() {
-        String ma = textField.getText();
+		int ma = Integer.parseInt(textField.getText());
         boolean flag = NhanVienBUS.xoaNhanVien(ma);
         if (flag) {
         	NhanVienBUS.docDanhSach();
