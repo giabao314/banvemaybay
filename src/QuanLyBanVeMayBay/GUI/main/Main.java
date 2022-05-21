@@ -3,37 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package QuanLyBanVeMayBay.GUI.main;
-<<<<<<< HEAD
+
 import java.awt.Color;
 import QuanLyBanVeMayBay.DAO.MyConnect;
-=======
 
-import QuanLyBanVeMayBay.DAO.MyConnect;
-import QuanLyBanVeMayBay.GUI.form.LoaiVeGUI;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.JPanel;
-
->>>>>>> 2b53277792b0d3406c387f54d3759cb45dfd859e
 /**
  *
  * @author Thepi314
  */
-public final class Main extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
-    public void renderLayout() {
-        JPanel pnLoaiVe = new LoaiVeGUI();
-        jPanel1.setLayout(new BorderLayout());
-        jPanel1.add(pnLoaiVe, BorderLayout.CENTER);
-    }
-
     public Main() {
-//        new MyConnect();
         initComponents();
-        renderLayout();
         setBackground(new Color(0, 0, 0, 0));
         menu3.initMoving(Main.this);
     }
@@ -48,16 +32,9 @@ public final class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         menu1 = new QuanLyBanVeMayBay.GUI.component.Menu();
-        loaiVeDAO1 = new QuanLyBanVeMayBay.DAO.LoaiVeDAO();
-        loaiVeDAO2 = new QuanLyBanVeMayBay.DAO.LoaiVeDAO();
-        loaiVeDAO3 = new QuanLyBanVeMayBay.DAO.LoaiVeDAO();
         panelBorder1 = new QuanLyBanVeMayBay.GUI.swing.PanelBorder();
         menu3 = new QuanLyBanVeMayBay.GUI.component.Menu();
-<<<<<<< HEAD
-        khuyenMaiGUI1 = new QuanLyBanVeMayBay.GUI.form.KhuyenMaiGUI();
-=======
-        jPanel1 = new javax.swing.JPanel();
->>>>>>> 2b53277792b0d3406c387f54d3759cb45dfd859e
+        khachHangGUI1 = new QuanLyBanVeMayBay.GUI.form.KhachHangGUI();
 
         javax.swing.GroupLayout menu1Layout = new javax.swing.GroupLayout(menu1);
         menu1.setLayout(menu1Layout);
@@ -76,44 +53,22 @@ public final class Main extends javax.swing.JFrame {
         panelBorder1.setBackground(new java.awt.Color(242, 242, 242));
         panelBorder1.setForeground(new java.awt.Color(242, 242, 242));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 964, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
+                .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(khuyenMaiGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addComponent(khachHangGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 137, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 1355, Short.MAX_VALUE)
+            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(khuyenMaiGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-=======
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        panelBorder1Layout.setVerticalGroup(
-            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
->>>>>>> 2b53277792b0d3406c387f54d3759cb45dfd859e
+                .addComponent(khachHangGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,15 +92,12 @@ public final class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-<<<<<<< HEAD
-        //</editor-fold>
-=======
-
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -163,29 +115,18 @@ public final class Main extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
->>>>>>> 2b53277792b0d3406c387f54d3759cb45dfd859e
         new MyConnect();
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(
-                new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new Main().setVisible(true);
             }
-        }
-        );
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
-    private QuanLyBanVeMayBay.GUI.form.KhuyenMaiGUI khuyenMaiGUI1;
-    private QuanLyBanVeMayBay.DAO.LoaiVeDAO loaiVeDAO1;
-    private QuanLyBanVeMayBay.DAO.LoaiVeDAO loaiVeDAO2;
-    private QuanLyBanVeMayBay.DAO.LoaiVeDAO loaiVeDAO3;
-=======
-    private javax.swing.JPanel jPanel1;
->>>>>>> 2b53277792b0d3406c387f54d3759cb45dfd859e
+    private QuanLyBanVeMayBay.GUI.form.KhachHangGUI khachHangGUI1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu3;
     private QuanLyBanVeMayBay.GUI.swing.PanelBorder panelBorder1;
