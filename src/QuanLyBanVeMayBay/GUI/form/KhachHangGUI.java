@@ -193,9 +193,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
                         .addGap(29, 104, Short.MAX_VALUE))))
         );
 
-        txtTuKhoa.setText("jTextField8");
-
-        txtLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã", "Tên", "Căn Cước", "Số Điện Thoại" }));
+        txtLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất Cả", "Mã", "Tên", "Căn Cước", "Số Điện Thoại" }));
 
         jButton4.setText("Tìm Kiếm");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -409,6 +407,10 @@ public class KhachHangGUI extends javax.swing.JPanel {
         if(tuKhoa == ""){
             // dialog thong bao'
             return ;
+        }
+        
+        if(luaChon == "Tất Cả"){
+            dskh = khachhangBUS.getListKhachHang();
         }
         
         if(luaChon == "Mã"){

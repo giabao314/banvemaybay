@@ -41,7 +41,7 @@ public class NhanVienDAO {
         try {
             String sql = "SELECT * FROM nhanvien WHERE maNV=?" ;
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-            pre.setInt(0, maNV);
+            pre.setInt(1, maNV);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
                 nv.setMaNV(rs.getInt(1));
@@ -62,7 +62,9 @@ public class NhanVienDAO {
     public boolean updateNhanVien(NhanVien nv) {
         boolean result = false;
         try {
-            String sql = "UPDATE nhanvien SET hoNV=?, tenNV=?, gioiTinh=?, canCuoc=? , sdt = ?  WHERE maNV=?";
+            String sql = "UPDATE nhanvien"
+            		+ "SET hoNV=?, tenNV=?, gioiTinh=?, canCuoc=? , sdt = ? "
+            		+ "WHERE maNV=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, nv.getHoNV());
             pre.setString(2, nv.getTenNV());

@@ -123,5 +123,6 @@ public class Main extends javax.swing.JFrame {
     private QuanLyBanVeMayBay.GUI.component.Menu menu1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu3;
     private QuanLyBanVeMayBay.GUI.swing.PanelBorder panelBorder1;
+    private QuanLyBanVeMayBay.GUI.form.TuyenBayGUI tuyenBayGUI1;
     // End of variables declaration//GEN-END:variables
 }

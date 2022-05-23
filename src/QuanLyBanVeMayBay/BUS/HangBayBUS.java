@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package QuanLyBanVeMayBay.BUS;
+
 import QuanLyBanVeMayBay.DAO.HangBayDAO;
 import QuanLyBanVeMayBay.DTO.HangBayDTO;
 
@@ -17,28 +18,23 @@ public class HangBayBUS {
     private HangBayDAO HangBayDAO = new HangBayDAO();
     private ArrayList<HangBayDTO> listHangBay = null;
 
-    public HangBayBUS() {
-        docDanhSachHangBay();
-    }
-
+//    public HangBayBUS() {
+//        docDanhSachHangBay();
+//    }
     public void docDanhSachHangBay() {
-        this.listHangBay = HangBayDAO.getDanhSachHangBay();
+        this.listHangBay = HangBayDAO.getListHangBay();
     }
 
-    public ArrayList<HangBayDTO> getDanhSachHangBay() {
+    public ArrayList<HangBayDTO> getListHangBay() {
         if (listHangBay == null) {
             docDanhSachHangBay();
         }
-        return this.listHangBay;
+        return listHangBay;
     }
-
-    public String getTenHangBay(String ma) {
-        for (HangBayDTO HangBay : listHangBay) {
-            if (HangBay.getMaHang() == ma) {
-                return HangBay.getMaHang() + " - " + HangBay.getTenHang();
-            }
-        }
-        return "";
+    
+    public ArrayList<HangBayDTO> showListHangBay(){
+        docDanhSachHangBay();
+        return listHangBay;
     }
 
     public boolean themHangBay(HangBayDTO hb) {
@@ -56,23 +52,8 @@ public class HangBayBUS {
         }
     }
 
-    public boolean xoaHangBay(String ma) {
-        if (ma.trim().equals("")) {
-//            new MyDialog("Chưa chọn hãng để xoá!", MyDialog.SUCCESS_DIALOG);
-            return false;
-        }
-//        int maLoai = Integer.parseInt(ma);
-        if (HangBayDAO.xoaHangBay(ma)) {
-//            new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
-            return true;
-        } else {
-//            new MyDialog("Xoá thất bại!", MyDialog.ERROR_DIALOG);
-            return false;
-        }
-    }
-
     public boolean suaHangBay(HangBayDTO hb) {
-        if (hb.getMaHang().trim().equals("")) {
+        if (String.valueOf(hb.getMaHang()).trim().equals("")) {
 //            new MyDialog("Chưa chọn hãng bay!", MyDialog.ERROR_DIALOG);
             return false;
         }
@@ -91,10 +72,22 @@ public class HangBayBUS {
         }
     }
 
+    public boolean xoaHangBay(int ma) {
+        if (HangBayDAO.xoaHangBay(ma)) {
+//            new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
+                System.out.print("Hello");
+            return true;
+        } else {
+//            new MyDialog("Xoá thất bại!", MyDialog.ERROR_DIALOG);
+                System.out.print("hello");
+            return false;
+        }
+    }
+
     public ArrayList<HangBayDTO> timKiemHangBayTheoTen(String tenHB) {
         ArrayList<HangBayDTO> dshb = new ArrayList();
         for (HangBayDTO hb : listHangBay) {
-            if (hb.getTenHang().trim().equals(tenHB)) {
+            if (hb.getTenHang().contains(tenHB)) {
                 dshb.add(hb);
             }
         }
@@ -104,7 +97,7 @@ public class HangBayBUS {
     public ArrayList<HangBayDTO> timKiemHangBayTheoMa(String maHB) {
         ArrayList<HangBayDTO> dshb = new ArrayList();
         for (HangBayDTO hb : listHangBay) {
-            if (hb.getMaHang().trim().equals(maHB)) {
+            if (Integer.parseInt(maHB) == hb.getMaHang()) {
                 dshb.add(hb);
             }
         }

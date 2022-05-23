@@ -12,25 +12,24 @@ import java.util.Scanner;
  */
 public class SanBayDTO {
 
-    Scanner input = new Scanner(System.in);
 
-    private String maSanBay;
+    private int maSanBay;
     private String tenSanBay;
-    private String diaChi;
+    private String thanhPho;
 
     /* HÀM THIẾT LẬP */
     public SanBayDTO() {
 
     }
 
-    public SanBayDTO(String maSB, String tenSB, String diaChi) {
+    public SanBayDTO(int maSB, String tenSB, String thanhPho) {
         this.maSanBay = maSB;
         this.tenSanBay = tenSB;
-        this.diaChi = diaChi;
+        this.thanhPho = thanhPho;
     }
 
     /* --------------------- GET SET ------------------- */
-    public String getMaSanBay() {
+    public int getMaSanBay() {
         return this.maSanBay;
     }
 
@@ -38,11 +37,11 @@ public class SanBayDTO {
         return this.tenSanBay;
     }
 
-    public String getDiaChi() {
-        return this.diaChi;
+    public String getThanhPho() {
+        return this.thanhPho;
     }
 
-    public void setMaSanBay(String ma) {
+    public void setMaSanBay(int ma) {
         this.maSanBay = ma;
     }
 
@@ -50,7 +49,7 @@ public class SanBayDTO {
         this.tenSanBay = TenSanBay;
     }
 
-    public void setDiaChi(String DiaChi) {
-        this.diaChi = DiaChi;
+    public void setDiaChi(String thanhPho) {
+        this.thanhPho = thanhPho;
     }
 }

@@ -14,9 +14,9 @@ public class TuyenBayDTO {
 
     Scanner input = new Scanner(System.in);
 
-    private String maTuyenBay;
-    private String sanBayCatCanh;
-    private String sanBayHaCanh;
+    private int maTuyenBay;
+    private int sanBayCatCanh;
+    private int sanBayHaCanh;
     private String gioCatCanh;
     private String gioHaCanh;
 
@@ -25,7 +25,7 @@ public class TuyenBayDTO {
 
     }
 
-    public TuyenBayDTO(String maTuyenBay, String SBcatCanh, String SBhaCanh, String gioCatCanh, String gioHaCanh) {
+    public TuyenBayDTO(int maTuyenBay, int SBcatCanh, int SBhaCanh, String gioCatCanh, String gioHaCanh) {
         this.maTuyenBay = maTuyenBay;
         this.sanBayCatCanh = SBcatCanh;
         this.sanBayHaCanh = SBhaCanh;
@@ -34,43 +34,43 @@ public class TuyenBayDTO {
     }
 
     /* ------------------------- GET SET ------------------------ */
-    public String GetMaTuyenBay() {
+    public int getMaTuyenBay() {
         return this.maTuyenBay;
     }
 
-    public String GetSanBayCatCanh() {
+    public int getSanBayCatCanh() {
         return this.sanBayCatCanh;
     }
 
-    public String GetSanBayHaCanh() {
+    public int getSanBayHaCanh() {
         return this.sanBayHaCanh;
     }
 
-    public String GetGioCatCanh() {
+    public String getGioCatCanh() {
         return this.gioCatCanh;
     }
 
-    public String GetGioHaCanh() {
+    public String getGioHaCanh() {
         return this.gioHaCanh;
     }
 
-    public void SetMaTuyenBay(String ma) {
+    public void setMaTuyenBay(int ma) {
         this.maTuyenBay = ma;
     }
 
-    public void SetSanBayCatCanh(String sanBayCatCanh) {
+    public void setSanBayCatCanh(int sanBayCatCanh) {
         this.sanBayCatCanh = sanBayCatCanh;
     }
 
-    public void SetSanBayHaCanh(String sanBayHaCanh) {
+    public void setSanBayHaCanh(int sanBayHaCanh) {
         this.sanBayHaCanh = sanBayHaCanh;
     }
 
-    public void SetGioCatCanh(String gioCatCanh) {
+    public void setGioCatCanh(String gioCatCanh) {
         this.gioCatCanh = gioCatCanh;
     }
 
-    public void SetGioHaCanh(String gioHaCanh) {
+    public void setGioHaCanh(String gioHaCanh) {
         this.gioHaCanh = gioHaCanh;
     }
 }

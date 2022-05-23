@@ -14,7 +14,7 @@ public class HangBayDTO {
 
     Scanner input = new Scanner(System.in);
 
-    private String maHang;
+    private int maHang;
     private String tenHang;
 
     /* -------------- HÀM THIẾT LẬP ----------- */
@@ -22,7 +22,7 @@ public class HangBayDTO {
 
     }
 
-    public HangBayDTO(String ma, String ten) {
+    public HangBayDTO(int ma, String ten) {
         this.maHang = ma;
         this.tenHang = ten;
     }
@@ -33,7 +33,7 @@ public class HangBayDTO {
     }
 
     /* -------------- GET SET ------------ */
-    public String getMaHang() {
+    public int getMaHang() {
         return this.maHang;
     }
 
@@ -41,7 +41,7 @@ public class HangBayDTO {
         return this.tenHang;
     }
 
-    public void setMaHang(String ma) {
+    public void setMaHang(int ma) {
         this.maHang = ma;
     }
 
