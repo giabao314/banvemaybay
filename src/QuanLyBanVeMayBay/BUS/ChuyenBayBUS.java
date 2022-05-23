@@ -6,7 +6,7 @@ package QuanLyBanVeMayBay.BUS;
 
 import QuanLyBanVeMayBay.DAO.ChuyenBayDAO;
 import QuanLyBanVeMayBay.DTO.ChuyenBay;
-import Template.Dialog;
+//import Template.Dialog;
 import java.util.ArrayList;
 import java.util.Date;
 import QuanLyBanVeMayBay.DAO.MayBayDAO;
@@ -18,8 +18,8 @@ import QuanLyBanVeMayBay.DAO.MayBayDAO;
 public class ChuyenBayBUS {
     private ArrayList<ChuyenBay> listCB = null;
     private ChuyenBayDAO cbDAO = new ChuyenBayDAO();
-    private MayBayDAO mbDAO = new MayBayDAO();
-    mbDAO.docListMayBay();
+//    private MayBayDAO mbDAO = new MayBayDAO();
+//    mbDAO.docListMayBay();
     public ChuyenBayBUS() {
         docListChuyenBay();
     }
@@ -32,6 +32,11 @@ public class ChuyenBayBUS {
         if (listCB == null) {
             docListChuyenBay();
         }
+        return listCB;
+    }
+    
+    public ArrayList<ChuyenBay> listCB() {
+        docListChuyenBay();
         return listCB;
     }
 
@@ -95,15 +100,15 @@ public class ChuyenBayBUS {
 
     public boolean themChuyenBay(String maTB, String maMB, Date ngayCC, Date ngayHC) {
         if (maTB.equals("")) {
-            new MyDialog("Vui lòng chọn mã tuyến bay!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Vui lòng chọn mã tuyến bay!", MyDialog.ERROR_DIALOG);
             return false;
         }
         if (maMB.equals("")) {
-            new MyDialog("Vui lòng chọn mã máy bay!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Vui lòng chọn mã máy bay!", MyDialog.ERROR_DIALOG);
             return false;
         }
         if (ngayCC.compareTo(ngayHC) > 0 || ngayCC.compareTo(ngayHC) == 0) {
-            new MyDialog("Ngày kết thúc không hợp lệ!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Ngày kết thúc không hợp lệ!", MyDialog.ERROR_DIALOG);
             return false;
         }
         boolean flag = false;
@@ -125,14 +130,14 @@ public class ChuyenBayBUS {
 
             flag = cbDAO.themChuyenBay(cb);
         } catch (Exception e) {
-            new MyDialog("Vui lòng nhập số nguyên hợp lệ!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Vui lòng nhập số nguyên hợp lệ!", MyDialog.ERROR_DIALOG);
             return false;
         }
         if (flag) {
-            new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);
+//            new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);
             return true;
         } else {
-            new MyDialog("Thêm thất bại!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Thêm thất bại!", MyDialog.ERROR_DIALOG);
             return false;
         }
         return flag;
@@ -140,15 +145,15 @@ public class ChuyenBayBUS {
 
     public boolean nhapChuyenBayTuExcel(String maTB, String maMB, Date ngayCC, Date ngayHC) {
         if (maTB.equals("")) {
-            new MyDialog("Vui lòng chọn mã tuyến bay!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Vui lòng chọn mã tuyến bay!", MyDialog.ERROR_DIALOG);
             return false;
         }
         if (maMB.equals("")) {
-            new MyDialog("Vui lòng chọn mã máy bay!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Vui lòng chọn mã máy bay!", MyDialog.ERROR_DIALOG);
             return false;
         }
         if (ngayCC.compareTo(ngayHC) > 0 || ngayCC.compareTo(ngayHC) == 0) {
-            new MyDialog("Ngày kết thúc không hợp lệ!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Ngày kết thúc không hợp lệ!", MyDialog.ERROR_DIALOG);
             return false;
         }
         boolean flag = false;
@@ -176,17 +181,17 @@ public class ChuyenBayBUS {
 
     public boolean xoaChuyenBay(String ma) {
         if (ma.trim().equals("")) {
-            new MyDialog("Chưa chọn chuyến bay để xoá!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Chưa chọn chuyến bay để xoá!", MyDialog.ERROR_DIALOG);
             return false;
         }
 
         int maSP = Integer.parseInt(ma);
         if (cbDAO.xoaChuyenBay(maSP)) {
-            new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
+//            new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
             return true;
         }
 
-        new MyDialog("Xoá thất bại!", MyDialog.ERROR_DIALOG);
+//        new MyDialog("Xoá thất bại!", MyDialog.ERROR_DIALOG);
         return false;
     }
 
@@ -194,7 +199,7 @@ public class ChuyenBayBUS {
 
         try {
             if (maCB.trim().equals("")) {
-                new MyDialog("Chưa chọn chuyến bay để sửa!", MyDialog.ERROR_DIALOG);
+//                new MyDialog("Chưa chọn chuyến bay để sửa!", MyDialog.ERROR_DIALOG);
                 return false;
             }
             int maChuyenBay = Integer.parseInt(maCB);
@@ -207,27 +212,27 @@ public class ChuyenBayBUS {
             int soLgVeCL = Integer.parseInt(mbDAO.getMayBay(maMayBay).getSoLgGhe());
             
             if (maTuyenBay == 0) {
-                new MyDialog("Mã tuyến bay không được để trống!", MyDialog.ERROR_DIALOG);
+//                new MyDialog("Mã tuyến bay không được để trống!", MyDialog.ERROR_DIALOG);
                 return false;
             }
 
             if (maMayBay == 0) {
-                new MyDialog("Vui lòng chọn mã máy bay", MyDialog.ERROR_DIALOG);
+//                new MyDialog("Vui lòng chọn mã máy bay", MyDialog.ERROR_DIALOG);
                 return false;
             }
 
             if (ngayCC.toString().trim().equals("")) {
-                new MyDialog("Vui lòng chọn ngày cất cánh!", MyDialog.ERROR_DIALOG);
+//                new MyDialog("Vui lòng chọn ngày cất cánh!", MyDialog.ERROR_DIALOG);
                 return false;
             }
 
             if (ngayCC.toString().trim().equals("")) {
-                new MyDialog("Vui lòng chọn ngày hạ cánh!", MyDialog.ERROR_DIALOG);
+//                new MyDialog("Vui lòng chọn ngày hạ cánh!", MyDialog.ERROR_DIALOG);
                 return false;
             }
 
             if (ngayCC.compareTo(ngayHC) > 0 || ngayCC.compareTo(ngayHC) == 0) {
-                new MyDialog("Ngày kết thúc không hợp lệ!", MyDialog.ERROR_DIALOG);
+//                new MyDialog("Ngày kết thúc không hợp lệ!", MyDialog.ERROR_DIALOG);
                 return false;
             }
 
@@ -242,14 +247,14 @@ public class ChuyenBayBUS {
             // flag = cbDAO.themChuyenBay(cb);
 
             if (cbDAO.suaChuyenBay(cb)) {
-                new MyDialog("Sửa thành công!", MyDialog.SUCCESS_DIALOG);
+//                new MyDialog("Sửa thành công!", MyDialog.SUCCESS_DIALOG);
                 return true;
             } else {
-                new MyDialog("Sửa thất bại!", MyDialog.ERROR_DIALOG);
+//                new MyDialog("Sửa thất bại!", MyDialog.ERROR_DIALOG);
                 return false;
             }
         } catch (Exception e) {
-            new MyDialog("Nhập số hợp lệ cho Đơn giá và Số lượng!", MyDialog.ERROR_DIALOG);
+//            new MyDialog("Nhập số hợp lệ cho Đơn giá và Số lượng!", MyDialog.ERROR_DIALOG);
         }
         return false;
     }
