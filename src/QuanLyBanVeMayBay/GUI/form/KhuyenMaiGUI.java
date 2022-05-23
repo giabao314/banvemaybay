@@ -22,7 +22,6 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     KhuyenMaiBUS khuyenmaiBUS = new KhuyenMaiBUS();
     public KhuyenMaiGUI() {
         initComponents();
-        getListKhuyenMai();
     }
 
     /**

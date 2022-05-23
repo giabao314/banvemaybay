@@ -22,8 +22,8 @@ public class SanBayGUI extends javax.swing.JPanel {
      * Creates new form SanBayGUI
      */
     SanBayBUS sanbayBUS = new SanBayBUS();
-    DefaultTableModel dtmSanBay;
-    ArrayList<SanBayDTO> dssb = null;
+    DefaultTableModel dtmSanBay = new DefaultTableModel();
+    ArrayList<SanBayDTO> dssb = new ArrayList<>();
 
     public SanBayGUI() {
         initComponents();
@@ -39,8 +39,6 @@ public class SanBayGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtMaSB = new javax.swing.JTextField();
@@ -57,28 +55,16 @@ public class SanBayGUI extends javax.swing.JPanel {
         txtTuKhoa = new javax.swing.JTextField();
         selectLuaChon = new javax.swing.JComboBox<>();
         searchSanBay = new javax.swing.JButton();
-
-        jScrollPane1.setToolTipText("");
-        jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jTextPane1.setText("QUẢN LÝ SÂN BAY");
-        jScrollPane1.setViewportView(jTextPane1);
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Mã sân bay");
 
-        txtMaSB.setText("jTextField1");
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Tên sân bay");
 
-        txtTenSB.setText("jTextField2");
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Địa chỉ");
-
-        txtDiaChi.setText("jTextField3");
 
         jButtonThemSanBay.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButtonThemSanBay.setText("Thêm");
@@ -163,7 +149,7 @@ public class SanBayGUI extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Mã sân bay", "Tên sân bay", "Địa chỉ"
+                "Mã Sân Bay", "Tên Sân Bay", "Thành Phố"
             }
         ));
         tableSanBay.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -176,7 +162,7 @@ public class SanBayGUI extends javax.swing.JPanel {
         txtTuKhoa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         selectLuaChon.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sân bay", "Tên sân bay", "Địa chỉ sân bay" }));
+        selectLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất Cả", "Mã Sân Bay", "Tên Sân Bay", "Thành Phố" }));
 
         searchSanBay.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         searchSanBay.setText("Tìm kiếm");
@@ -216,6 +202,9 @@ public class SanBayGUI extends javax.swing.JPanel {
                 .addGap(30, 30, 30))
         );
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setText("Quản Lý Sân Bay");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,20 +212,20 @@ public class SanBayGUI extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(307, 307, 307)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(291, 291, 291)
+                .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -274,38 +263,84 @@ public class SanBayGUI extends javax.swing.JPanel {
         sb.setDiaChi(diaChi);
 
         sanbayBUS.themSanBay(sb);
+        showListSanBay();
+        txtTenSB.setText("");
+        txtMaSB.setText("");
+        txtDiaChi.setText("");
     }
 
     public void suaSanBay() {
-        String maSB = txtMaSB.getText();
+        int maSB = Integer.parseInt(txtMaSB.getText());
         String tenSB = txtTenSB.getText();
         String diaChi = txtDiaChi.getText();
 
         SanBayDTO sb = new SanBayDTO(maSB, tenSB, diaChi);
 
         sanbayBUS.suaSanBay(sb);
+        showListSanBay();
     }
 
     public void xoaSanBay() {
-        String maSB = txtMaSB.getText();
-        sanbayBUS.xoaSanBay(maSB);
+        int maSB = Integer.parseInt(txtMaSB.getText());
+        int i = tableSanBay.getSelectedRow();
+        
+        if(sanbayBUS.xoaSanBay(maSB)){
+            dtmSanBay.removeRow(i);
+            tableSanBay.setModel(dtmSanBay);
+            
+            txtMaSB.setText("");
+            txtTenSB.setText("");
+            txtDiaChi.setText("");
+        }
     }
 
     public void getListSanBay() {
         dtmSanBay.setRowCount(0);
         dssb = sanbayBUS.getListSanBay();
 
+        Vector<Object> header = new Vector<>();
+        header.add("Mã sân bay");
+        header.add("Tên sân bay");
+        header.add("Địa chỉ");
+
+        if (dtmSanBay.getRowCount() == 0) {
+            dtmSanBay = new DefaultTableModel(header, 0);
+        }
+
         for (SanBayDTO sb : dssb) {
             Vector vec = new Vector();
             vec.add(sb.getMaSanBay());
             vec.add(sb.getTenSanBay());
-            vec.add(sb.getDiaChi());
+            vec.add(sb.getThanhPho());
 
             dtmSanBay.addRow(vec);
         }
         tableSanBay.setModel(dtmSanBay);
     }
 
+    public void showListSanBay(){
+        dtmSanBay.setRowCount(0);
+        dssb = sanbayBUS.listSB();
+
+        Vector<Object> header = new Vector<>();
+        header.add("Mã sân bay");
+        header.add("Tên sân bay");
+        header.add("Thành Phố");
+
+        if (dtmSanBay.getRowCount() == 0) {
+            dtmSanBay = new DefaultTableModel(header, 0);
+        }
+
+        for (SanBayDTO sb : dssb) {
+            Vector vec = new Vector();
+            vec.add(sb.getMaSanBay());
+            vec.add(sb.getTenSanBay());
+            vec.add(sb.getThanhPho());
+
+            dtmSanBay.addRow(vec);
+        }
+        tableSanBay.setModel(dtmSanBay);
+    }
     public void clickTableRowSB() {
         int row = tableSanBay.getSelectedRow();
         if (row > -1) {
@@ -319,23 +354,38 @@ public class SanBayGUI extends javax.swing.JPanel {
         String tuKhoa = txtTuKhoa.getText();
         String luaChon = selectLuaChon.getSelectedItem().toString();
 
-        if (luaChon == "Mã sân bay") {
-            dssb = sanbayBUS.timKiemSanBayTheoMa(tuKhoa);
+        if(luaChon == "Tất Cả"){
+            dssb = sanbayBUS.listSB();
+        }
+        
+        if (luaChon == "Mã Sân Bay") {
+            dssb = sanbayBUS.TimKiemSanBayTheoMa(tuKhoa);
         }
 
-        if (luaChon == "Tên sân bay") {
-            dssb = sanbayBUS.timKiemSanBayTheoTên(tuKhoa);
+        if (luaChon == "Tên Sân Bay") {
+            dssb = sanbayBUS.TimKiemSanBayTheoTen(tuKhoa);
         }
 
-        if (luaChon == "Địa chỉ") {
-            dssb = sanbayBUS.timKiemSanBayTheoDiaChi(tuKhoa);
+        if (luaChon == "Thành Phố") {
+            dssb = sanbayBUS.TimKiemSanBayTheoDiaChi(tuKhoa);
+        }
+
+        dtmSanBay.setRowCount(0);
+
+        Vector<Object> header = new Vector<>();
+        header.add("Mã sân bay");
+        header.add("Tên sân bay");
+        header.add("Thành Phố");
+
+        if (dtmSanBay.getRowCount() == 0) {
+            dtmSanBay = new DefaultTableModel(header, 0);
         }
 
         for (SanBayDTO sb : dssb) {
             Vector vec = new Vector();
             vec.add(sb.getMaSanBay());
             vec.add(sb.getTenSanBay());
-            vec.add(sb.getDiaChi());
+            vec.add(sb.getThanhPho());
 
             dtmSanBay.addRow(vec);
         }
@@ -349,11 +399,10 @@ public class SanBayGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JButton searchSanBay;
     private javax.swing.JComboBox<String> selectLuaChon;
     private javax.swing.JTable tableSanBay;
