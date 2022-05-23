@@ -20,7 +20,7 @@ import java.sql.DriverManager;
  * @author Thepi314
  */
 public class MyConnect {
-    public static Connection conn;
+    public static Connection conn = null;
     private String severName = "localhost";
     private String dbName = "banvemaybay";
     private String userName = "root";
@@ -38,7 +38,7 @@ public class MyConnect {
             conn = driver.connect(strConnect, pro);
             System.out.print("Done!");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Đọc dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ä�á»�c dá»¯ liá»‡u tháº¥t báº¡i", "Lá»—i", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
             

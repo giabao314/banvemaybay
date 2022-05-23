@@ -5,15 +5,15 @@ import QuanLyBanVeMayBay.DAO.NhanVienDAO;
 import QuanLyBanVeMayBay.DTO.NhanVien;
 
 public class NhanVienBUS {
-	 private static NhanVienDAO nvDAO = new NhanVienDAO();
-	    private static ArrayList<NhanVien> listNhanVien = null;
+	  NhanVienDAO nvDAO = new NhanVienDAO();
+	     ArrayList<NhanVien> listNhanVien = null;
 
-	    public NhanVienBUS() {
-	        docDanhSach();
-	    }
+//	    public NhanVienBUS() {
+//	        docDanhSach();
+//	    }
 
-	    public static void docDanhSach() {
-	      listNhanVien = nvDAO.getDanhSachNhanVien();
+	    public void docDanhSach() {
+	      this.listNhanVien = nvDAO.getDanhSachNhanVien();
 	    }
 
 	    public  ArrayList<NhanVien> getDanhSachNhanVien() {
@@ -21,8 +21,13 @@ public class NhanVienBUS {
 	            docDanhSach();
 	        return listNhanVien;
 	    }
+            
+            public  ArrayList<NhanVien> showListNhanVien() {
+	            docDanhSach();
+	        return listNhanVien;
+	    }
 
-	    public static  boolean themNhanVien(String ho, String ten, String gioiTinh, String cancuoc , int sdt , int luong) {
+	    public  boolean themNhanVien(String ho, String ten, String gioiTinh, String ngaySinh , int sdt , int luong) {
 	       
 	        
 	        
@@ -42,7 +47,7 @@ public class NhanVienBUS {
 	            return false;
 	        }
 	      
-	        if (cancuoc.trim().equals("")) {
+	        if (ngaySinh.trim().equals("")) {
 //	            new MyDialog("Tên không được để trống!", MyDialog.ERROR_DIALOG);
 	            return false;
 	        }
@@ -67,19 +72,22 @@ public class NhanVienBUS {
 	        nv.setHoNV(ho);
 	        nv.setTenNV(ten);
 	        nv.setGioiTinh(gioiTinh);
-	        nv.setCanCuoc(cancuoc);
+	        nv.setNgaySinh(ngaySinh);
 	        nv.setSdt(sdt);
 	        nv.setLuong(luong);
 	        boolean flag = nvDAO.themNhanVien(nv);
 	        if (!flag) {
 //	            new MyDialog("Thêm thất bại!", MyDialog.ERROR_DIALOG);
+System.out.print("thanh cong");
 	        } else {
 //	            new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);
+System.out.print("That bai");
+
 	        }
 	        return flag;
 	    }
 
-	    public static boolean updateNhanVien(int maNV, String ho, String ten, String gioiTinh, String cancuoc , int sdt , int luong) {
+	    public  boolean updateNhanVien(int maNV, String ho, String ten, String gioiTinh, String ngaySinh , int sdt , int luong) {
 	    	
 	    	if(ho.trim().equals("")){
 	            // new dialog bao' loi~;
@@ -97,7 +105,7 @@ public class NhanVienBUS {
 	            // new dialog bao' loi~;
 	            return false;
 	        }
-	        if(cancuoc.trim().equals("")){
+	        if(ngaySinh.trim().equals("")){
 	            // new dialog bao' loi~;
 	            return false;
 	        }
@@ -110,13 +118,12 @@ public class NhanVienBUS {
 	        nv.setHoNV(ho);
 	        nv.setTenNV(ten);
 	        nv.setGioiTinh(gioiTinh);
-	        nv.setCanCuoc(cancuoc);
+	        nv.setNgaySinh(ngaySinh);
 	        nv.setSdt(sdt);
 	        nv.setLuong(luong);
 	        boolean flag = nvDAO.updateNhanVien(nv);
 	        if (flag) {
 	        	  System.out.print("thanh cong");
-	        	  listNhanVien.add(nv);
 //	            new MyDialog("Cập nhập thất bại!", MyDialog.ERROR_DIALOG);
 	        } else {
 //	            new MyDialog("Cập nhập thành công!", MyDialog.SUCCESS_DIALOG);
@@ -126,12 +133,12 @@ public class NhanVienBUS {
 	    }
 	    
 	    
-	    public static ArrayList<NhanVien> timNhanVien(String tuKhoa) {
+	    public  ArrayList<NhanVien> timNhanVien(String tuKhoa) {
 	        tuKhoa = tuKhoa.toLowerCase();
 	        ArrayList<NhanVien> dsnv = new ArrayList<>();
 	        for (NhanVien nv : listNhanVien) {
 	            if (nv.getHoNV().toLowerCase().contains(tuKhoa) || nv.getTenNV().toLowerCase().contains(tuKhoa) ||
-	                    nv.getGioiTinh().toLowerCase().contains(tuKhoa) || nv.getCanCuoc().toLowerCase().contains(tuKhoa) || Integer.toString(nv.getSdt()).contains(tuKhoa) || Integer.toString(nv.getLuong()).contains(tuKhoa)) {
+	                    nv.getGioiTinh().toLowerCase().contains(tuKhoa) || nv.getNgaySinh().toLowerCase().contains(tuKhoa) || Integer.toString(nv.getSdt()).contains(tuKhoa) || Integer.toString(nv.getLuong()).contains(tuKhoa)) {
 	                dsnv.add(nv);
 	            }
 	        }
@@ -174,20 +181,20 @@ public class NhanVienBUS {
 	    }
 	    
 	    
-	    public ArrayList<NhanVien> timKiemNhanVienTheoCanCuoc(String canCuoc){
-	    	 ArrayList<NhanVien> dsnv = new ArrayList<>();
-	    	 for(NhanVien nv : listNhanVien ){
-	            String cancuoc = nv.getCanCuoc();
-	            if(cancuoc.equals(canCuoc)){
-	            	dsnv.add(nv);
-	            }
-	        }
-	    	 return dsnv;
-	    }
+//	    public ArrayList<NhanVien> timKiemNhanVienTheoCanCuoc(String canCuoc){
+//	    	 ArrayList<NhanVien> dsnv = new ArrayList<>();
+//	    	 for(NhanVien nv : listNhanVien ){
+//	            String cancuoc = nv.getCanCuoc();
+//	            if(cancuoc.equals(canCuoc)){
+//	            	dsnv.add(nv);
+//	            }
+//	        }
+//	    	 return dsnv;
+//	    }
 
 	  
 
-		public static boolean xoaNhanVien(int maNV) {
+		public  boolean xoaNhanVien(int maNV) {
 			boolean flag = false;
 
 	        try {
@@ -200,19 +207,20 @@ public class NhanVienBUS {
 	        }
 	        
 	        if(flag) {
-	        	
+	        	System.out.print("thanh cong");
 	        }else {
-	        	
+	        		        	System.out.print("that bai");
+
 	        }
 	        return flag;
 	    }
 
-	    public boolean nhapExcel(String ho, String ten, String gioiTinh, String cancuoc , int sdt , int luong) {
+	    public boolean nhapExcel(String ho, String ten, String gioiTinh, String ngaySinh , int sdt , int luong) {
 	        NhanVien nv = new NhanVien();
 	        nv.setHoNV(ho);
 	        nv.setTenNV(ten);
 	        nv.setGioiTinh(gioiTinh);
-	        nv.setCanCuoc(cancuoc);
+	        nv.setNgaySinh(ngaySinh);
 	        nv.setSdt(sdt);
 	        nv.setLuong(luong);
 	        boolean flag = nvDAO.nhapExcel(nv);

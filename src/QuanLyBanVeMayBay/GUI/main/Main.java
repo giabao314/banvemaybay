@@ -13,7 +13,7 @@ import QuanLyBanVeMayBay.DAO.MyConnect;
  */
 public class Main extends javax.swing.JFrame {
 
-    /**
+    /**+
      * Creates new form Main
      */
     public Main() {
@@ -34,7 +34,8 @@ public class Main extends javax.swing.JFrame {
         menu1 = new QuanLyBanVeMayBay.GUI.component.Menu();
         panelBorder1 = new QuanLyBanVeMayBay.GUI.swing.PanelBorder();
         menu3 = new QuanLyBanVeMayBay.GUI.component.Menu();
-        khachHangGUI1 = new QuanLyBanVeMayBay.GUI.form.KhachHangGUI();
+        nhanVienGUII1 = new QuanLyBanVeMayBay.GUI.form.NhanVienGUII();
+        hoaDonGUII1 = new QuanLyBanVeMayBay.GUI.form.HoaDonGUII();
 
         javax.swing.GroupLayout menu1Layout = new javax.swing.GroupLayout(menu1);
         menu1.setLayout(menu1Layout);
@@ -50,7 +51,6 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelBorder1.setBackground(new java.awt.Color(242, 242, 242));
         panelBorder1.setForeground(new java.awt.Color(242, 242, 242));
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
@@ -59,16 +59,21 @@ public class Main extends javax.swing.JFrame {
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(khachHangGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 137, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nhanVienGUII1, javax.swing.GroupLayout.PREFERRED_SIZE, 1775, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hoaDonGUII1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
+            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(khachHangGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(hoaDonGUII1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nhanVienGUII1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,14 +126,16 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void run() {
                 new Main().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private QuanLyBanVeMayBay.GUI.form.KhachHangGUI khachHangGUI1;
+    private QuanLyBanVeMayBay.GUI.form.HoaDonGUII hoaDonGUII1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu3;
+    private QuanLyBanVeMayBay.GUI.form.NhanVienGUII nhanVienGUII1;
     private QuanLyBanVeMayBay.GUI.swing.PanelBorder panelBorder1;
     // End of variables declaration//GEN-END:variables
 }

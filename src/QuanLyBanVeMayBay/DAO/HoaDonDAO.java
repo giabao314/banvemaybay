@@ -21,16 +21,21 @@ public class HoaDonDAO {
             while (rs.next()) {
                 HoaDon hd = new HoaDon();
                 hd.setMaHD(rs.getInt(1));
-                hd.setMaNV(rs.getNString(2));
-                hd.setMaKHThanhToan(rs.getNString(3));
-                hd.setNgayLap(rs.getNString(4));
-                hd.setTongTien(rs.getInt(5));
+                hd.setMaKHThanhToan(rs.getInt(2));
+                hd.setMaNV(rs.getInt(3));
+               
+                hd.setmaKM(rs.getInt(4));
+                hd.setNgayLap(rs.getDate(5) + "");
+                hd.setTongTien(rs.getInt(6));
                 dshd.add(hd);
             }
+              return dshd;
         } catch (SQLException ex) {
-            return null;
+            System.out.println("That bai");
         }
-        return dshd;
+        
+        return null;
+      
     }
 
     public boolean addHoaDon(HoaDon hd) {
@@ -39,12 +44,13 @@ public class HoaDonDAO {
 //            String sql1 = "UPDATE KhachHang SET TongChiTieu=TongChiTieu+" + hd.getTongTien() + " WHERE MaKH=" + hd.getMaKH();
 //            Statement st = MyConnect.conn.createStatement();
 //            st.executeUpdate(sql1);
-            String sql = "INSERT INTO hoadon(MaKH, MaNV, NgayLap, TongTien) VALUES(?, ?, ?, ?)";
+            String sql = "INSERT INTO hoadon(maKH, maNV, maKM ,ngayLap, tongTien) VALUES(?, ?, ?, ? ,?)";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
-            prep.setString(1, hd.getMaKHThanhToan());
-            prep.setString(2, hd.getMaNV());
-            prep.setString(3, hd.getNgayLap());
-            prep.setInt(4, hd.getTongTien());
+            prep.setInt(1, hd.getMaKHThanhToan());
+            prep.setInt(2, hd.getMaNV());
+            prep.setInt(3, hd.getmaKM());
+            prep.setString(4, hd.getNgayLap());
+            prep.setInt(5, hd.getTongTien());
   
             result = prep.executeUpdate() > 0;
         } catch (SQLException ex) {
@@ -80,8 +86,8 @@ public class HoaDonDAO {
             while (rs.next()) {
             	HoaDon hd = new HoaDon();
                 hd.setMaHD(rs.getInt(1));
-                hd.setMaNV(rs.getNString(2));
-                hd.setMaKHThanhToan(rs.getNString(3));
+                hd.setMaNV(rs.getInt(2));
+                hd.setMaKHThanhToan(rs.getInt(3));
                 hd.setNgayLap(rs.getNString(4));
                 hd.setTongTien(rs.getInt(5));
                 dshd.add(hd);

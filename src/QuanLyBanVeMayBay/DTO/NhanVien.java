@@ -5,7 +5,7 @@ public class NhanVien {
     private String hoNV;
     private String tenNV;
     private String gioiTinh;
-    private String canCuoc;
+    private String ngaySinh;
     private int sdt;
     private int luong;
     
@@ -13,13 +13,13 @@ public class NhanVien {
     	
     }
     
-	public NhanVien(int maNV, String hoNV, String tenNV, String gioiTinh, String canCuoc, int sdt, int luong) {
+	public NhanVien(int maNV, String hoNV, String tenNV, String gioiTinh, String ngaySinh, int sdt, int luong) {
 		super();
 		this.maNV = maNV;
 		this.hoNV = hoNV;
 		this.tenNV = tenNV;
 		this.gioiTinh = gioiTinh;
-		this.canCuoc = canCuoc;
+		this.ngaySinh = ngaySinh;
 		this.sdt = sdt;
 		this.luong = luong;
 	}
@@ -56,12 +56,12 @@ public class NhanVien {
 		this.gioiTinh = gioiTinh;
 	}
 
-	public String getCanCuoc() {
-		return canCuoc;
+	public String getNgaySinh() {
+		return ngaySinh;
 	}
 
-	public void setCanCuoc(String canCuoc) {
-		this.canCuoc = canCuoc;
+	public void setNgaySinh(String ngaySinh) {
+		this.ngaySinh = ngaySinh;
 	}
 
 	public int getSdt() {
