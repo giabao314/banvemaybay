@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+<<<<<<< HEAD
+        <group>
+            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/banvemaybay/src/QuanLyBanVeMayBay/GUI/main/Main.java</file>
+            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/banvemaybay/src/QuanLyBanVeMayBay/BUS/LoaiVeBUS.java</file>
+            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/banvemaybay/src/QuanLyBanVeMayBay/GUI/form/MayBayGUI.java</file>
+            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/banvemaybay/src/QuanLyBanVeMayBay/GUI/form/LoaiVeGUI.java</file>
+            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/banvemaybay/src/QuanLyBanVeMayBay/DAO/LoaiVeDAO.java</file>
+            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/banvemaybay/src/QuanLyBanVeMayBay/GUI/form/ChuyenBayGUI.java</file>
+            <file>file:/C:/Users/Thepi314/Documents/NetBeansProjects/banvemaybay/src/QuanLyBanVeMayBay/DTO/LoaiVe.java</file>
+        </group>
+=======
+        <group/>
+>>>>>>> b9687392e430195151d2854afbce7b26d2a32aa4
+>>>>>>> 71d6bd7e5d2f3262742101e5425aa179b5a26ec5
     </open-files>
 </project-private>

@@ -22,8 +22,8 @@ public class HangBayGUI extends javax.swing.JPanel {
      * Creates new form HangBayGUI
      */
     HangBayBUS hangbayBUS = new HangBayBUS();
-    DefaultTableModel dtmHangBay;
-    ArrayList<HangBayDTO> dshb = null;
+    DefaultTableModel dtmHangBay = new DefaultTableModel();
+    ArrayList<HangBayDTO> dshb = new ArrayList<>();
 
     public HangBayGUI() {
         initComponents();
@@ -39,8 +39,6 @@ public class HangBayGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtMaHB = new javax.swing.JTextField();
@@ -55,12 +53,7 @@ public class HangBayGUI extends javax.swing.JPanel {
         txtTuKhoa = new javax.swing.JTextField();
         selectLuaChon = new javax.swing.JComboBox<>();
         searchHangBay = new javax.swing.JButton();
-
-        jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jTextPane1.setText("QUẢN LÝ HÃNG BAY");
-        jScrollPane1.setViewportView(jTextPane1);
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Mã hãng bay");
@@ -117,13 +110,13 @@ public class HangBayGUI extends javax.swing.JPanel {
                             .addComponent(txtMaHB, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(txtTenHB)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
+                        .addGap(191, 191, 191)
                         .addComponent(jButtonThemHangBay)
-                        .addGap(59, 59, 59)
+                        .addGap(89, 89, 89)
                         .addComponent(jButtonSuaHangBay)
-                        .addGap(79, 79, 79)
+                        .addGap(85, 85, 85)
                         .addComponent(jButtonXoaHangBay)))
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +164,7 @@ public class HangBayGUI extends javax.swing.JPanel {
         });
 
         selectLuaChon.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã hãng bay", "Tên hãng bay" }));
+        selectLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất Cả", "Mã hãng bay", "Tên hãng bay" }));
 
         searchHangBay.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         searchHangBay.setText("Tìm kiếm");
@@ -187,7 +180,7 @@ public class HangBayGUI extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(128, 128, 128)
@@ -212,26 +205,33 @@ public class HangBayGUI extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Quản Lý Hãng Bay");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(297, 297, 297)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(307, 307, 307)
+                .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -275,26 +275,46 @@ public class HangBayGUI extends javax.swing.JPanel {
         hb.setTenHang(tenHB);
 
         hangbayBUS.themHangBay(hb);
+        
+        showListHangBay();
     }
 
     public void suaHangBay() {
-        String maHB = txtMaHB.getText();
+        int maHB = Integer.parseInt(txtMaHB.getText());
         String tenHB = txtTenHB.getText();
         HangBayDTO hb = new HangBayDTO(maHB, tenHB);
         hangbayBUS.suaHangBay(hb);
+        showListHangBay();
     }
 
     public void xoaHangBay() {
-        String maHB = txtMaHB.getText();
-        hangbayBUS.xoaHangBay(maHB);
+        int maHB = Integer.parseInt(txtMaHB.getText());
+        int i = tableHangBay.getSelectedRow();
+        
+        
+        if(hangbayBUS.xoaHangBay(maHB)){
+            dtmHangBay.removeRow(i);
+            tableHangBay.setModel(dtmHangBay);   
+            txtTenHB.setText("");
+            txtMaHB.setText("");
+        }
+        showListHangBay();
     }
 
     public void getListHangBay() {
         dtmHangBay.setRowCount(0);
-        dshb = hangbayBUS.getDanhSachHangBay();
+        dshb = hangbayBUS.getListHangBay();
+
+        Vector<Object> header = new Vector<>();
+        header.add("Mã hãng bay");
+        header.add("Tên hãng bay");
+
+        if (dtmHangBay.getRowCount() == 0) {
+            dtmHangBay = new DefaultTableModel(header, 0);
+        }
 
         for (HangBayDTO hb : dshb) {
-            Vector vec = new Vector();
+            Vector<Object> vec = new Vector<>();
             vec.add(hb.getMaHang());
             vec.add(hb.getTenHang());
 
@@ -314,6 +334,10 @@ public class HangBayGUI extends javax.swing.JPanel {
     public void timKiemHangBay() {
         String luaChon = selectLuaChon.getSelectedItem().toString();
         String tuKhoa = txtTuKhoa.getText();
+        if(luaChon == "Tất Cả"){
+            dshb = hangbayBUS.showListHangBay();
+        }
+            
         if (luaChon == "Mã hãng bay") {
             dshb = hangbayBUS.timKiemHangBayTheoMa(tuKhoa);
         } else {
@@ -325,9 +349,42 @@ public class HangBayGUI extends javax.swing.JPanel {
         } else {
             // khong tim thay
         }
+        
+        dtmHangBay.setRowCount(0);
+
+        Vector<Object> header = new Vector<>();
+        header.add("Mã hãng bay");
+        header.add("Tên hãng bay");
+
+        if (dtmHangBay.getRowCount() == 0) {
+            dtmHangBay = new DefaultTableModel(header, 0);
+        }
 
         for (HangBayDTO hb : dshb) {
-            Vector vec = new Vector();
+            Vector<Object> vec = new Vector<>();
+            vec.add(hb.getMaHang());
+            vec.add(hb.getTenHang());
+
+            dtmHangBay.addRow(vec);
+        }
+        tableHangBay.setModel(dtmHangBay);
+        
+    }
+    
+    public void showListHangBay(){
+        dtmHangBay.setRowCount(0);
+        dshb = hangbayBUS.showListHangBay();
+
+        Vector<Object> header = new Vector<>();
+        header.add("Mã hãng bay");
+        header.add("Tên hãng bay");
+
+        if (dtmHangBay.getRowCount() == 0) {
+            dtmHangBay = new DefaultTableModel(header, 0);
+        }
+
+        for (HangBayDTO hb : dshb) {
+            Vector<Object> vec = new Vector<>();
             vec.add(hb.getMaHang());
             vec.add(hb.getTenHang());
 
@@ -343,11 +400,10 @@ public class HangBayGUI extends javax.swing.JPanel {
     private javax.swing.JButton jButtonXoaHangBay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JButton searchHangBay;
     private javax.swing.JComboBox<String> selectLuaChon;
     javax.swing.JTable tableHangBay;

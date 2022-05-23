@@ -20,17 +20,13 @@ public final class LoaiVeGUI extends javax.swing.JPanel {
      * Creates new form LoaiVeGUI
      */
     LoaiVeBUS lvBUS = new LoaiVeBUS();
-    DefaultTableModel dtmLoaiVe;
-    ArrayList<LoaiVe> dslv = null;
+    private DefaultTableModel dtmLoaiVe = new DefaultTableModel();
+    ArrayList<LoaiVe> dslv = new ArrayList<>();
 
     public LoaiVeGUI() {
         initComponents();
-        dtmLoaiVe = new DefaultTableModel();
-        dtmLoaiVe.addColumn("Mã loại Vé");
-        dtmLoaiVe.addColumn("Tên loại Vé");
-        dtmLoaiVe.addColumn("Ðon Giá Vé");
-        tblLoaiVe.setModel(dtmLoaiVe);
         getListLoaiVe();
+       
 //        this.setLocationRelativeTo(null);
 
     }
@@ -246,16 +242,19 @@ public final class LoaiVeGUI extends javax.swing.JPanel {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         themLoaiVe();
+        showListLoaiVe();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void txtSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSuaActionPerformed
         // TODO add your handling code here:
         suaLoaiVe();
+        showListLoaiVe();
     }//GEN-LAST:event_txtSuaActionPerformed
 
     private void txtXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXoaActionPerformed
         // TODO add your handling code here:
         xoaLoaiVe();
+        showListLoaiVe();
     }//GEN-LAST:event_txtXoaActionPerformed
 
     private void tblLoaiVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLoaiVeMouseClicked
@@ -267,6 +266,7 @@ public final class LoaiVeGUI extends javax.swing.JPanel {
         String tenLV = txtTenLoaiVe.getText();
         String donGia = txtDonGia.getText();
         lvBUS.themLoaiVe(tenLV, donGia);
+        showListLoaiVe();
     }
 
     public void suaLoaiVe() {
@@ -274,25 +274,64 @@ public final class LoaiVeGUI extends javax.swing.JPanel {
         String tenLV = txtTenLoaiVe.getText();
         String donGia = txtDonGia.getText();
         lvBUS.suaLoaiVe(ma, tenLV, donGia);
+        showListLoaiVe();
     }
 
     public void xoaLoaiVe() {
         String ma = txtMaLoaiVe.getText();
+        int i = tblLoaiVe.getSelectedRow();
         lvBUS.xoaLoaiVe(ma);
+
+        dtmLoaiVe.removeRow(i);
+        tblLoaiVe.setModel(dtmLoaiVe);
+        txtMaLoaiVe.setText("");
+        txtTenLoaiVe.setText("");
+        txtDonGia.setText("");
     }
 
     public void getListLoaiVe() {
-        dtmLoaiVe.setRowCount(0);
-        dslv = lvBUS.getDanhSachLoaiVe();
+        try {
+            dtmLoaiVe.setRowCount(0);
+            dslv = lvBUS.getDanhSachLoaiVe();
+            Vector<Object> header = new Vector<>();
+            header.add("M? Lo?i Vé");
+            header.add("Tên Lo?i Vé");
+            header.add("Đơn Giá");
+            if (dtmLoaiVe.getRowCount() == 0) {
+                dtmLoaiVe = new DefaultTableModel(header, 0);
+            }
+            for (LoaiVe lv : dslv) {
+                Vector<Object> v = new Vector<>();
+                v.add(lv.getMaLoaiVe());
+                v.add(lv.getTenLoaiVe());
+                v.add(lv.getDonGia());
+                dtmLoaiVe.addRow(v);
+            }
 
+            tblLoaiVe.setModel(dtmLoaiVe);
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public void showListLoaiVe() {
+        dtmLoaiVe.setRowCount(0);
+        dslv = lvBUS.listLV();
+        Vector<Object> header = new Vector<>();
+        header.add("M? Lo?i Vé");
+        header.add("Tên Lo?i Vé");
+        header.add("Đơn Giá");
+        if (dtmLoaiVe.getRowCount() == 0) {
+            dtmLoaiVe = new DefaultTableModel(header, 0);
+        }
         for (LoaiVe lv : dslv) {
-            Vector v = new Vector();
+            Vector<Object> v = new Vector<>();
             v.add(lv.getMaLoaiVe());
             v.add(lv.getTenLoaiVe());
             v.add(lv.getDonGia());
             dtmLoaiVe.addRow(v);
         }
-
         tblLoaiVe.setModel(dtmLoaiVe);
     }
 

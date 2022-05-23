@@ -17,7 +17,7 @@ import QuanLyBanVeMayBay.DTO.HangBayDTO;
  */
 public class HangBayDAO {
 
-    public ArrayList<HangBayDTO> getDanhSachHangBay() {
+    public ArrayList<HangBayDTO> getListHangBay() {
         try {
             String sql = "SELECT * FROM hangbay";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
@@ -25,7 +25,7 @@ public class HangBayDAO {
             ArrayList<HangBayDTO> dshb = new ArrayList<>();
             while (rs.next()) {
                 HangBayDTO hb = new HangBayDTO();
-                hb.setMaHang(rs.getString(1));
+                hb.setMaHang(rs.getInt(1));
                 hb.setTenHang(rs.getString(2));
                 dshb.add(hb);
             }
@@ -36,55 +36,50 @@ public class HangBayDAO {
     }
 
     public boolean themHangBay(HangBayDTO hb) {
+        boolean check = false;
         try {
-            String sql = "INSERT INTO hangbay VALUES (?,?)";
+            String sql = "INSERT INTO hangbay VALUES (NULL,?)";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
-            prep.setString(1, hb.getMaHang());
-            prep.setString(2, hb.getTenHang());
+            //prep.setInt(1, hb.getMaHang());
+            prep.setString(1, hb.getTenHang());
 
-            prep.execute();
-            return true;
+            check = prep.executeUpdate() > 0;
         } catch (SQLException ex) {
+            return false;
 //            Logger.getLogger(LoaiDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return false;
-    }
-
-    public boolean xoaHangBay(String maHang) {
-        try {
-            String sql = "DELETE FROM hangbay WHERE maHang=" + maHang;
-            Statement st = MyConnect.conn.createStatement();
-            int x = st.executeUpdate(sql);
-            return x > 0 ? true : false;
-        } catch (SQLException e) {
-        }
-        return false;
+        return check;
     }
 
     public boolean suaHangBay(HangBayDTO hb) {
+        boolean check = false;
         try {
             String sql = "UPDATE hangbay SET "
-                    + "tenHang=?, "
-                    + "WHERE maHang=?";
+                    + "tenHangBay=? "
+                    + "WHERE maHangBay=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, hb.getTenHang());
-            pre.setString(2, hb.getMaHang());
+            pre.setInt(2, hb.getMaHang());
 
-            pre.execute();
-            return true;
+            check = pre.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            return false;
         }
-        return false;
+        return check;
     }
 
-//    public boolean timHangBayTheoTen(String tenHB){
-//        try{
-//            String sql = "SELECT "
-//            return true;
-//        }catch(SQLException e){
-//            e.printStackTrace();
-//        };
-//    }
+    public boolean xoaHangBay(int maHang) {
+        boolean check = false;
+        try {
+            String sql = "DELETE FROM hangbay WHERE maHangBay=?";
+            PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
+            prep.setInt(1, maHang);
+
+            check = prep.executeUpdate() > 0;
+        } catch (SQLException e) {
+            return false;
+        }
+        return check;
+    }
 }

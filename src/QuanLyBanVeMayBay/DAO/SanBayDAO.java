@@ -17,7 +17,7 @@ import QuanLyBanVeMayBay.DTO.SanBayDTO;
  */
 public class SanBayDAO {
 
-    public ArrayList<SanBayDTO> getSanhSachSanBay() {
+    public ArrayList<SanBayDTO> getListSanBay() {
         try {
             String sql = "SELECT * FROM sanbay";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
@@ -26,7 +26,7 @@ public class SanBayDAO {
             while (rs.next()) {
                 SanBayDTO sb = new SanBayDTO();
 
-                sb.setMaSanBay(rs.getString(1));
+                sb.setMaSanBay(rs.getInt(1));
                 sb.setTenSanBay(rs.getString(2));
                 sb.setDiaChi(rs.getString(3));
 
@@ -41,14 +41,14 @@ public class SanBayDAO {
 
     public SanBayDTO getSanBay(String ma) {
         try {
-            String sql = "SELECT *FROM sanbay WHERE maSanBay=?";
+            String sql = "SELECT * FROM sanbay WHERE maSanBay=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, ma);
             ResultSet rs = pre.executeQuery();
             if (rs.next()) {
                 SanBayDTO sb = new SanBayDTO();
 
-                sb.setMaSanBay(rs.getString(1));
+                sb.setMaSanBay(rs.getInt(1));
                 sb.setTenSanBay(rs.getString(2));
                 sb.setDiaChi(rs.getString(3));
 
@@ -60,101 +60,45 @@ public class SanBayDAO {
         return null;
     }
 
-//    public ArrayList<SanPham> getSanPhamTheoLoai(int maLoai) {
-//        try {
-//            String sql = "SELECT * FROM sanpham WHERE MaLoai=?";
-//            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-//            pre.setInt(1, maLoai);
-//            ResultSet rs = pre.executeQuery();
-//            ArrayList<SanPham> dssp = new ArrayList<>();
-//            while (rs.next()) {
-//                SanPham sp = new SanPham();
-//
-//                sp.setMaSP(rs.getInt(1));
-//                sp.setTenSP(rs.getString(2));
-//                sp.setMaLoai(rs.getInt(3));
-//                sp.setSoLuong(rs.getInt(4));
-//                sp.setDonViTinh(rs.getString(5));
-//                sp.setHinhAnh(rs.getString(6));
-//                sp.setDonGia(rs.getInt(7));
-//
-//                dssp.add(sp);
-//            }
-//            return dssp;
-//        } catch (SQLException e) {
-//        }
-//
-//        return null;
-//    }
-    public String getAnh(String ma) {
-        try {
-            String sql = "SELECT hinhAnh FROM sanbay WHERE maSanBay=?";
-            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-            pre.setString(1, ma);
-            ResultSet rs = pre.executeQuery();
-            if (rs.next()) {
-                return rs.getString("hinhAnh");
-            }
-        } catch (SQLException e) {
-        }
-        return "";
-    }
-
     public boolean themSanBay(SanBayDTO sb) {
+        boolean check = false;
         try {
-            String sql = "INSERT INTO sanbay(tenSanBay, diaChi) "
-                    + "VALUES (?, ?)";
+            String sql = "INSERT INTO sanbay (maSanBay, tenSanBay, thanhPho) "
+                    + "VALUES (NULL,?,?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, sb.getTenSanBay());
-            pre.setString(2, sb.getDiaChi());
+            pre.setString(2, sb.getThanhPho());
 
-            pre.execute();
-            return true;
+            check = pre.executeUpdate() > 0;
         } catch (SQLException e) {
+            return false;
         }
         return false;
     }
 
-//    public boolean nhapSanPhamTuExcel(SanPham sp) {
-//        try {
-//            String sql = "DELETE * FROM sanpham; "
-//                    + "INSERT INTO SanPham(TenSP, MaLoai, SoLuong, DonViTinh, HinhAnh, DonGia) "
-//                    + "VALUES (?, ?, ?, ?, ?, ?)";
-//            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-//            pre.setString(1, sp.getTenSP());
-//            pre.setInt(2, sp.getMaLoai());
-//            pre.setInt(3, sp.getSoLuong());
-//            pre.setString(4, sp.getDonViTinh());
-//            pre.setString(5, sp.getHinhAnh());
-//            pre.setInt(6, sp.getDonGia());
-//
-//            pre.execute();
-//            return true;
-//        } catch (SQLException e) {
-//        }
-//        return false;
-//    }
-    public boolean xoaSanBay(String maSB) {
+    public boolean xoaSanBay(int maSB) {
+        boolean check = false;
         try {
-            String sql = "DELETE FROM sanbay WHERE maSanBay=" + maSB;
-            Statement st = MyConnect.conn.createStatement();
-            st.execute(sql);
-            return true;
+            String sql = "DELETE FROM sanbay WHERE maSanBay=?";
+            PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
+            prep.setInt(1, maSB);
+            check = prep.executeUpdate() > 0;
         } catch (SQLException e) {
+            return false;
         }
-        return false;
+        return check;
     }
 
     public boolean suaSanBay(SanBayDTO sb) {
         try {
             String sql = "UPDATE sanbay SET "
                     + "tenSanBay=?, "
-                    + "diaChi=?"
+                    + "thanhPho=? "
                     + "WHERE maSanBay=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, sb.getTenSanBay());
-            pre.setString(2, sb.getDiaChi());
-            pre.setString(3, sb.getMaSanBay());
+            pre.setString(2, sb.getThanhPho());
+            pre.setInt(3, sb.getMaSanBay());
 
             pre.execute();
             return true;

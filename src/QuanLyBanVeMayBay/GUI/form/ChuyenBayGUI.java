@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Vector;
 import QuanLyBanVeMayBay.BUS.ChuyenBayBUS;
 import QuanLyBanVeMayBay.DTO.ChuyenBay;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,11 +16,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ChuyenBayGUI extends javax.swing.JPanel {
 
-    DefaultTableModel tblChuyenBay;
     /**
      * Creates new form ChuyenBayGUI
      */
+    DefaultTableModel dtmChuyenBay = new DefaultTableModel();
     ChuyenBayBUS cbBUS = new ChuyenBayBUS();
+    ArrayList<ChuyenBay> dscb = new ArrayList<>();
 
     public ChuyenBayGUI() {
         initComponents();
@@ -383,8 +381,8 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
 //        int soVeCL = Integer.parseInt(veCL);
             String ngayCC = txtNgayCC.getText();
             String ngayHC = txtNgayHC.getText();
-            Date ngayCatCanh = new SimpleDateFormat("dd/MM/yyyy").parse(ngayCC);
-            Date ngayHaCanh = new SimpleDateFormat("dd/MM/yyyy").parse(ngayHC);
+            String ngayCatCanh = txtNgayCC.getText();
+            String ngayHaCanh = txtNgayHC.getText();
             cbBUS.themChuyenBay(maTB, maMB, ngayCatCanh, ngayHaCanh);
         } catch (ParseException e1) {
         }
@@ -420,20 +418,67 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
      *
      */
     public void getListChuyenBay() {
-        tblChuyenBay.setRowCount(0);
-        ArrayList<ChuyenBay> dscb = cbBUS.getListChuyenBay();
+        try {
+            dtmChuyenBay.setRowCount(0);
+            dscb = cbBUS.getListChuyenBay();
+            Vector<Object> header = new Vector<>();
+            header.add("Mã Chuy?n Bay");
+            header.add("Mã Tuy?n Bay");
+            header.add("Mã Máy Bay");
+            header.add("S? Lu?ng Vé Còn L?i");
+            header.add("Ngày C?t Cánh");
+            header.add("Ngày H? Cánh");
+            if (dtmChuyenBay.getRowCount() == 0) {
+                dtmChuyenBay = new DefaultTableModel(header, 0);
+            }
+            for (ChuyenBay cb : dscb) {
+                Vector<Object> vec = new Vector<>();
+                vec.add(cb.getMaChuyenBay());
+                vec.add(cb.getMaTuyenBay());
+                vec.add(cb.getMaMayBay());
+                vec.add(cb.getSoLgVeCL());
+                vec.add(cb.getNgayCatCanh());
+                vec.add(cb.getNgayHaCanh());
 
-        for (ChuyenBay cb : dscb) {
-            Vector vec = new Vector();
-            vec.add(cb.getMaChuyenBay());
-            vec.add(cb.getMaTuyenBay());
-            vec.add(cb.getMaMayBay());
-            vec.add(cb.getSoLgVeCL());
-            vec.add(cb.getNgayCatCanh());
-            vec.add(cb.getNgayHaCanh());
+                dtmChuyenBay.addRow(vec);
+            }
+            tableChuyenBay.setModel(dtmChuyenBay);
+        } catch (Exception e) {
 
-            tblChuyenBay.addRow(vec);
         }
+
+    }
+    
+    public void showListChuyenBay() {
+        try {
+            dtmChuyenBay.setRowCount(0);
+            dscb = cbBUS.listCB();
+            Vector<Object> header = new Vector<>();
+            header.add("Mã Chuy?n Bay");
+            header.add("Mã Tuy?n Bay");
+            header.add("Mã Máy Bay");
+            header.add("S? Lu?ng Vé Còn L?i");
+            header.add("Ngày C?t Cánh");
+            header.add("Ngày H? Cánh");
+            if (dtmChuyenBay.getRowCount() == 0) {
+                dtmChuyenBay = new DefaultTableModel(header, 0);
+            }
+            for (ChuyenBay cb : dscb) {
+                Vector<Object> vec = new Vector<>();
+                vec.add(cb.getMaChuyenBay());
+                vec.add(cb.getMaTuyenBay());
+                vec.add(cb.getMaMayBay());
+                vec.add(cb.getSoLgVeCL());
+                vec.add(cb.getNgayCatCanh());
+                vec.add(cb.getNgayHaCanh());
+
+                dtmChuyenBay.addRow(vec);
+            }
+            tableChuyenBay.setModel(dtmChuyenBay);
+        } catch (Exception e) {
+
+        }
+
     }
 
     public void clickTableRowKM() {
