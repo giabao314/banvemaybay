@@ -73,6 +73,7 @@ public class CTHoaDonDAO {
 		                cthd.setMaKM(rs.getNString(5));
 		                cthd.setThue(rs.getNString(6));
 		                cthd.setThanhTien(rs.getInt(7));
+		                dscthd.add(cthd);
 	            }
 	        } catch(SQLException ex) {
 	            return null;
@@ -124,11 +125,11 @@ public class CTHoaDonDAO {
 	        return result;
 	    }
 
-	    public boolean updateCTHoaDon(int maHD, int maSP, CTHoaDon cthd) {
+	    public boolean updateCTHoaDon(int maHD, int maLoaiVe, CTHoaDon cthd) {
 	        boolean result = false;
 	        try {
 	            String sql = "UPDATE cthoadon SET maHD=?, maLoaiVe=?, maVeKH = ? , soLgVe=?, maKM = ?  , thue = ? , thanhTien=? "
-	                    + "WHERE MaHD=? AND MaSP=?";
+	                    + "WHERE MaHD=? AND maLoaiVe=?";
 	            PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
 	            prep.setInt(1, cthd.getMaHD());
 	            prep.setString(2, cthd.getMaLoaiVe());
@@ -137,6 +138,8 @@ public class CTHoaDonDAO {
 	            prep.setString(5, cthd.getMaKM());
 	            prep.setString(6, cthd.getThue());
 	            prep.setInt(7, cthd.getThanhTien());
+	            prep.setInt(8, cthd.getMaHD());
+	            prep.setString(9, cthd.getMaLoaiVe());
 	            result = prep.executeUpdate() > 0;
 	        } catch(SQLException ex) {
 	            return false;

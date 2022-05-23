@@ -16,26 +16,52 @@ public class NhanVienBUS {
 	      listNhanVien = nvDAO.getDanhSachNhanVien();
 	    }
 
-	    public static ArrayList<NhanVien> getDanhSachNhanVien() {
+	    public  ArrayList<NhanVien> getDanhSachNhanVien() {
 	        if (listNhanVien == null)
 	            docDanhSach();
 	        return listNhanVien;
 	    }
 
 	    public static  boolean themNhanVien(String ho, String ten, String gioiTinh, String cancuoc , int sdt , int luong) {
-	        ho = ho.trim();
-	        ten = ten.trim();
+	       
 	        
 	        
-	        if (ho.equals("")) {
+	        if (ho.trim().equals("")) {
 //	            new MyDialog("Họ không được để trống!", MyDialog.ERROR_DIALOG);
 	            return false;
 	        }
 	      
-	        if (ten.equals("")) {
+	        if (ten.trim().equals("")) {
 //	            new MyDialog("Tên không được để trống!", MyDialog.ERROR_DIALOG);
 	            return false;
 	        }
+	        
+	        
+	        if (gioiTinh.trim().equals("")) {
+//	            new MyDialog("Họ không được để trống!", MyDialog.ERROR_DIALOG);
+	            return false;
+	        }
+	      
+	        if (cancuoc.trim().equals("")) {
+//	            new MyDialog("Tên không được để trống!", MyDialog.ERROR_DIALOG);
+	            return false;
+	        }
+	        
+	        
+	        
+	        if (Integer.toString(sdt).trim().equals("")) {
+//	            new MyDialog("Họ không được để trống!", MyDialog.ERROR_DIALOG);
+	            return false;
+	        }
+	      
+	        if (Integer.toString(luong).trim().equals("")){
+//	            new MyDialog("Tên không được để trống!", MyDialog.ERROR_DIALOG);
+	            return false;
+	        }
+	        
+	        
+	        
+	        
 	        
 	        NhanVien nv = new NhanVien();
 	        nv.setHoNV(ho);
@@ -53,19 +79,30 @@ public class NhanVienBUS {
 	        return flag;
 	    }
 
-	    public static boolean updateNhanVien(String ma, String ho, String ten, String gioiTinh, String cancuoc , int sdt , int luong) {
-	    	int maNV = Integer.parseInt(ma);
-	        ho = ho.trim();
-	        ten = ten.trim();
-	      
-	        
-	        if (ho.equals("")) {
-//	            new MyDialog("Họ không được để trống!", MyDialog.ERROR_DIALOG);
+	    public static boolean updateNhanVien(int maNV, String ho, String ten, String gioiTinh, String cancuoc , int sdt , int luong) {
+	    	
+	    	if(ho.trim().equals("")){
+	            // new dialog bao' loi~;
 	            return false;
 	        }
-	      
-	        if (ten.equals("")) {
-//	            new MyDialog("Tên không được để trống!", MyDialog.ERROR_DIALOG);
+	        if(ten.trim().equals("")){
+	            // new dialog bao' loi~;
+	            return false;
+	        }
+	        if(gioiTinh.trim().equals("")){
+	            // new dialog bao' loi~;
+	            return false;
+	        }
+	        if(Integer.toString(luong).trim().equals("")){
+	            // new dialog bao' loi~;
+	            return false;
+	        }
+	        if(cancuoc.trim().equals("")){
+	            // new dialog bao' loi~;
+	            return false;
+	        }
+	        if(Integer.toString(sdt).trim().equals("")){
+	            // new dialog bao' loi~;
 	            return false;
 	        }
 	        NhanVien nv = new NhanVien();
@@ -77,14 +114,18 @@ public class NhanVienBUS {
 	        nv.setSdt(sdt);
 	        nv.setLuong(luong);
 	        boolean flag = nvDAO.updateNhanVien(nv);
-//	        if (!flag) {
+	        if (flag) {
+	        	  System.out.print("thanh cong");
+	        	  listNhanVien.add(nv);
 //	            new MyDialog("Cập nhập thất bại!", MyDialog.ERROR_DIALOG);
-//	        } else {
+	        } else {
 //	            new MyDialog("Cập nhập thành công!", MyDialog.SUCCESS_DIALOG);
-//	        }
+	        	 System.out.print("That bai");
+	        }
 	        return flag;
 	    }
-
+	    
+	    
 	    public static ArrayList<NhanVien> timNhanVien(String tuKhoa) {
 	        tuKhoa = tuKhoa.toLowerCase();
 	        ArrayList<NhanVien> dsnv = new ArrayList<>();
@@ -97,26 +138,73 @@ public class NhanVienBUS {
 	        return dsnv;
 	    }
 
+
+	    public ArrayList<NhanVien> timKiemNhanVienTheoTen(String tenNV){
+	    	ArrayList<NhanVien> dsnv = new ArrayList<>();
+	        for(NhanVien nv : listNhanVien ){
+	            String ho = nv.getHoNV();
+	            String ten = nv.getTenNV();
+	            if(ten.contains(tenNV)){
+	            	dsnv.add(nv);
+	            }
+	        }
+	        return dsnv;
+	    }
+	    
+	    public ArrayList<NhanVien> timKiemNhanVienTheoMa(String maNV){
+	        ArrayList<NhanVien> dsnv = new ArrayList<>();
+	        for(NhanVien nv : listNhanVien ){
+	            int ma = nv.getMaNV();
+	            if(ma == Integer.parseInt(maNV)){
+	            	dsnv.add(nv);
+	            }
+	        }
+	        return dsnv;
+	    }
+	    
+	    public ArrayList<NhanVien> timKiemNhanVienTheoSDT(String sdt){
+	    	  ArrayList<NhanVien> dsnv = new ArrayList<>();
+	       	  for(NhanVien nv : listNhanVien ){
+	            int sodienthoai = nv.getSdt();
+	            if(Integer.toString(sodienthoai).contains(sdt)){
+	            	dsnv.add(nv);
+	            }
+	        }
+	       	 return dsnv;
+	    }
+	    
+	    
+	    public ArrayList<NhanVien> timKiemNhanVienTheoCanCuoc(String canCuoc){
+	    	 ArrayList<NhanVien> dsnv = new ArrayList<>();
+	    	 for(NhanVien nv : listNhanVien ){
+	            String cancuoc = nv.getCanCuoc();
+	            if(cancuoc.equals(canCuoc)){
+	            	dsnv.add(nv);
+	            }
+	        }
+	    	 return dsnv;
+	    }
+
 	  
 
-		public static boolean xoaNhanVien(String ma) {
+		public static boolean xoaNhanVien(int maNV) {
+			boolean flag = false;
+
 	        try {
-	            int maNV = Integer.parseInt(ma);
-//	            MyDialog dlg = new MyDialog("Bạn có chắc chắn muốn xoá?", MyDialog.WARNING_DIALOG);
-	            boolean flag = false;
-//	            if (dlg.getAction() == MyDialog.OK_OPTION) {
-//	                flag = nvDAO.deleteNhanVien(maNV);
-//	                if (flag) {
-//	                    new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
-//	                } else {
-//	                    new MyDialog("Xoá thất bại!", MyDialog.ERROR_DIALOG);
-//	                }
-//	            }
-	            return flag;
+	         
+	        	 flag = nvDAO.deleteNhanVien(maNV);
+
+	          
 	        } catch (Exception e) {
-//	            new MyDialog("Chưa chọn nhân viên!", MyDialog.ERROR_DIALOG);
+
 	        }
-	        return false;
+	        
+	        if(flag) {
+	        	
+	        }else {
+	        	
+	        }
+	        return flag;
 	    }
 
 	    public boolean nhapExcel(String ho, String ten, String gioiTinh, String cancuoc , int sdt , int luong) {

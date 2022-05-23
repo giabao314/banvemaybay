@@ -1,4 +1,4 @@
-package QuanLyBanVeMayBay.GUI.form;
+package QuanLyBanVeMayBay.GUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -350,14 +350,14 @@ public class HoaDonGUI extends JFrame {
 	
 	
 			private void loadDataListHoaDon() {
-		        ArrayList<HoaDon> dshd = HoaDonBUS.getListHoaDon();
+		        ArrayList<HoaDonGUI> dshd = HoaDonBUS.getListHoaDon();
 		        addDataListHoaDon(dshd);
 		    }
 		
-		    private void addDataListHoaDon(ArrayList<HoaDon> dshd) {
+		    private void addDataListHoaDon(ArrayList<HoaDonGUI> dshd) {
 		        DefaultListModel<String> listModel = new DefaultListModel<>();
 		        if (dshd != null) {
-		            for (HoaDon hd : dshd) {
+		            for (HoaDonGUI hd : dshd) {
 		                listModel.addElement(hd.getMaHD() + " | " + hd.getNgayLap() + " === " + dcf.format(hd.getTongTien()) + " VND");
 		            }
 		            listHoaDon.setModel(listModel);
@@ -371,7 +371,7 @@ public class HoaDonGUI extends JFrame {
 				String hoaDon = (String) list.getSelectedValue();
 				String[] stMaHD = hoaDon.split(" | ");
 				
-				HoaDon hd = HoaDonBUS.getHoaDon(stMaHD[0]);
+				HoaDonGUI hd = HoaDonBUS.getHoaDon(stMaHD[0]);
 				txtMaHD.setText(hd.getMaHD() + "");
 				txtMaKH.setText(hd.getMaKHThanhToan() + "");
 				txtMaNV.setText(hd.getMaNV() + "");
@@ -380,7 +380,7 @@ public class HoaDonGUI extends JFrame {
 				txtTongTien.setText(dcf.format(hd.getTongTien()));
 			
 				
-				// GÃ¡Â»ï¿½i hiÃ¡Â»Æ’n thÃ¡Â»â€¹ data trÃƒÂªn tblCTHoaDon
+				// Gá»�i hiá»ƒn thá»‹ data trÃªn tblCTHoaDon
 				loadDataTblCTHoaDon(stMaHD[0]);
 			}
 			
@@ -393,16 +393,6 @@ public class HoaDonGUI extends JFrame {
 			
 			 private void addDataTableCTHoaDon(ArrayList<CTHoaDon> listCTHoaDon) {
 			        dtmCTHoaDon.setRowCount(0);
-			        Vector<Object> header = new Vector<>();
-			        header.add("Mã Hóa Đơn");
-			        header.add("Mã Loại Vé");
-			        header.add("Số Lượng");
-			        header.add("Mã Khuyến Mãi");
-			        header.add("Thuế");
-			        header.add("Thành Tiền");
-			        if (dtmCTHoaDon.getRowCount() == 0) {
-			        	dtmCTHoaDon = new DefaultTableModel(header, 0);
-				       }
 			        for (CTHoaDon ct : listCTHoaDon) {
 			            Vector<String> vec = new Vector<>();
 			            vec.add(ct.getMaHD() + "");
@@ -414,8 +404,6 @@ public class HoaDonGUI extends JFrame {
 			            vec.add(dcf.format(ct.getThanhTien()));
 			            dtmCTHoaDon.addRow(vec);
 			        }
-			        
-			        tblCTHoaDon.setModel(dtmCTHoaDon);
 			    }   
 		
 			 private void loadDataTblCTHoaDon(String maHD) {
