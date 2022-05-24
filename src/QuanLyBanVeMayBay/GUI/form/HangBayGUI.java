@@ -56,14 +56,13 @@ public class HangBayGUI extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Mã hãng bay");
+        jLabel2.setText("Mã Hãng Bay");
 
-        txtMaHB.setText("jTextField1");
+        txtMaHB.setEditable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Tên hãng bay");
+        jLabel1.setText("Tên Hãng Bay");
 
-        txtTenHB.setText("jTextField2");
         txtTenHB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTenHBActionPerformed(evt);
@@ -121,13 +120,14 @@ public class HangBayGUI extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtMaHB)
-                        .addGap(2, 2, 2))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(23, 23, 23)
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtMaHB, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                        .addGap(25, 25, 25)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtTenHB, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -147,7 +147,7 @@ public class HangBayGUI extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Mã hãng bay", "Tên hãng"
+                "Mã Hãng Bay", "Tên Hãng"
             }
         ));
         tableHangBay.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -306,8 +306,8 @@ public class HangBayGUI extends javax.swing.JPanel {
         dshb = hangbayBUS.getListHangBay();
 
         Vector<Object> header = new Vector<>();
-        header.add("Mã hãng bay");
-        header.add("Tên hãng bay");
+        header.add("Mã Hãng Bay");
+        header.add("Tên Hãng Bay");
 
         if (dtmHangBay.getRowCount() == 0) {
             dtmHangBay = new DefaultTableModel(header, 0);
@@ -353,8 +353,8 @@ public class HangBayGUI extends javax.swing.JPanel {
         dtmHangBay.setRowCount(0);
 
         Vector<Object> header = new Vector<>();
-        header.add("Mã hãng bay");
-        header.add("Tên hãng bay");
+        header.add("Mã Hãng Bay");
+        header.add("Tên Hãng Bay");
 
         if (dtmHangBay.getRowCount() == 0) {
             dtmHangBay = new DefaultTableModel(header, 0);
@@ -376,8 +376,8 @@ public class HangBayGUI extends javax.swing.JPanel {
         dshb = hangbayBUS.showListHangBay();
 
         Vector<Object> header = new Vector<>();
-        header.add("Mã hãng bay");
-        header.add("Tên hãng bay");
+        header.add("Mã Hãng Bay");
+        header.add("Tên Hãng Bay");
 
         if (dtmHangBay.getRowCount() == 0) {
             dtmHangBay = new DefaultTableModel(header, 0);

@@ -13,7 +13,7 @@ import QuanLyBanVeMayBay.DTO.ChuyenBay;
 // import QuanLyBanVeMayBay.DTO.MayBay;
 // import QuanLyBanVeMayBay.DAO.LoaiVeDAO;
 // import QuanLyBanVeMayBay.DTO.LoaiVe;
-import Template.Dialog;
+//import Template.Dialog;
 import java.util.ArrayList;
 // import java.util.Date;
 // import java.util.Calendar;
@@ -28,18 +28,23 @@ public class VeBUS {
     private ArrayList<Ve> listVe = null;
     private VeDAO veDAO = new VeDAO();
 
-    public VeBUS() {
-        docListVe();
-    }
+//    public VeBUS() {
+//        docListVe();
+//    }
 
     public void docListVe() {
-        listVe = veDAO.getListVe();
+        this.listVe = veDAO.getListVe();
     }
 
     public ArrayList<Ve> getListVe() {
         if (listVe == null) {
             docListVe();
         }
+        return listVe;
+    }
+    
+    public ArrayList<Ve> showListVe(){
+        docListVe();
         return listVe;
     }
 
@@ -94,19 +99,19 @@ public class VeBUS {
 
     public boolean themVe(String maCB, String maLV, String maGhe, String gioLenMayBay) {
         if (maCB.equals("")) {
-            new Dialog("Vui lòng chọn mã chuyến bay!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã chuyến bay!", Dialog.ERROR_DIALOG);
             return false;
         }
         if (maLV.equals("")) {
-            new Dialog("Vui lòng chọn mã loại vé!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã loại vé!", Dialog.ERROR_DIALOG);
             return false;
         }
         if (maGhe.equals("")) {
-            new Dialog("Vui lòng chọn mã ghế!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã ghế!", Dialog.ERROR_DIALOG);
             return false;
         }
         if (gioLenMayBay.equals("")) {
-            new Dialog("Vui lòng điền giờ lên máy bay!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng điền giờ lên máy bay!", Dialog.ERROR_DIALOG);
             return false;
         }
 
@@ -130,10 +135,9 @@ public class VeBUS {
         } catch (Exception e) {
         }
         if (flag) {
-            new Dialog("Thêm thành công!", Dialog.SUCCESS_DIALOG);
-            return true;
+            //new Dialog("Thêm thành công!", Dialog.SUCCESS_DIALOG);
         } else {
-            new Dialog("Thêm thất bại!", Dialog.ERROR_DIALOG);
+            //new Dialog("Thêm thất bại!", Dialog.ERROR_DIALOG);
             return false;
         }
         return flag;
@@ -169,19 +173,19 @@ public class VeBUS {
 
     public boolean nhapVeTuExcel(String maCB, String maLV, String maGhe, String gioLenMayBay) {
         if (maCB.equals("")) {
-            new Dialog("Vui lòng chọn mã chuyến bay!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã chuyến bay!", Dialog.ERROR_DIALOG);
             return false;
         }
         if (maLV.equals("")) {
-            new Dialog("Vui lòng chọn mã loại vé!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã loại vé!", Dialog.ERROR_DIALOG);
             return false;
         }
         if (maGhe.equals("")) {
-            new Dialog("Vui lòng chọn mã ghế!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã ghế!", Dialog.ERROR_DIALOG);
             return false;
         }
         if (gioLenMayBay.equals("")) {
-            new Dialog("Vui lòng điền giờ lên máy bay!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng điền giờ lên máy bay!", Dialog.ERROR_DIALOG);
             return false;
         }
         boolean flag = false;
@@ -196,10 +200,9 @@ public class VeBUS {
         } catch (Exception e) {
         }
         if (flag) {
-            new Dialog("Thêm thành công!", Dialog.SUCCESS_DIALOG);
-            return true;
+            //new Dialog("Thêm thành công!", Dialog.SUCCESS_DIALOG);
         } else {
-            new Dialog("Thêm thất bại!", Dialog.ERROR_DIALOG);
+            //new Dialog("Thêm thất bại!", Dialog.ERROR_DIALOG);
             return false;
         }
         return flag;
@@ -207,17 +210,17 @@ public class VeBUS {
 
     public boolean xoaVe(String ma) {
         if (ma.trim().equals("")) {
-            new Dialog("Chưa chọn vé để xoá!", Dialog.ERROR_DIALOG);
+            //new Dialog("Chưa chọn vé để xoá!", Dialog.ERROR_DIALOG);
             return false;
         }
 
         int maVe = Integer.parseInt(ma);
         if (veDAO.xoaVe(maVe)) {
-            new Dialog("Xoá thành công!", Dialog.SUCCESS_DIALOG);
+            //new Dialog("Xoá thành công!", Dialog.SUCCESS_DIALOG);
             return true;
         }
 
-        new Dialog("Xoá thất bại!", Dialog.ERROR_DIALOG);
+        //new Dialog("Xoá thất bại!", Dialog.ERROR_DIALOG);
         return false;
     }
 
@@ -225,7 +228,7 @@ public class VeBUS {
 
         try {
             if (maVe.trim().equals("")) {
-                new Dialog("Chưa chọn chuyến bay để sửa!", Dialog.ERROR_DIALOG);
+                //new Dialog("Chưa chọn chuyến bay để sửa!", Dialog.ERROR_DIALOG);
                 return false;
             }
             int maVeCB = Integer.parseInt(maVe);
@@ -238,46 +241,46 @@ public class VeBUS {
             // int soLgVeCL = Integer.parseInt(getMayBay(maMayBay).getSoLgGhe());
 
             if (maCB.trim().equals("")) {
-                new Dialog("Mã tuyến bay không được để trống!", Dialog.ERROR_DIALOG);
+                //new Dialog("Mã tuyến bay không được để trống!", Dialog.ERROR_DIALOG);
                 return false;
             }
 
             if (maLV.trim().equals("")) {
-                new Dialog("Vui lòng chọn loại vé", Dialog.ERROR_DIALOG);
+                //new Dialog("Vui lòng chọn loại vé", Dialog.ERROR_DIALOG);
                 return false;
             }
 
             if (maGhe.trim().equals("")) {
-                new Dialog("Vui lòng chọn mã ghế", Dialog.ERROR_DIALOG);
+                //new Dialog("Vui lòng chọn mã ghế", Dialog.ERROR_DIALOG);
                 return false;
             }
 
             if (gioLenMayBay.trim().equals("")) {
-                new Dialog("Vui lòng chọn giờ lên máy bay", Dialog.ERROR_DIALOG);
+                //new Dialog("Vui lòng chọn giờ lên máy bay", Dialog.ERROR_DIALOG);
                 return false;
             }
             int maChuyenBay = Integer.parseInt(maCB);
             int maLoaiVe = Integer.parseInt(maLV);
 
 
-            Ve cb = new Ve();
-            cb.setMaVe(maVeCB);
-            cb.setMaChuyenBay(maChuyenBay);
-            cb.setMaLoaiVe(maLoaiVe);
-            cb.setMaGhe(maGhe);
-            cb.setGioLenMayBay(gioLenMayBay);
+            Ve ve = new Ve();
+            ve.setMaVe(maVeCB);
+            ve.setMaChuyenBay(maChuyenBay);
+            ve.setMaLoaiVe(maLoaiVe);
+            ve.setMaGhe(maGhe);
+            ve.setGioLenMayBay(gioLenMayBay);
 
             // flag = cbDAO.themVe(cb);
 
             if (veDAO.suaVe(ve)) {
-                new Dialog("Sửa thành công!", Dialog.SUCCESS_DIALOG);
+                //new Dialog("Sửa thành công!", Dialog.SUCCESS_DIALOG);
                 return true;
             } else {
-                new Dialog("Sửa thất bại!", Dialog.ERROR_DIALOG);
+                //new Dialog("Sửa thất bại!", Dialog.ERROR_DIALOG);
                 return false;
             }
         } catch (Exception e) {
-            new Dialog("Nhập chuỗi hợp lệ cho các mã và giờ lên máy bay!", Dialog.ERROR_DIALOG);
+            //new Dialog("Nhập chuỗi hợp lệ cho các mã và giờ lên máy bay!", Dialog.ERROR_DIALOG);
         }
         return false;
     }

@@ -7,6 +7,7 @@ package QuanLyBanVeMayBay.BUS;
 import java.util.ArrayList;
 import QuanLyBanVeMayBay.DAO.SanBayDAO;
 import QuanLyBanVeMayBay.DTO.SanBayDTO;
+import QuanLyBanVeMayBay.DTO.TuyenBayDTO;
 
 /**
  *
@@ -20,6 +21,7 @@ public class SanBayBUS {
 //    public SanBayBUS() {
 //        docListSanBay();
 //    }
+    
     public void docListSanBay() {
         listSanBay = sbDAO.getListSanBay();
     }
@@ -122,4 +124,29 @@ public class SanBayBUS {
         return null;
     }
 
+    public int getIDSanBay(String tenSanBay){
+        int idSanBay = 0;
+        if(listSanBay != null){
+            for(SanBayDTO sb : listSanBay){
+            if(tenSanBay.toLowerCase().equals(sb.getTenSanBay().toLowerCase())){
+                idSanBay = sb.getMaSanBay();
+                return idSanBay;
+            }
+        }
+        }
+        return 0;
+    }
+    
+//    public String getTenSanBay(int maSanBay){
+//        String tenSanBay;
+//        if(listSanBay != null){
+//            for(SanBayDTO sb : listSanBay){
+//            if(maSanBay == sb.getMaSanBay()){
+//                tenSanBay = sb.getTenSanBay();
+//                return tenSanBay;
+//            }
+//        }
+//        }
+//        return null;
+//    }
 }

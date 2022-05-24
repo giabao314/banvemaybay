@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Vector;
 import QuanLyBanVeMayBay.BUS.ChuyenBayBUS;
 import QuanLyBanVeMayBay.DTO.ChuyenBay;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,15 +16,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ChuyenBayGUI extends javax.swing.JPanel {
 
-    DefaultTableModel tblChuyenBay;
     /**
      * Creates new form ChuyenBayGUI
      */
+    DefaultTableModel dtmChuyenBay = new DefaultTableModel();
     ChuyenBayBUS cbBUS = new ChuyenBayBUS();
+    ArrayList<ChuyenBay> dscb = new ArrayList<>();
 
     public ChuyenBayGUI() {
         initComponents();
         getListChuyenBay();
+
     }
 
     /**
@@ -58,8 +57,8 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
         txtVeCL = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtTuKhoa = new javax.swing.JTextField();
+        txtLuaChon = new javax.swing.JComboBox<>();
         jButton6 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -68,19 +67,19 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Mã Chuy?n Bay");
+        jLabel2.setText("Mã Chuyến Bay");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Mã Tuy?n Bay");
+        jLabel1.setText("Mã Tuyến Bay");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Mã Máy Bay");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Ngày C?t Cánh");
+        jLabel5.setText("Ngày Cất Cánh");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Ngày H? Cánh");
+        jLabel6.setText("Ngày Hạ Cánh");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Thêm");
@@ -112,7 +111,7 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("S? Vé Còn L?i");
+        jLabel8.setText("Số Vé Còn Lại");
 
         txtVeCL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,30 +120,35 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
         });
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton5.setText("Xu?t Excel");
+        jButton5.setText("Xuất Excel");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Chuy?n Bay", "Mã Tuy?n Bay", "Mã Máy Bay", "Ngày C?t Cánh", "Ngày H? Cánh" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        txtLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất Cả", "Mã Tuyến Bay", "Mã Máy Bay" }));
+        txtLuaChon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                txtLuaChonActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Tìm Ki?m");
+        jButton6.setText("Tìm Kiếm");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTuKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(jButton6))
         );
@@ -153,15 +157,15 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTuKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 23, Short.MAX_VALUE))
         );
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton4.setText("Nh?p Excel");
+        jButton4.setText("Nhập Excel");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -253,7 +257,7 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Chuy?n Bay", "Mã Tuy?n Bay", "Mã Máy Bay", "S? Vé Còn L?i", "Ngày C?t Cánh", "Ngày H? Cánh"
+                "Mã Chuyến Bay", "Mã Tuyến Bay", "Mã Máy Bay", "Số Vé Còn Lạii", "Ngày Cất Cánh", "Ngày Hạ Cánh"
             }
         ) {
             Class[] types = new Class [] {
@@ -262,6 +266,11 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tableChuyenBay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableChuyenBayMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tableChuyenBay);
@@ -283,7 +292,7 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
         );
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel7.setText("Quản Lý Chuy?n Bay");
+        jLabel7.setText("Quản Lý Chuyến Bay");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -343,6 +352,7 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         themChuyenBay();
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -367,73 +377,128 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void txtLuaChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLuaChonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_txtLuaChonActionPerformed
+
+    private void tableChuyenBayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableChuyenBayMouseClicked
+        // TODO add your handling code here:
+        clickTableRowKM();
+    }//GEN-LAST:event_tableChuyenBayMouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        timKiemMayBay();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     public void themChuyenBay() {
         try {
-
-//            String maCB = txtMaCB.getText();
             String maTB = txtMaTB.getText();
             String maMB = txtMaMB.getText();
-//        String veCL = txtVeCL.getText();
-//        int maChuyenBay = Integer.parseInt(maCB);
-//        int maTuyenBay = Integer.parseInt(maTB);
-//        int soVeCL = Integer.parseInt(veCL);
-            String ngayCC = txtNgayCC.getText();
-            String ngayHC = txtNgayHC.getText();
-            Date ngayCatCanh = new SimpleDateFormat("dd/MM/yyyy").parse(ngayCC);
-            Date ngayHaCanh = new SimpleDateFormat("dd/MM/yyyy").parse(ngayHC);
+            String ngayCatCanh = txtNgayCC.getText();
+            String ngayHaCanh = txtNgayHC.getText();
             cbBUS.themChuyenBay(maTB, maMB, ngayCatCanh, ngayHaCanh);
-        } catch (ParseException e1) {
+            showListChuyenBay();
+        } catch (Exception e1) {
+            System.out.print(e1);
         }
     }
 
     public void suaChuyenBay() {
         try {
-
             String maCB = txtMaCB.getText();
             String maTB = txtMaTB.getText();
             String maMB = txtMaMB.getText();
-//        String veCL = txtVeCL.getText();
-//        int maChuyenBay = Integer.parseInt(maCB);
-//        int maTuyenBay = Integer.parseInt(maTB);
-//        int soVeCL = Integer.parseInt(veCL);
-            String ngayCC = txtNgayCC.getText();
-            String ngayHC = txtNgayHC.getText();
-            Date ngayCatCanh = new SimpleDateFormat("dd/MM/yyyy").parse(ngayCC);
-            Date ngayHaCanh = new SimpleDateFormat("dd/MM/yyyy").parse(ngayHC);
+            String ngayCatCanh = txtNgayCC.getText();
+            String ngayHaCanh = txtNgayHC.getText();
             cbBUS.suaChuyenBay(maCB, maTB, maMB, ngayCatCanh, ngayHaCanh);
-        } catch (ParseException e1) {
+            showListChuyenBay();
+        } catch (Exception e1) {
+            System.out.print(e1);
         }
     }
 
     public void xoaChuyenBay() {
         String ma = txtMaCB.getText();
-//        int maKM = Integer.parseInt(ma);
-
-        cbBUS.xoaChuyenBay(ma);
+        int i = tableChuyenBay.getSelectedRow();
+        if(cbBUS.xoaChuyenBay(ma)){
+            cbBUS.xoaChuyenBay(ma);
+            dtmChuyenBay.removeRow(i);
+            tableChuyenBay.setModel(dtmChuyenBay);
+            txtMaCB.setText("");
+            txtMaTB.setText("");
+            txtMaMB.setText("");
+            txtNgayCC.setText("");
+            txtNgayHC.setText("");
+        }
+        
     }
 
     /**
      *
      */
     public void getListChuyenBay() {
-        tblChuyenBay.setRowCount(0);
-        ArrayList<ChuyenBay> dscb = cbBUS.getListChuyenBay();
+        try {
+            dtmChuyenBay.setRowCount(0);
+            dscb = cbBUS.getListChuyenBay();
+            Vector<Object> header = new Vector<>();
+            header.add("Mã Chuyến Bay");
+            header.add("Mã Tuyến Bay");
+            header.add("Mã Máy Bay");
+            header.add("Số Lượng Vé Còn Lại");
+            header.add("Ngày Cất Cánh");
+            header.add("Ngày Hạ Cánh");
+            if (dtmChuyenBay.getRowCount() == 0) {
+                dtmChuyenBay = new DefaultTableModel(header, 0);
+            }
+            for (ChuyenBay cb : dscb) {
+                Vector<Object> vec = new Vector<>();
+                vec.add(cb.getMaChuyenBay());
+                vec.add(cb.getMaTuyenBay());
+                vec.add(cb.getMaMayBay());
+                vec.add(cb.getSoLgVeCL());
+                vec.add(cb.getNgayCatCanh());
+                vec.add(cb.getNgayHaCanh());
 
-        for (ChuyenBay cb : dscb) {
-            Vector vec = new Vector();
-            vec.add(cb.getMaChuyenBay());
-            vec.add(cb.getMaTuyenBay());
-            vec.add(cb.getMaMayBay());
-            vec.add(cb.getSoLgVeCL());
-            vec.add(cb.getNgayCatCanh());
-            vec.add(cb.getNgayHaCanh());
+                dtmChuyenBay.addRow(vec);
+            }
+            tableChuyenBay.setModel(dtmChuyenBay);
+        } catch (Exception e) {
 
-            tblChuyenBay.addRow(vec);
         }
+
+    }
+
+    public void showListChuyenBay() {
+        try {
+            dtmChuyenBay.setRowCount(0);
+            dscb = cbBUS.listCB();
+            Vector<Object> header = new Vector<>();
+            header.add("Mã Chuyến Bay");
+            header.add("Mã Tuyến Bay");
+            header.add("Mã Máy Bay");
+            header.add("Số Lượng Vé Còn Lại");
+            header.add("Ngày Cất Cánh");
+            header.add("Ngày Hạ Cánh");
+            if (dtmChuyenBay.getRowCount() == 0) {
+                dtmChuyenBay = new DefaultTableModel(header, 0);
+            }
+            for (ChuyenBay cb : dscb) {
+                Vector<Object> vec = new Vector<>();
+                vec.add(cb.getMaChuyenBay());
+                vec.add(cb.getMaTuyenBay());
+                vec.add(cb.getMaMayBay());
+                vec.add(cb.getSoLgVeCL());
+                vec.add(cb.getNgayCatCanh());
+                vec.add(cb.getNgayHaCanh());
+
+                dtmChuyenBay.addRow(vec);
+            }
+            tableChuyenBay.setModel(dtmChuyenBay);
+        } catch (Exception e) {
+
+        }
+
     }
 
     public void clickTableRowKM() {
@@ -447,6 +512,52 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
             txtNgayHC.setText(tableChuyenBay.getValueAt(row, 5) + "");
         }
     }
+    
+    public void timKiemMayBay(){
+        String tuKhoa = txtTuKhoa.getText();
+        String luaChon = txtLuaChon.getSelectedItem().toString();
+        if(tuKhoa == ""){
+            // dialog thong bao'
+            return ;
+        }
+        
+        if(luaChon == "Tất Cả"){
+            dscb = cbBUS.listCB();
+        }
+        
+        if(luaChon == "Mã Tuyến Bay"){
+            dscb = cbBUS.getChuyenBayTheoMaTuyenBay(tuKhoa);
+        }
+        
+        if(luaChon == "Mã Máy Bay"){
+            dscb = cbBUS.getChuyenBayTheoMaMayBay(tuKhoa);
+        }
+        
+        dtmChuyenBay.setRowCount(0);
+            Vector<Object> header = new Vector<>();
+            header.add("Mã Chuyến Bay");
+            header.add("Mã Tuyến Bay");
+            header.add("Mã Máy Bay");
+            header.add("Số Lượng Vé Còn Lại");
+            header.add("Ngày Cất Cánh");
+            header.add("Ngày Hạ Cánh");
+            if (dtmChuyenBay.getRowCount() == 0) {
+                dtmChuyenBay = new DefaultTableModel(header, 0);
+            }
+            for (ChuyenBay cb : dscb) {
+                Vector<Object> vec = new Vector<>();
+                vec.add(cb.getMaChuyenBay());
+                vec.add(cb.getMaTuyenBay());
+                vec.add(cb.getMaMayBay());
+                vec.add(cb.getSoLgVeCL());
+                vec.add(cb.getNgayCatCanh());
+                vec.add(cb.getNgayHaCanh());
+
+                dtmChuyenBay.addRow(vec);
+            }
+            tableChuyenBay.setModel(dtmChuyenBay);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -455,7 +566,6 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -468,13 +578,14 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tableChuyenBay;
+    private javax.swing.JComboBox<String> txtLuaChon;
     private javax.swing.JTextField txtMaCB;
     private javax.swing.JTextField txtMaMB;
     private javax.swing.JTextField txtMaTB;
     private javax.swing.JTextField txtNgayCC;
     private javax.swing.JTextField txtNgayHC;
+    private javax.swing.JTextField txtTuKhoa;
     private javax.swing.JTextField txtVeCL;
     // End of variables declaration//GEN-END:variables
 }

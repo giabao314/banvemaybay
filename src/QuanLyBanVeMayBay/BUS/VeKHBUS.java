@@ -10,7 +10,7 @@ import QuanLyBanVeMayBay.DAO.VeDAO;
 import QuanLyBanVeMayBay.DTO.Ve;
 // import QuanLyBanVeMayBay.DAO.ChuyenBayDAO;
 // import QuanLyBanVeMayBay.DTO.ChuyenBay;
-import Template.Dialog;
+//import Template.Dialog;
 import java.util.ArrayList;
 
 /**
@@ -87,11 +87,11 @@ public class VeKHBUS {
 
     public boolean themVeKH(String maVe, String maKH) {
         if (maVe.equals("")) {
-            new Dialog("Vui lòng chọn mã vé!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã vé!", Dialog.ERROR_DIALOG);
             return false;
         }
         if (maKH.equals("")) {
-            new Dialog("Vui lòng chọn mã khách hàng!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã khách hàng!", Dialog.ERROR_DIALOG);
             return false;
         }
 
@@ -113,10 +113,10 @@ public class VeKHBUS {
         } catch (Exception e) {
         }
         if (flag) {
-            new Dialog("Thêm thành công!", Dialog.SUCCESS_DIALOG);
-            return true;
+            //new Dialog("Thêm thành công!", Dialog.SUCCESS_DIALOG);
+            System.out.print("Thanh cong");
         } else {
-            new Dialog("Thêm thất bại!", Dialog.ERROR_DIALOG);
+            //new Dialog("Thêm thất bại!", Dialog.ERROR_DIALOG);
             return false;
         }
         return flag;
@@ -152,14 +152,14 @@ public class VeKHBUS {
 
     public boolean nhapVeKHTuExcel(String maVe, String maKH) {
         if (maVe.equals("")) {
-            new Dialog("Vui lòng chọn mã vé!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã vé!", Dialog.ERROR_DIALOG);
             return false;
         }
         if (maKH.equals("")) {
-            new Dialog("Vui lòng chọn mã khách hàng!", Dialog.ERROR_DIALOG);
+            //new Dialog("Vui lòng chọn mã khách hàng!", Dialog.ERROR_DIALOG);
             return false;
         }
-        boolean flag;
+        boolean flag = false;
         try {
 
             VeKH veKH = new VeKH();
@@ -170,10 +170,10 @@ public class VeKHBUS {
         } catch (Exception e) {
         }
         if (flag) {
-            new Dialog("Thêm thành công!", Dialog.SUCCESS_DIALOG);
-            return true;
+            //new Dialog("Thêm thành công!", Dialog.SUCCESS_DIALOG);
+            System.out.print("Thanh cong");
         } else {
-            new Dialog("Thêm thất bại!", Dialog.ERROR_DIALOG);
+            //new Dialog("Thêm thất bại!", Dialog.ERROR_DIALOG);
             return false;
         }
         return flag;
@@ -181,17 +181,17 @@ public class VeKHBUS {
 
     public boolean xoaVeKH(String ma) {
         if (ma.trim().equals("")) {
-            new Dialog("Chưa chọn mã vé khách hàng để xoá!", Dialog.ERROR_DIALOG);
+            //new Dialog("Chưa chọn mã vé khách hàng để xoá!", Dialog.ERROR_DIALOG);
             return false;
         }
 
         int maVeKH = Integer.parseInt(ma);
         if (veKHDAO.xoaVeKH(maVeKH)) {
-            new Dialog("Xoá thành công!", Dialog.SUCCESS_DIALOG);
+            //new Dialog("Xoá thành công!", Dialog.SUCCESS_DIALOG);
             return true;
         }
         
-        new Dialog("Xoá thất bại!", Dialog.ERROR_DIALOG);
+        //new Dialog("Xoá thất bại!", Dialog.ERROR_DIALOG);
         return false;
     }
 
@@ -199,16 +199,16 @@ public class VeKHBUS {
 
         try {
             if (maVeKH.trim().equals("")) {
-                new Dialog("Chưa chọn vé khách hàng để sửa!", Dialog.ERROR_DIALOG);
+                //new Dialog("Chưa chọn vé khách hàng để sửa!", Dialog.ERROR_DIALOG);
                 return false;
             }
             if (maVe.trim().equals("")) {
-                new Dialog("Mã vé không được để trống!", Dialog.ERROR_DIALOG);
+                //new Dialog("Mã vé không được để trống!", Dialog.ERROR_DIALOG);
                 return false;
             }
 
             if (maKH.trim().equals("")) {
-                new Dialog("Vui lòng chọn mã khách hàng!", Dialog.ERROR_DIALOG);
+                //new Dialog("Vui lòng chọn mã khách hàng!", Dialog.ERROR_DIALOG);
                 return false;
             }
 
@@ -220,14 +220,14 @@ public class VeKHBUS {
             // flag = cbDAO.themVeKH(cb);
 
             if (veKHDAO.suaVeKH(veKH)) {
-                new Dialog("Sửa thành công!", Dialog.SUCCESS_DIALOG);
+                //new Dialog("Sửa thành công!", Dialog.SUCCESS_DIALOG);
                 return true;
             } else {
-                new Dialog("Sửa thất bại!", Dialog.ERROR_DIALOG);
+                //new Dialog("Sửa thất bại!", Dialog.ERROR_DIALOG);
                 return false;
             }
         } catch (Exception e) {
-            new Dialog("Nhập chuỗi hợp lệ cho các mã!", Dialog.ERROR_DIALOG);
+            //new Dialog("Nhập chuỗi hợp lệ cho các mã!", Dialog.ERROR_DIALOG);
         }
         return false;
     }

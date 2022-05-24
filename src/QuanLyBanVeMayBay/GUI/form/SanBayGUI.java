@@ -60,6 +60,8 @@ public class SanBayGUI extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Mã sân bay");
 
+        txtMaSB.setEditable(false);
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Tên sân bay");
 

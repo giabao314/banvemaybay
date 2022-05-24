@@ -10,15 +10,12 @@ import java.util.Scanner;
  *
  * @author Dell
  */
-public class MayBayDTO {
+public class MayBay {
     private int maMayBay;
     private String tenMayBay;
     private int maHang;
     private int soLuongGhe;
 
-    public MayBayDTO() {
-
-    }
 
     /* -------------- GET SET --------------- */
     public int getMaMayBay(){

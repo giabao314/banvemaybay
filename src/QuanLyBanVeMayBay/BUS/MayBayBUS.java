@@ -6,7 +6,7 @@ package QuanLyBanVeMayBay.BUS;
 
 import java.util.ArrayList;
 import QuanLyBanVeMayBay.DAO.MayBayDAO;
-import QuanLyBanVeMayBay.DTO.MayBayDTO;
+import QuanLyBanVeMayBay.DTO.MayBay;
 
 /**
  *
@@ -14,28 +14,28 @@ import QuanLyBanVeMayBay.DTO.MayBayDTO;
  */
 public class MayBayBUS {
 
-    private ArrayList<MayBayDTO> listMayBay = null;
+    private ArrayList<MayBay> listMayBay = null;
     private MayBayDAO mbDAO = new MayBayDAO();
 
     public void docListMayBay() {
         this.listMayBay = mbDAO.getListMayBay();
     }
     
-    public ArrayList<MayBayDTO> listMayBay(){
+    public ArrayList<MayBay> listMayBay(){
         docListMayBay();
         return listMayBay;
     }
 
-    public ArrayList<MayBayDTO> getListMayBay() {
+    public ArrayList<MayBay> getListMayBay() {
         if (listMayBay == null) {
             docListMayBay();
         }
         return listMayBay;
     }
 
-    public ArrayList<MayBayDTO> timKiemMayBayTheoMa(String maMB) {
-        ArrayList<MayBayDTO> dsmb = new ArrayList();
-        for (MayBayDTO mb : listMayBay) {
+    public ArrayList<MayBay> timKiemMayBayTheoMa(String maMB) {
+        ArrayList<MayBay> dsmb = new ArrayList();
+        for (MayBay mb : listMayBay) {
             if (String.valueOf(mb.getMaMayBay()).contains(maMB)) {
                 dsmb.add(mb);
             }
@@ -43,9 +43,9 @@ public class MayBayBUS {
         return dsmb;
     }
 
-    public ArrayList<MayBayDTO> timKiemMayBayTheoTen(String tenMB) {
-        ArrayList<MayBayDTO> dsmb = new ArrayList();
-        for (MayBayDTO mb : listMayBay) {
+    public ArrayList<MayBay> timKiemMayBayTheoTen(String tenMB) {
+        ArrayList<MayBay> dsmb = new ArrayList();
+        for (MayBay mb : listMayBay) {
             if (mb.getTenMayBay().contains(tenMB)) {
                 dsmb.add(mb);
             }
@@ -53,9 +53,9 @@ public class MayBayBUS {
         return dsmb;
     }
 
-    public ArrayList<MayBayDTO> timKiemMayBayTheoHang(String hangMB) {
-        ArrayList<MayBayDTO> dsmb = new ArrayList();
-        for (MayBayDTO mb : listMayBay) {
+    public ArrayList<MayBay> timKiemMayBayTheoHang(String hangMB) {
+        ArrayList<MayBay> dsmb = new ArrayList();
+        for (MayBay mb : listMayBay) {
             if (String.valueOf(mb.getMaMayBay()).contains(hangMB)) {
                 dsmb.add(mb);
             }
@@ -63,7 +63,7 @@ public class MayBayBUS {
         return dsmb;
     }
 
-    public boolean themMayBay(MayBayDTO mb) {
+    public boolean themMayBay(MayBay mb) {
 
         if (mb.getTenMayBay().trim().equals("")) {
 //            new MyDialog("Tên máy bay không được để rỗng!", MyDialog.ERROR_DIALOG);
@@ -102,7 +102,7 @@ System.out.print("that bai");
         return false;
     }
 
-    public boolean suaMayBay(MayBayDTO mb) {
+    public boolean suaMayBay(MayBay mb) {
 
         try {
             if (mb.getTenMayBay().trim().equals("")) {

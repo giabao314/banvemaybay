@@ -181,7 +181,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="M&#xe3; Chuy?n Bay"/>
+                <Property name="text" type="java.lang.String" value="M&#xe3; Chuy&#x1ebf;n Bay"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -189,7 +189,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="M&#xe3; Tuy?n Bay"/>
+                <Property name="text" type="java.lang.String" value="M&#xe3; Tuy&#x1ebf;n Bay"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -205,7 +205,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ng&#xe0;y C?t C&#xe1;nh"/>
+                <Property name="text" type="java.lang.String" value="Ng&#xe0;y C&#x1ea5;t C&#xe1;nh"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -213,7 +213,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ng&#xe0;y H? C&#xe1;nh"/>
+                <Property name="text" type="java.lang.String" value="Ng&#xe0;y H&#x1ea1; C&#xe1;nh"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtMaCB">
@@ -265,7 +265,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="S? V&#xe9; C&#xf2;n L?i"/>
+                <Property name="text" type="java.lang.String" value="S&#x1ed1; V&#xe9; C&#xf2;n L&#x1ea1;i"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtVeCL">
@@ -278,7 +278,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Xu?t Excel"/>
+                <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t Excel"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
@@ -290,9 +290,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jTextField1" min="-2" pref="381" max="-2" attributes="0"/>
+                          <Component id="txtTuKhoa" min="-2" pref="381" max="-2" attributes="0"/>
                           <EmptySpace pref="51" max="32767" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="txtLuaChon" min="-2" pref="160" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -303,9 +303,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jComboBox1" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="txtLuaChon" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField1" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
+                                  <Component id="txtTuKhoa" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                                   <Component id="jButton6" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -315,22 +315,20 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="txtTuKhoa">
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="txtLuaChon">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="5">
-                        <StringItem index="0" value="M&#xe3; Chuy?n Bay"/>
-                        <StringItem index="1" value="M&#xe3; Tuy?n Bay"/>
+                      <StringArray count="3">
+                        <StringItem index="0" value="T&#x1ea5;t C&#x1ea3;"/>
+                        <StringItem index="1" value="M&#xe3; Tuy&#x1ebf;n Bay"/>
                         <StringItem index="2" value="M&#xe3; M&#xe1;y Bay"/>
-                        <StringItem index="3" value="Ng&#xe0;y C?t C&#xe1;nh"/>
-                        <StringItem index="4" value="Ng&#xe0;y H? C&#xe1;nh"/>
                       </StringArray>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLuaChonActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -338,8 +336,11 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="T&#xec;m Ki?m"/>
+                    <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -348,7 +349,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nh?p Excel"/>
+                <Property name="text" type="java.lang.String" value="Nh&#x1ead;p Excel"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
@@ -389,18 +390,55 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="5">
-                        <Column editable="true" title="M&#xe3; Chuy?n Bay" type="java.lang.Integer"/>
-                        <Column editable="true" title="M&#xe3; Tuy?n Bay" type="java.lang.Integer"/>
+                        <Column editable="true" title="M&#xe3; Chuy&#x1ebf;n Bay" type="java.lang.Integer"/>
+                        <Column editable="true" title="M&#xe3; Tuy&#x1ebf;n Bay" type="java.lang.Integer"/>
                         <Column editable="true" title="M&#xe3; M&#xe1;y Bay" type="java.lang.Integer"/>
-                        <Column editable="true" title="S? V&#xe9; C&#xf2;n L?i" type="java.lang.Integer"/>
-                        <Column editable="true" title="Ng&#xe0;y C?t C&#xe1;nh" type="java.lang.String"/>
-                        <Column editable="true" title="Ng&#xe0;y H? C&#xe1;nh" type="java.lang.String"/>
+                        <Column editable="true" title="S&#x1ed1; V&#xe9; C&#xf2;n L&#x1ea1;ii" type="java.lang.Integer"/>
+                        <Column editable="true" title="Ng&#xe0;y C&#x1ea5;t C&#xe1;nh" type="java.lang.String"/>
+                        <Column editable="true" title="Ng&#xe0;y H&#x1ea1; C&#xe1;nh" type="java.lang.String"/>
                       </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableChuyenBayMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -411,7 +449,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="24" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Chuy?n Bay"/>
+            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Chuy&#x1ebf;n Bay"/>
           </Properties>
         </Component>
       </SubComponents>

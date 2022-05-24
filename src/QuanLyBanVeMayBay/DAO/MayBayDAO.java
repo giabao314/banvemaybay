@@ -4,7 +4,7 @@
  */
 package QuanLyBanVeMayBay.DAO;
 
-import QuanLyBanVeMayBay.DTO.MayBayDTO;
+import QuanLyBanVeMayBay.DTO.MayBay;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,40 +17,39 @@ import java.util.ArrayList;
  */
 public class MayBayDAO {
 
-    public ArrayList<MayBayDTO> getListMayBay() {
+    public ArrayList<MayBay> getListMayBay() {
         try {
             String sql = "SELECT * FROM maybay";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
-            ArrayList<MayBayDTO> dsmb = new ArrayList<>();
+            ArrayList<MayBay> dsmb = new ArrayList<>();
             while(rs.next()) {
-                MayBayDTO mb = new MayBayDTO();
+                MayBay mb = new MayBay();
                 mb.setMaMayBay(rs.getInt(1));
-                mb.setTenMayBay(rs.getString(2));
-                mb.setMaHang(rs.getInt(3));
+                mb.setMaHang(rs.getInt(2));
+                mb.setTenMayBay(rs.getString(3));
                 mb.setSoLuongGhe(rs.getInt(4));
-                System.out.print("xin choa");
                 dsmb.add(mb);
             }
             return dsmb;
         } catch (SQLException e) {
-
+            System.out.print(e);
         }
         return null;
     }
 
-    public MayBayDTO getMayBay(int ma) {
+    public MayBay getMayBay(int ma) {
         try {
-            String sql = "SELECT *FROM maybay WHERE maMayBay=?";
+            String sql = "SELECT * FROM maybay WHERE maMayBay=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setInt(1, ma);
             ResultSet rs = pre.executeQuery();
             if (rs.next()) {
-                MayBayDTO mb = new MayBayDTO();
+                MayBay mb = new MayBay();
 
                 mb.setMaMayBay(rs.getInt(1));
-                mb.setTenMayBay(rs.getString(2));
-                mb.setMaHang(rs.getInt(3));
+                mb.setMaHang(rs.getInt(2));
+                mb.setTenMayBay(rs.getString(3));
                 mb.setSoLuongGhe(rs.getInt(4));
                 return mb;
             }
@@ -60,7 +59,7 @@ public class MayBayDAO {
         return null;
     }
 
-    public boolean themMayBay(MayBayDTO mb) {
+    public boolean themMayBay(MayBay mb) {
         boolean check = false;
         try {
             String sql = "INSERT INTO maybay (maMayBay, maHangBay, tenMayBay, soLgGhe) "
@@ -78,7 +77,7 @@ public class MayBayDAO {
         return check;
     }
 
-    public boolean suaMayBay(MayBayDTO mb) {
+    public boolean suaMayBay(MayBay mb) {
         boolean check = false;
         try {
             String sql = "UPDATE maybay "

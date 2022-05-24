@@ -9,7 +9,9 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 import QuanLyBanVeMayBay.BUS.MayBayBUS;
-import QuanLyBanVeMayBay.DTO.MayBayDTO;
+import QuanLyBanVeMayBay.DTO.MayBay;
+import QuanLyBanVeMayBay.BUS.HangBayBUS;
+import QuanLyBanVeMayBay.DTO.HangBayDTO;
 
 /**
  *
@@ -22,10 +24,14 @@ public class MayBayGUI extends javax.swing.JPanel {
      */
     private DefaultTableModel dtmMayBay = new DefaultTableModel();
     MayBayBUS maybayBUS = new MayBayBUS();
-    ArrayList<MayBayDTO> dsmb = new ArrayList<>();
+    ArrayList<MayBay> dsmb = new ArrayList<>();
+    HangBayBUS hangbayBUS = new HangBayBUS();
+    ArrayList<HangBayDTO> dshb = new ArrayList<>();
 
     public MayBayGUI() {
-        initComponents();
+        initComponents(); 
+//        getListMayBay();
+//        getListHangBay();
     }
 
     /**
@@ -43,31 +49,33 @@ public class MayBayGUI extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtTenMB = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
-        txtMaHB = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         txtSoLuongGhe = new javax.swing.JTextField();
         jButtonThemMayBay = new javax.swing.JButton();
         jButtonSuaMayBay = new javax.swing.JButton();
         jButtonXoaMayBay = new javax.swing.JButton();
+        txtMaHang = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         txtTuKhoa = new javax.swing.JTextField();
         selectLuaChon = new javax.swing.JComboBox<>();
         seachMayBay = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableMayBay = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableMayBay = new javax.swing.JTable();
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel40.setText("Mã máy bay");
 
+        txtMaMB.setEditable(false);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Tên máy bay");
+        jLabel1.setText("Tên Máy Bay");
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel38.setText("Mã hãng");
+        jLabel38.setText("Tên Hãng");
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel39.setText("Số lượng ghế");
+        jLabel39.setText("Số Lượng Ghế");
 
         jButtonThemMayBay.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButtonThemMayBay.setText("Thêm");
@@ -107,54 +115,49 @@ public class MayBayGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                         .addComponent(jButtonXoaMayBay))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                        .addGap(111, 111, 111)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel40)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel39))
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaMB)
-                            .addComponent(txtTenMB)
-                            .addComponent(txtMaHB)
-                            .addComponent(txtSoLuongGhe))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel39)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel40))
+                                .addGap(52, 52, 52)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMaMB)
+                                    .addComponent(txtTenMB)
+                                    .addComponent(txtSoLuongGhe)
+                                    .addComponent(txtMaHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMaMB, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel40))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel40)
-                            .addComponent(txtMaMB, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(txtTenMB, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2))
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel38)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(txtMaHB, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel39)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(txtSoLuongGhe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2))))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonThemMayBay)
-                            .addComponent(jButtonSuaMayBay)
-                            .addComponent(jButtonXoaMayBay))))
+                        .addComponent(txtTenMB, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel38)
+                    .addComponent(txtMaHang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel39)
+                    .addComponent(txtSoLuongGhe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonThemMayBay)
+                    .addComponent(jButtonSuaMayBay)
+                    .addComponent(jButtonXoaMayBay))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -166,7 +169,7 @@ public class MayBayGUI extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
 
         txtTuKhoa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -187,6 +190,9 @@ public class MayBayGUI extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Quản Lý Máy Bay");
+
         tableMayBay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -195,7 +201,7 @@ public class MayBayGUI extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã Máy Bay", "Tên Máy Bay", "Mã Hãng Bay", "Số Ghế"
+                "Mã Máy Bay", "Tên Máy Bay", "Mã Hãng", "Số Lượng Ghế"
             }
         ));
         tableMayBay.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,10 +209,7 @@ public class MayBayGUI extends javax.swing.JPanel {
                 tableMayBayMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tableMayBay);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Quản Lý Máy Bay");
+        jScrollPane1.setViewportView(tableMayBay);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -215,26 +218,24 @@ public class MayBayGUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(txtTuKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(selectLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(seachMayBay)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 5, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(116, 116, 116)
+                                .addComponent(txtTuKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(selectLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64)
+                                .addComponent(seachMayBay))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(311, 311, 311)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(311, 311, 311)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,15 +253,11 @@ public class MayBayGUI extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(selectLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(seachMayBay, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(450, 450, 450)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(417, 417, 417))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -293,11 +290,19 @@ public class MayBayGUI extends javax.swing.JPanel {
         clickTableRowMB();
     }//GEN-LAST:event_tableMayBayMouseClicked
 
+    public void getListHangBay(){
+        dshb = hangbayBUS.getListHangBay();
+        for(HangBayDTO hb : dshb){
+            txtMaHang.addItem(hb.getTenHang());
+        }
+    }
+    
     public void themMayBay() {
         String tenMB = txtTenMB.getText();
-        int maHB = Integer.parseInt(txtMaHB.getText());
+        //int maHB = Integer.parseInt(txtMaHB.getText());
+        int maHB = hangbayBUS.getIDHangBay(txtMaHang.getSelectedItem().toString());
         int soLuongGhe = Integer.parseInt(txtSoLuongGhe.getText());
-        MayBayDTO mb = new MayBayDTO();
+        MayBay mb = new MayBay();
         mb.setTenMayBay(tenMB);
         mb.setMaHang(maHB);
         mb.setSoLuongGhe(soLuongGhe);
@@ -309,11 +314,12 @@ public class MayBayGUI extends javax.swing.JPanel {
     public void suaMayBay() {
         int maMB = Integer.parseInt(txtMaMB.getText());
         String tenMB = txtTenMB.getText();
-        int maHB = Integer.parseInt(txtMaHB.getText());
+        //int maHB = Integer.parseInt(txtMaHB.getText());
+        int maHB = hangbayBUS.getIDHangBay(txtMaHang.getSelectedItem().toString());
         int soLuongGhe = Integer.parseInt(txtSoLuongGhe.getText());
         
         
-        MayBayDTO mb = new MayBayDTO();
+        MayBay mb = new MayBay();
         mb.setTenMayBay(tenMB);
         mb.setMaHang(maHB);
         mb.setSoLuongGhe(soLuongGhe); 
@@ -325,48 +331,52 @@ public class MayBayGUI extends javax.swing.JPanel {
 
     public void xoaMayBay() {
         int maMB = Integer.parseInt(txtMaMB.getText());
-        maybayBUS.xoaMayBay(maMB);
-        listMayBay();
+        int i = tableMayBay.getSelectedRow();
+        
+        if(maybayBUS.xoaMayBay(maMB)){
+            dtmMayBay.removeRow(i);
+            tableMayBay.setModel(dtmMayBay);
+            txtMaMB.setText("");
+            txtTenMB.setText("");
+            //txtMaHB.setText("");
+            txtSoLuongGhe.setText("");
+        }
     }
 
     public void getListMayBay() {
-        try {
-            dtmMayBay.setRowCount(0);
-            dsmb = maybayBUS.getListMayBay();
-            for(MayBayDTO mb : dsmb){
-                System.out.print(mb.getTenMayBay());
-            }
-            Vector<Object> header = new Vector<>();
-            header.add("Mã máy bay");
-            header.add("Tên máy bay");
-            header.add("Mã hãng bay");
-            header.add("Số lượng ghế");
+        dtmMayBay.setRowCount(0);
+        dsmb = maybayBUS.getListMayBay();
 
-            if (dtmMayBay.getRowCount() == 0) {
-                dtmMayBay = new DefaultTableModel(header, 0);
-            }
+        Vector<Object> header = new Vector<>();
+        header.add("Mã Máy Bay");
+        header.add("Tên Máy Bay");
+        header.add("Hãng Bay");
+        header.add("Số Lượng Ghế");
 
-            for (MayBayDTO mb : dsmb) {
-                Vector<Object> vec = new Vector<>();
-                vec.add(mb.getMaMayBay());
-                vec.add(mb.getTenMayBay());
-                vec.add(mb.getMaHang());
-                vec.add(mb.getSoLuongGhe());
-
-                dtmMayBay.addRow(vec);
-            }
-            tableMayBay.setModel(dtmMayBay);
-        } catch (Exception e) {
-
+        if (dtmMayBay.getRowCount() == 0) {
+            dtmMayBay = new DefaultTableModel(header, 0);
         }
+
+        for (MayBay mb : dsmb) {
+            Vector<Object> vec = new Vector<>();
+            vec.add(mb.getMaMayBay());
+            vec.add(mb.getTenMayBay());
+            vec.add(mb.getMaHang());
+            vec.add(mb.getSoLuongGhe());
+
+            dtmMayBay.addRow(vec);
+        }
+        tableMayBay.setModel(dtmMayBay);
     }
 
     public void clickTableRowMB() {
         int row = tableMayBay.getSelectedRow();
+        String tenHangBay = getTen(tableMayBay.getValueAt(row, 2).toString());
         if (row > -1) {
             txtMaMB.setText(tableMayBay.getValueAt(row, 0) + "");
             txtTenMB.setText(tableMayBay.getValueAt(row, 1) + "");
-            txtMaHB.setText(tableMayBay.getValueAt(row, 2) + "");
+            //txtMaHB.setText(tableMayBay.getValueAt(row, 2) + "");
+            txtMaHang.setSelectedItem(tenHangBay);
             txtSoLuongGhe.setText(tableMayBay.getValueAt(row, 3) + "");
         }
     }
@@ -375,6 +385,10 @@ public class MayBayGUI extends javax.swing.JPanel {
         String tuKhoa = txtTuKhoa.getText();
         String luaChon = selectLuaChon.getSelectedItem().toString();
 
+        if(luaChon == "Tất Cả"){
+            dsmb = maybayBUS.listMayBay();
+        }
+        
         if (luaChon == "Mã máy bay") {
             dsmb = maybayBUS.timKiemMayBayTheoMa(tuKhoa);
         }
@@ -386,7 +400,10 @@ public class MayBayGUI extends javax.swing.JPanel {
         if (luaChon == "Mã hãng bay") {
             dsmb = maybayBUS.timKiemMayBayTheoHang(tuKhoa);
         }
-                    Vector<Object> header = new Vector<>();
+            
+            dtmMayBay.setRowCount(0);
+        
+            Vector<Object> header = new Vector<>();
             header.add("Mã máy bay");
             header.add("Tên máy bay");
             header.add("Mã hãng bay");
@@ -396,7 +413,7 @@ public class MayBayGUI extends javax.swing.JPanel {
                 dtmMayBay = new DefaultTableModel(header, 0);
             }
 
-            for (MayBayDTO mb : dsmb) {
+            for (MayBay mb : dsmb) {
                 Vector<Object> vec = new Vector<>();
                 vec.add(mb.getMaMayBay());
                 vec.add(mb.getTenMayBay());
@@ -423,7 +440,7 @@ public class MayBayGUI extends javax.swing.JPanel {
                 dtmMayBay = new DefaultTableModel(header, 0);
             }
 
-            for (MayBayDTO mb : dsmb) {
+            for (MayBay mb : dsmb) {
                 Vector<Object> vec = new Vector<>();
                 vec.add(mb.getMaMayBay());
                 vec.add(mb.getTenMayBay());
@@ -437,6 +454,17 @@ public class MayBayGUI extends javax.swing.JPanel {
 
         }
     }
+    
+    public String getTen(String ma){
+        String n = "";
+        for(HangBayDTO hb : dshb){
+            if(Integer.parseInt(ma) == hb.getMaHang()){
+                n = hb.getTenHang();
+                return n;
+            }
+        }
+        return null;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSuaMayBay;
@@ -449,11 +477,11 @@ public class MayBayGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton seachMayBay;
     private javax.swing.JComboBox<String> selectLuaChon;
     private javax.swing.JTable tableMayBay;
-    private javax.swing.JTextField txtMaHB;
+    private javax.swing.JComboBox<String> txtMaHang;
     private javax.swing.JTextField txtMaMB;
     private javax.swing.JTextField txtSoLuongGhe;
     private javax.swing.JTextField txtTenMB;

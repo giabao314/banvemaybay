@@ -11,6 +11,11 @@ import javax.swing.table.DefaultTableModel;
 import QuanLyBanVeMayBay.GUI.form.TuyenBayGUI;
 import QuanLyBanVeMayBay.BUS.TuyenBayBUS;
 import QuanLyBanVeMayBay.DTO.TuyenBayDTO;
+import QuanLyBanVeMayBay.DTO.SanBayDTO;
+import QuanLyBanVeMayBay.BUS.SanBayBUS;
+
+
+import javax.swing.JComboBox;
 
 /**
  *
@@ -23,11 +28,14 @@ public class TuyenBayGUI extends javax.swing.JPanel {
      */
     DefaultTableModel dtmTuyenBay = new DefaultTableModel();
     TuyenBayBUS tuyenbayBUS = new TuyenBayBUS();
+    SanBayBUS sanbayBUS = new SanBayBUS();
     ArrayList<TuyenBayDTO> dstb = new ArrayList<>();
+    ArrayList<SanBayDTO> dssb = new ArrayList<>();
 
     public TuyenBayGUI() {
         initComponents();
-        getListTuyenBay();
+//        getListTuyenBay();
+//        getListSanBay();
     }
 
     /**
@@ -43,9 +51,7 @@ public class TuyenBayGUI extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtMaTB = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtSBcatCanh = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtSBhaCanh = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtGioCatCanh = new javax.swing.JTextField();
         jButtonThemTuyenBay = new javax.swing.JButton();
@@ -53,6 +59,8 @@ public class TuyenBayGUI extends javax.swing.JPanel {
         jButtonXoaTuyenBay = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtGioHaCanh = new javax.swing.JTextField();
+        txtSanBayCatCanh = new javax.swing.JComboBox<>();
+        txtSanBayHaCanh = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableTuyenBay = new javax.swing.JTable();
@@ -63,6 +71,8 @@ public class TuyenBayGUI extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Mã Tuyến Bay");
+
+        txtMaTB.setEditable(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Sân Bay Cất Cánh");
@@ -121,25 +131,35 @@ public class TuyenBayGUI extends javax.swing.JPanel {
                             .addComponent(txtMaTB, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(33, 33, 33)
-                                    .addComponent(jButtonThemTuyenBay)))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel3)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(33, 33, 33)
+                                            .addComponent(jButtonThemTuyenBay)))
+                                    .addGap(5, 5, 5))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(57, 57, 57)
-                                    .addComponent(jButtonSuaTuyenBay)
-                                    .addGap(77, 77, 77)
-                                    .addComponent(jButtonXoaTuyenBay))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(57, 57, 57)
+                                            .addComponent(jButtonSuaTuyenBay)
+                                            .addGap(77, 77, 77)
+                                            .addComponent(jButtonXoaTuyenBay))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtSanBayCatCanh, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(0, 0, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(18, 18, 18)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtSBcatCanh)
-                                        .addComponent(txtSBhaCanh)
                                         .addComponent(txtGioCatCanh)
-                                        .addComponent(txtGioHaCanh)))))))
+                                        .addComponent(txtGioHaCanh)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(txtSanBayHaCanh, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -149,14 +169,16 @@ public class TuyenBayGUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtMaTB))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSBcatCanh))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSBhaCanh))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSanBayCatCanh, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtSanBayHaCanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -268,7 +290,7 @@ public class TuyenBayGUI extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -305,9 +327,19 @@ public class TuyenBayGUI extends javax.swing.JPanel {
         timKiemTuyenBay();
     }//GEN-LAST:event_searchTuyenBayActionPerformed
 
+    public void getListSanBay(){
+        dssb = sanbayBUS.getListSanBay();
+        for(SanBayDTO sb : dssb){
+            txtSanBayCatCanh.addItem(sb.getTenSanBay());
+            txtSanBayHaCanh.addItem(sb.getTenSanBay());
+        }
+    }
+    
     public void themTuyenBay() {
-        int sanBayCatCanh = Integer.parseInt(txtSBcatCanh.getText());
-        int sanBayHaCanh = Integer.parseInt(txtSBhaCanh.getText());
+        //int sanBayCatCanh = Integer.parseInt(txtSBcatCanh.getText());
+        //int sanBayHaCanh = Integer.parseInt(txtSBhaCanh.getText());
+        int sanBayCatCanh = sanbayBUS.getIDSanBay(txtSanBayCatCanh.getSelectedItem().toString());
+        int sanBayHaCanh = sanbayBUS.getIDSanBay(txtSanBayHaCanh.getSelectedItem().toString());
         String gioCatCanh = txtGioCatCanh.getText();
         String gioHaCanh = txtGioHaCanh.getText();
 
@@ -324,8 +356,10 @@ public class TuyenBayGUI extends javax.swing.JPanel {
 
     public void suaTuyenBay() {
         int maTuyenBay = Integer.parseInt(txtMaTB.getText());
-        int sanBayCatCanh = Integer.parseInt(txtSBcatCanh.getText());
-        int sanBayHaCanh = Integer.parseInt(txtSBhaCanh.getText());
+        //int sanBayCatCanh = Integer.parseInt(txtSBcatCanh.getText());
+        //int sanBayHaCanh = Integer.parseInt(txtSBhaCanh.getText());
+        int sanBayCatCanh = sanbayBUS.getIDSanBay(txtSanBayCatCanh.getSelectedItem().toString());
+        int sanBayHaCanh = sanbayBUS.getIDSanBay(txtSanBayHaCanh.getSelectedItem().toString());
         String gioCatCanh = txtGioCatCanh.getText();
         String gioHaCanh = txtGioHaCanh.getText();
 
@@ -344,9 +378,8 @@ public class TuyenBayGUI extends javax.swing.JPanel {
             tableTuyenBay.setModel(dtmTuyenBay);
             
             txtMaTB.setText("");
-            txtSBcatCanh.setText("");
-            txtSBhaCanh.setText("");
-            txtSBhaCanh.setText("");
+            //txtSBcatCanh.setText("");
+            //txtSBhaCanh.setText("");
             txtGioCatCanh.setText("");
             txtGioHaCanh.setText("");
         }
@@ -408,12 +441,28 @@ public class TuyenBayGUI extends javax.swing.JPanel {
         tableTuyenBay.setModel(dtmTuyenBay);
     }
 
+    public String getTen(String ma){
+        String n = "";
+        for(SanBayDTO sb : dssb){
+            if(Integer.parseInt(ma) == sb.getMaSanBay()){
+                n = sb.getTenSanBay();
+                return n;
+            }
+        }
+        return null;
+    }
+    
     public void clickTableRowTB() {
         int row = tableTuyenBay.getSelectedRow();
+        String tenSanBayCatCanh = getTen(tableTuyenBay.getValueAt(row, 1).toString());
+        String tenSanBayHaCanh = getTen(tableTuyenBay.getValueAt(row, 2).toString());
+
         if (row > -1) {
             txtMaTB.setText(tableTuyenBay.getValueAt(row, 0) + "");
-            txtSBcatCanh.setText(tableTuyenBay.getValueAt(row, 1) + "");
-            txtSBhaCanh.setText(tableTuyenBay.getValueAt(row, 2) + "");
+            //txtSBcatCanh.setText(tableTuyenBay.getValueAt(row, 1) + "");
+            txtSanBayCatCanh.setSelectedItem(tenSanBayCatCanh);
+            //txtSBhaCanh.setText(tableTuyenBay.getValueAt(row, 2) + "");
+            txtSanBayHaCanh.setSelectedItem(tenSanBayHaCanh);
             txtGioCatCanh.setText(tableTuyenBay.getValueAt(row, 3) + "");
             txtGioHaCanh.setText(tableTuyenBay.getValueAt(row, 4) + "");
         }
@@ -485,8 +534,8 @@ public class TuyenBayGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtGioCatCanh;
     private javax.swing.JTextField txtGioHaCanh;
     private javax.swing.JTextField txtMaTB;
-    private javax.swing.JTextField txtSBcatCanh;
-    private javax.swing.JTextField txtSBhaCanh;
+    private javax.swing.JComboBox<String> txtSanBayCatCanh;
+    private javax.swing.JComboBox<String> txtSanBayHaCanh;
     private javax.swing.JTextField txtTuKhoa;
     // End of variables declaration//GEN-END:variables
 }

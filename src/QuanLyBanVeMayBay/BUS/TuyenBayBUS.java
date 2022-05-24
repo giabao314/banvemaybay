@@ -7,6 +7,8 @@ package QuanLyBanVeMayBay.BUS;
 import java.util.ArrayList;
 import QuanLyBanVeMayBay.DAO.TuyenBayDAO;
 import QuanLyBanVeMayBay.DTO.TuyenBayDTO;
+import QuanLyBanVeMayBay.DTO.SanBayDTO;
+import QuanLyBanVeMayBay.DAO.SanBayDAO;
 
 /**
  *
@@ -16,6 +18,7 @@ public class TuyenBayBUS {
 
     private ArrayList<TuyenBayDTO> listTuyenBay = null;
     private TuyenBayDAO tbDAO = new TuyenBayDAO();
+    private SanBayDAO sanbayDAO = new SanBayDAO();
 
 //    public TuyenBayBUS() {
 //        docListTuyenBay();
@@ -125,4 +128,5 @@ public class TuyenBayBUS {
         }
         return dstb;
     }
+    
 }

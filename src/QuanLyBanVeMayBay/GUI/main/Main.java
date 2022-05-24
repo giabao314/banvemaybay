@@ -34,7 +34,7 @@ public class Main extends javax.swing.JFrame {
         menu1 = new QuanLyBanVeMayBay.GUI.component.Menu();
         panelBorder1 = new QuanLyBanVeMayBay.GUI.swing.PanelBorder();
         menu3 = new QuanLyBanVeMayBay.GUI.component.Menu();
-        tuyenBayGUI1 = new QuanLyBanVeMayBay.GUI.form.TuyenBayGUI();
+        chuyenBayGUI1 = new QuanLyBanVeMayBay.GUI.form.ChuyenBayGUI();
 
         javax.swing.GroupLayout menu1Layout = new javax.swing.GroupLayout(menu1);
         menu1.setLayout(menu1Layout);
@@ -60,14 +60,14 @@ public class Main extends javax.swing.JFrame {
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tuyenBayGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addComponent(chuyenBayGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 139, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 2006, Short.MAX_VALUE)
+            .addComponent(menu3, javax.swing.GroupLayout.DEFAULT_SIZE, 1483, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(tuyenBayGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chuyenBayGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -89,6 +89,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -126,9 +127,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private QuanLyBanVeMayBay.GUI.form.ChuyenBayGUI chuyenBayGUI1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu1;
     private QuanLyBanVeMayBay.GUI.component.Menu menu3;
     private QuanLyBanVeMayBay.GUI.swing.PanelBorder panelBorder1;
-    private QuanLyBanVeMayBay.GUI.form.TuyenBayGUI tuyenBayGUI1;
     // End of variables declaration//GEN-END:variables
 }

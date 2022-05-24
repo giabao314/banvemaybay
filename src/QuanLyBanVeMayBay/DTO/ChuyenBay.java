@@ -17,14 +17,14 @@ public class ChuyenBay {
     private int maTuyenBay;
     private int maMayBay;
     private int soLgVeCL;
-    private Date ngayCatCanh;
-    private Date ngayHaCanh;
+    private String ngayCatCanh;
+    private String ngayHaCanh;
 
     public ChuyenBay() {
     }
 
-    public ChuyenBay(int maChuyenBay, int maTuyenBay, int maMayBay, int soLgVeCL, Date ngayCatCanh,
-            Date ngayHaCanh) {
+    public ChuyenBay(int maChuyenBay, int maTuyenBay, int maMayBay, int soLgVeCL, String ngayCatCanh,
+            String ngayHaCanh) {
         this.maChuyenBay = maChuyenBay;
         this.maTuyenBay = maTuyenBay;
         this.maMayBay = maMayBay;
@@ -65,19 +65,19 @@ public class ChuyenBay {
         this.soLgVeCL = soLgVeCL;
     }
 
-    public Date getNgayCatCanh() {
+    public String getNgayCatCanh() {
         return ngayCatCanh;
     }
 
-    public void setNgayCatCanh(Date ngayCatCanh) {
+    public void setNgayCatCanh(String ngayCatCanh) {
         this.ngayCatCanh = ngayCatCanh;
     }
 
-    public Date getNgayHaCanh() {
+    public String getNgayHaCanh() {
         return ngayHaCanh;
     }
 
-    public void setNgayHaCanh(Date ngayHaCanh) {
+    public void setNgayHaCanh(String ngayHaCanh) {
         this.ngayHaCanh = ngayHaCanh;
     }
 }

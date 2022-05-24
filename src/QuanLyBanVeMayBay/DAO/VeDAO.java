@@ -134,16 +134,17 @@ public class VeDAO {
     // }
 
     public boolean themVe(Ve ve) {
+        boolean check = false;
         try {
-            String sql = "INSERT INTO Ve(maChuyenBay, maLoaiVe, maGhe, gioLenMayBay) "
-                    + "VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO Ve(maVe, maChuyenBay, maLoaiVe, maGhe, gioLenMayBay) "
+                    + "VALUES (NULL,?,?,?,?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setInt(1, ve.getMaChuyenBay());
             pre.setInt(2, ve.getMaLoaiVe());
             pre.setString(3, ve.getMaGhe());
             pre.setString(4, ve.getGioLenMayBay());
-            pre.execute();
-            return true;
+            check =  pre.executeUpdate() > 0;
+            return check;
         } catch (SQLException e) {
         }
         return false;
@@ -167,11 +168,13 @@ public class VeDAO {
     }
 
     public boolean xoaVe(int maVe) {
+        boolean check = false;
         try {
-            String sql = "DELETE FROM ve WHERE maVe=" + maVe;
-            Statement st = MyConnect.conn.createStatement();
-            st.execute(sql);
-            return true;
+            String sql = "DELETE FROM ve WHERE maVe=?";
+            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
+            pre.setInt(1, maVe);
+            check =  pre.executeUpdate() > 0;
+            return check;
         } catch (SQLException e) {
         }
         return false;
@@ -188,6 +191,7 @@ public class VeDAO {
             pre.setInt(2, ve.getMaLoaiVe());
             pre.setString(3, ve.getMaGhe());
             pre.setString(4, ve.getGioLenMayBay());
+            pre.setInt(5, ve.getMaVe());
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

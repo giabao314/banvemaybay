@@ -6,6 +6,7 @@ package QuanLyBanVeMayBay.BUS;
 
 import QuanLyBanVeMayBay.DAO.HangBayDAO;
 import QuanLyBanVeMayBay.DTO.HangBayDTO;
+import QuanLyBanVeMayBay.DTO.SanBayDTO;
 
 import java.util.ArrayList;
 
@@ -102,5 +103,18 @@ public class HangBayBUS {
             }
         }
         return dshb;
+    }
+    
+    public int getIDHangBay(String tenHangBay) {
+        int idHangBay = 0;
+        if(listHangBay != null){
+            for(HangBayDTO hb : listHangBay){
+            if(tenHangBay.toLowerCase().equals(hb.getTenHang().toLowerCase())){
+                idHangBay = hb.getMaHang();
+                return idHangBay;
+            }
+        }
+        }
+        return 0;
     }
 }

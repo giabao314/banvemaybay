@@ -124,14 +124,15 @@ public class VeKHDAO {
     // }
 
     public boolean themVeKH(VeKH veKH) {
+        boolean check = false;
         try {
-            String sql = "INSERT INTO Ve(maVe, maKH) "
-                    + "VALUES (?, ?, ?)";
+            String sql = "INSERT INTO Ve(maVeKH, maVe, maKH) "
+                    + "VALUES (NULL,?,?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setInt(1, veKH.getMaVe());
             pre.setInt(2, veKH.getMaKH());
-            pre.execute();
-            return true;
+            check =  pre.executeUpdate() > 0;
+            return check;
         } catch (SQLException e) {
         }
         return false;
@@ -154,27 +155,31 @@ public class VeKHDAO {
     }
 
     public boolean xoaVeKH(int maVeKH) {
+        boolean check = false;
         try {
-            String sql = "DELETE FROM vekh WHERE maVeKH=" + maVeKH;
-            Statement st = MyConnect.conn.createStatement();
-            st.execute(sql);
-            return true;
+            String sql = "DELETE FROM vekh WHERE maVeKH=?";
+            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
+            pre.setInt(1, maVeKH);
+            check = pre.executeUpdate() > 0;
+            return check;
         } catch (SQLException e) {
         }
         return false;
     }
 
     public boolean suaVeKH(VeKH veKH) {
+        boolean check = false;
         try {
             String sql = "UPDATE vekh SET "
-                    + "maVe?, "
+                    + "maVe=?, "
                     + "maKH=? "
                     + "WHERE maVeKH=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setInt(1, veKH.getMaVe());
             pre.setInt(2, veKH.getMaKH());
-            pre.execute();
-            return true;
+            pre.setInt(3, veKH.getMaVeKH());
+            check =  pre.executeUpdate() > 0;
+            return check;
         } catch (SQLException e) {
             e.printStackTrace();
         }
