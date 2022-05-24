@@ -395,6 +395,15 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
         try {
             String maTB = txtMaTB.getText();
             String maMB = txtMaMB.getText();
+<<<<<<< HEAD
+=======
+//        String veCL = txtVeCL.getText();
+//        int maChuyenBay = Integer.parseInt(maCB);
+//        int maTuyenBay = Integer.parseInt(maTB);
+//        int soVeCL = Integer.parseInt(veCL);
+            String ngayCC = txtNgayCC.getText();
+            String ngayHC = txtNgayHC.getText();
+>>>>>>> 911a8f62867e3c85baf2d4db198343614a8bbd3a
             String ngayCatCanh = txtNgayCC.getText();
             String ngayHaCanh = txtNgayHC.getText();
             cbBUS.themChuyenBay(maTB, maMB, ngayCatCanh, ngayHaCanh);
@@ -442,12 +451,21 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
             dtmChuyenBay.setRowCount(0);
             dscb = cbBUS.getListChuyenBay();
             Vector<Object> header = new Vector<>();
+<<<<<<< HEAD
             header.add("Mã Chuyến Bay");
             header.add("Mã Tuyến Bay");
             header.add("Mã Máy Bay");
             header.add("Số Lượng Vé Còn Lại");
             header.add("Ngày Cất Cánh");
             header.add("Ngày Hạ Cánh");
+=======
+            header.add("Mã Chuy?n Bay");
+            header.add("Mã Tuy?n Bay");
+            header.add("Mã Máy Bay");
+            header.add("S? Lu?ng Vé Còn L?i");
+            header.add("Ngày C?t Cánh");
+            header.add("Ngày H? Cánh");
+>>>>>>> 911a8f62867e3c85baf2d4db198343614a8bbd3a
             if (dtmChuyenBay.getRowCount() == 0) {
                 dtmChuyenBay = new DefaultTableModel(header, 0);
             }
@@ -468,18 +486,31 @@ public class ChuyenBayGUI extends javax.swing.JPanel {
         }
 
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 911a8f62867e3c85baf2d4db198343614a8bbd3a
     public void showListChuyenBay() {
         try {
             dtmChuyenBay.setRowCount(0);
             dscb = cbBUS.listCB();
             Vector<Object> header = new Vector<>();
+<<<<<<< HEAD
             header.add("Mã Chuyến Bay");
             header.add("Mã Tuyến Bay");
             header.add("Mã Máy Bay");
             header.add("Số Lượng Vé Còn Lại");
             header.add("Ngày Cất Cánh");
             header.add("Ngày Hạ Cánh");
+=======
+            header.add("Mã Chuy?n Bay");
+            header.add("Mã Tuy?n Bay");
+            header.add("Mã Máy Bay");
+            header.add("S? Lu?ng Vé Còn L?i");
+            header.add("Ngày C?t Cánh");
+            header.add("Ngày H? Cánh");
+>>>>>>> 911a8f62867e3c85baf2d4db198343614a8bbd3a
             if (dtmChuyenBay.getRowCount() == 0) {
                 dtmChuyenBay = new DefaultTableModel(header, 0);
             }

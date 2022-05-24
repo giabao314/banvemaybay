@@ -17,8 +17,16 @@ import QuanLyBanVeMayBay.DAO.MayBayDAO;
 public class ChuyenBayBUS {
     private ArrayList<ChuyenBay> listCB = null;
     private ChuyenBayDAO cbDAO = new ChuyenBayDAO();
+<<<<<<< HEAD
     private MayBayDAO mbDAO = new MayBayDAO();
  
+=======
+//    private MayBayDAO mbDAO = new MayBayDAO();
+//    mbDAO.docListMayBay();
+    public ChuyenBayBUS() {
+        docListChuyenBay();
+    }
+>>>>>>> 911a8f62867e3c85baf2d4db198343614a8bbd3a
 
     public void docListChuyenBay() {
         this.listCB = cbDAO.getListChuyenBay();
@@ -29,6 +37,11 @@ public class ChuyenBayBUS {
             docListChuyenBay();
         }
         
+        return listCB;
+    }
+    
+    public ArrayList<ChuyenBay> listCB() {
+        docListChuyenBay();
         return listCB;
     }
     
@@ -194,7 +207,10 @@ public class ChuyenBayBUS {
         try {
             if (maCB.trim().equals("")) {
 //                new MyDialog("Chưa chọn chuyến bay để sửa!", MyDialog.ERROR_DIALOG);
+<<<<<<< HEAD
                 System.out.print("that bai");
+=======
+>>>>>>> 911a8f62867e3c85baf2d4db198343614a8bbd3a
                 return false;
             }
             int maChuyenBay = Integer.parseInt(maCB);
@@ -245,9 +261,12 @@ public class ChuyenBayBUS {
                 return true;
             } else {
 //                new MyDialog("Sửa thất bại!", MyDialog.ERROR_DIALOG);
+<<<<<<< HEAD
 
                 System.out.print("Sua that bai");
 
+=======
+>>>>>>> 911a8f62867e3c85baf2d4db198343614a8bbd3a
                 return false;
             }
         } catch (Exception e) {

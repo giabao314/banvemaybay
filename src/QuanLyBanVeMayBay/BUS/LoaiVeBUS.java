@@ -18,9 +18,7 @@ public class LoaiVeBUS {
     private ArrayList<LoaiVe> listLV = null;
     private LoaiVeDAO lvDAO = new LoaiVeDAO();
 
-    public LoaiVeBUS() {
-        docDanhSachLoaiVe();
-    }
+    
 
     public void docDanhSachLoaiVe() {
         listLV = lvDAO.getDanhSachLoaiVe();
@@ -33,14 +31,19 @@ public class LoaiVeBUS {
         return listLV;
     }
 
-    public LoaiVe getLoaiVe(String ma) {
+    public ArrayList<LoaiVe> listLV() {
+        docDanhSachLoaiVe();
+        return listLV;
+    }
+
+    public String getLoaiVe(String ma) {
         if (!ma.trim().equals("")) {
             try {
                 int maLoaiVe = Integer.parseInt(ma);
                 for (LoaiVe lv : listLV) {
                     if (lv.getMaLoaiVe() == maLoaiVe) {
 //                        return lv;
-//                         return lv.getMaLoaiVe() + " - " + lv.getTenLoaiVe();
+                        return Integer.toString(lv.getMaLoaiVe()) + " - " + lv.getTenLoaiVe();
                     }
                 }
             } catch (Exception e) {
@@ -48,7 +51,6 @@ public class LoaiVeBUS {
             }
         }
         return null;
-
     }
 
     public boolean themLoaiVe(String tenLoai, String donGia) {
@@ -60,6 +62,7 @@ public class LoaiVeBUS {
         if (donGia.trim().equals("")) {
             new JOptionPane("Vui lòng điền đơn giá!", JOptionPane.ERROR_MESSAGE);
 //            new Dialog("Vui lòng điền đơn giá!", Dialog.ERROR_DIALOG);
+            return false;
         }
         int giaVe = Integer.parseInt(donGia);
         LoaiVe lv = new LoaiVe();

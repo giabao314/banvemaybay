@@ -22,17 +22,18 @@ public class CTHoaDonDAO {
 	            while(rs.next()) {
 	                CTHoaDon cthd = new CTHoaDon();
 	                cthd.setMaHD(rs.getInt(1));
-	                cthd.setMaLoaiVe(rs.getNString(2));
-	                cthd.setMaVeKH(rs.getNString(3));
+	                cthd.setMaLoaiVe(rs.getInt(2));
+	                cthd.setMaVeKH(rs.getInt(3));
 	                cthd.setSoLuongVe(rs.getInt(4));
-	                cthd.setMaKM(rs.getNString(5));
-	                cthd.setThue(rs.getNString(6));
-	                cthd.setThanhTien(rs.getInt(7));
+	                cthd.setThue(rs.getDouble(5));
+	                cthd.setThanhTien(rs.getInt(6));
 	                dscthd.add(cthd);
 	            }
+                     return dscthd;
 	        } catch(SQLException ex) {
+                    System.out.println("Lay ct that bai");
 	        }
-	        return dscthd;
+	       return null;
 	    }
 
 	    public ArrayList<CTHoaDon> getListCTHoaDonTheoMaHD(int maHD) {
@@ -42,14 +43,13 @@ public class CTHoaDonDAO {
 	            Statement stmt = MyConnect.conn.createStatement();
 	            ResultSet rs = stmt.executeQuery(sql);
 	            while(rs.next()) {
-	            	 CTHoaDon cthd = new CTHoaDon();
-		                cthd.setMaHD(rs.getInt(1));
-		                cthd.setMaLoaiVe(rs.getNString(2));
-		                cthd.setMaVeKH(rs.getNString(3));
-		                cthd.setSoLuongVe(rs.getInt(4));
-		                cthd.setMaKM(rs.getNString(5));
-		                cthd.setThue(rs.getNString(6));
-		                cthd.setThanhTien(rs.getInt(7));
+	            	CTHoaDon cthd = new CTHoaDon();
+	                cthd.setMaHD(rs.getInt(1));
+	                cthd.setMaLoaiVe(rs.getInt(2));
+	                cthd.setMaVeKH(rs.getInt(3));
+	                cthd.setSoLuongVe(rs.getInt(4));
+	                cthd.setThue(rs.getDouble(5));
+	                cthd.setThanhTien(rs.getInt(6));
 	                dscthd.add(cthd);
 	            }
 	        } catch(SQLException ex) {
@@ -66,14 +66,13 @@ public class CTHoaDonDAO {
 	            ResultSet rs = stmt.executeQuery(sql);
 	            while(rs.next()) {
 		            	CTHoaDon cthd = new CTHoaDon();
-		            	cthd.setMaHD(rs.getInt(1));
-		                cthd.setMaLoaiVe(rs.getNString(2));
-		                cthd.setMaVeKH(rs.getNString(3));
-		                cthd.setSoLuongVe(rs.getInt(4));
-		                cthd.setMaKM(rs.getNString(5));
-		                cthd.setThue(rs.getNString(6));
-		                cthd.setThanhTien(rs.getInt(7));
-		                dscthd.add(cthd);
+                                cthd.setMaHD(rs.getInt(1));
+                                cthd.setMaLoaiVe(rs.getInt(2));
+                                cthd.setMaVeKH(rs.getInt(3));
+                                cthd.setSoLuongVe(rs.getInt(4));
+                                cthd.setThue(rs.getDouble(5));
+                                cthd.setThanhTien(rs.getInt(6));
+                                dscthd.add(cthd);
 	            }
 	        } catch(SQLException ex) {
 	            return null;
@@ -87,13 +86,12 @@ public class CTHoaDonDAO {
 		    	String sql = "insert into cthoadon values(? , ? ,? ,? , ? , ?) ";
 		    	PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
 		    	prep.setInt(1, cthd.getMaHD());
-	            prep.setString(2, cthd.getMaLoaiVe());
-	            prep.setString(3, cthd.getMaVeKH());
-	            prep.setInt(4, cthd.getSoLuongVe());
-	            prep.setString(5, cthd.getMaKM());
-	            prep.setString(6, cthd.getThue());
-	            prep.setInt(7, cthd.getThanhTien());
-	            result = prep.executeUpdate() > 0;
+                        prep.setInt(2, cthd.getMaLoaiVe());
+                        prep.setInt(3, cthd.getMaVeKH());
+                        prep.setInt(4, cthd.getSoLuongVe());
+                        prep.setDouble(6, cthd.getThue());
+                        prep.setInt(7, cthd.getThanhTien());
+                        result = prep.executeUpdate() > 0;
 	        } catch(SQLException ex) {
 	            ex.printStackTrace();
 	            return false;
@@ -128,18 +126,17 @@ public class CTHoaDonDAO {
 	    public boolean updateCTHoaDon(int maHD, int maLoaiVe, CTHoaDon cthd) {
 	        boolean result = false;
 	        try {
-	            String sql = "UPDATE cthoadon SET maHD=?, maLoaiVe=?, maVeKH = ? , soLgVe=?, maKM = ?  , thue = ? , thanhTien=? "
+	            String sql = "UPDATE cthoadon SET maHD=?, maLoaiVe=?, maVeKH = ? , soLgVe=?,  thue = ? , thanhTien=? "
 	                    + "WHERE MaHD=? AND maLoaiVe=?";
 	            PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
 	            prep.setInt(1, cthd.getMaHD());
-	            prep.setString(2, cthd.getMaLoaiVe());
-	            prep.setString(3, cthd.getMaVeKH());
+	            prep.setInt(2, cthd.getMaLoaiVe());
+	            prep.setInt(3, cthd.getMaVeKH());
 	            prep.setInt(4, cthd.getSoLuongVe());
-	            prep.setString(5, cthd.getMaKM());
-	            prep.setString(6, cthd.getThue());
-	            prep.setInt(7, cthd.getThanhTien());
-	            prep.setInt(8, cthd.getMaHD());
-	            prep.setString(9, cthd.getMaLoaiVe());
+	            prep.setDouble(5, cthd.getThue());
+	            prep.setInt(6, cthd.getThanhTien());
+	            prep.setInt(7, cthd.getMaHD());
+	            prep.setInt(8, cthd.getMaLoaiVe());
 	            result = prep.executeUpdate() > 0;
 	        } catch(SQLException ex) {
 	            return false;

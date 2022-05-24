@@ -6,18 +6,29 @@ import java.util.ArrayList;
 
 import QuanLyBanVeMayBay.DAO.HoaDonDAO;
 import QuanLyBanVeMayBay.DTO.HoaDon;
+import QuanLyBanVeMayBay.DTO.NhanVien;
 
 public class HoaDonBUS {
 	   
-	    private static ArrayList<HoaDon> listHoaDon;
-	    private static HoaDonDAO hoaDonDAO = new HoaDonDAO();
+	     ArrayList<HoaDon> listHoaDon = null;
+	     HoaDonDAO hoaDonDAO = new HoaDonDAO();
 
-	    public static ArrayList<HoaDon> getListHoaDon() {
-	        listHoaDon = hoaDonDAO.getListHoaDon();
+	    public ArrayList<HoaDon> getListHoaDon() {
+	        this.listHoaDon = hoaDonDAO.getListHoaDon();
 	        return listHoaDon;
 	    }
+            
+            
+             public void docDanhSach() {
+	      this.listHoaDon = hoaDonDAO.getListHoaDon();
+	    }
+            
+             public  ArrayList<HoaDon> showListHoaDon() {
+	            docDanhSach();
+	           return listHoaDon;
+	    }
 
-	    public void luuHoaDon(String maKH, String maNV, int tongtien , String ngaylap) {
+	    public void luuHoaDon(int maKH, int maNV, int maKM,  int tongtien , String ngaylap) {
 	        HoaDon hd = new HoaDon();
 //	        String[] arrNV = nhanVien.split(" - ");
 //	        int maNV = Integer.parseInt(arrNV[0]);
@@ -25,6 +36,7 @@ public class HoaDonBUS {
 	        hd.setMaKHThanhToan(maKH);
 	        hd.setNgayLap(ngaylap);
 	        hd.setTongTien(tongtien);
+                hd.setmaKM(maKM);
 
 	        hoaDonDAO.addHoaDon(hd);
 	    }
@@ -33,7 +45,7 @@ public class HoaDonBUS {
 	        return hoaDonDAO.getMaHoaDonMoiNhat();
 	    }
 
-	    public static HoaDon getHoaDon(String maHD) {
+	    public  HoaDon getHoaDon(String maHD) {
 	        int ma = Integer.parseInt(maHD);
 	        for (HoaDon hd : listHoaDon) {
 	            if (hd.getMaHD() == ma)

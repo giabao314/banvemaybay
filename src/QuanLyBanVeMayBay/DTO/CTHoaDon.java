@@ -2,24 +2,22 @@ package QuanLyBanVeMayBay.DTO;
 
 public class CTHoaDon {
     private int maHD;
-    private String maLoaiVe;
-    private String maVeKH;
+    private int maLoaiVe;
+    private int maVeKH;
     private int soLgVe;
-    private String maKM;
-    private String thue;
+    private double thue;
     private int thanhTien;
     
     public  CTHoaDon() {
     	
     }
     
-	public CTHoaDon(int maHD, String maLoaiVe, String maVeKH, int soLgVe, String maKM, String thue,
+	public CTHoaDon(int maHD, int maLoaiVe, int maVeKH, int soLgVe, double thue,
 		int thanhTien) {
 		this.maHD = maHD;
 		this.maLoaiVe = maLoaiVe;
 		this.maVeKH = maVeKH;
 		this.soLgVe = soLgVe;
-		this.maKM = maKM;
 		this.thue = thue;
 		this.thanhTien = thanhTien;
 	}
@@ -32,19 +30,19 @@ public class CTHoaDon {
 		this.maHD = maHD;
 	}
 
-	public String getMaLoaiVe() {
+	public int getMaLoaiVe() {
 		return maLoaiVe;
 	}
 
-	public void setMaLoaiVe(String maLoaiVe) {
+	public void setMaLoaiVe(int maLoaiVe) {
 		this.maLoaiVe = maLoaiVe;
 	}
 
-	public String getMaVeKH() {
+	public int getMaVeKH() {
 		return maVeKH;
 	}
 
-	public void setMaVeKH(String maVeKH) {
+	public void setMaVeKH(int maVeKH) {
 		this.maVeKH = maVeKH;
 	}
 
@@ -56,19 +54,13 @@ public class CTHoaDon {
 		this.soLgVe = soLuongVe;
 	}
 
-	public String getMaKM() {
-		return maKM;
-	}
+	
 
-	public void setMaKM(String maKM) {
-		this.maKM = maKM;
-	}
-
-	public String getThue() {
+	public double getThue() {
 		return thue;
 	}
 
-	public void setThue(String thue) {
+	public void setThue(double thue) {
 		this.thue = thue;
 	}
 

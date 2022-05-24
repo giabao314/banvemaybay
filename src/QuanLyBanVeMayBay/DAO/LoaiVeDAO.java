@@ -65,7 +65,7 @@ public class LoaiVeDAO {
 
     public boolean suaLoaiVe(int maLoaiVe, String tenLoaiVe, int donGia) {
         try {
-            String sql = "UPDATE loaive SET tenLoaiVe='" + tenLoaiVe + "'" + ", donGia='" + donGia + "' WHERE MaLoai=" + maLoaiVe;
+            String sql = "UPDATE loaive SET tenLoaiVe='" + tenLoaiVe + "'" + ", donGia='" + donGia + "' WHERE maLoaiVe=" + maLoaiVe;
             Statement st = MyConnect.conn.createStatement();
             int x = st.executeUpdate(sql);
             return x > 0 ? true : false;

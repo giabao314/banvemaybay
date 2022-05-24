@@ -16,7 +16,7 @@ public class NhanVienDAO {
             String sql = "SELECT * FROM nhanvien";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
-            ArrayList<NhanVien> dssv = new ArrayList<>();
+            ArrayList<NhanVien> dssv = new ArrayList();
             while (rs.next()) {
                 NhanVien nv = new NhanVien();
 
@@ -24,7 +24,7 @@ public class NhanVienDAO {
                 nv.setHoNV(rs.getString(2));
                 nv.setTenNV(rs.getString(3));
                 nv.setGioiTinh(rs.getString(4));
-                nv.setCanCuoc(rs.getString(5));
+                nv.setNgaySinh(rs.getString(5));
                 nv.setSdt(rs.getInt(6));
                 nv.setLuong(rs.getInt(7));
                 dssv.add(nv);
@@ -48,7 +48,7 @@ public class NhanVienDAO {
                 nv.setHoNV(rs.getString(2));
                 nv.setTenNV(rs.getString(3));
                 nv.setGioiTinh(rs.getString(4));
-                nv.setCanCuoc(rs.getString(5));
+                nv.setNgaySinh(rs.getString(5));
                 nv.setSdt(rs.getInt(6));
                 nv.setLuong(rs.getInt(7));
             }
@@ -62,16 +62,19 @@ public class NhanVienDAO {
     public boolean updateNhanVien(NhanVien nv) {
         boolean result = false;
         try {
-            String sql = "UPDATE nhanvien"
-            		+ "SET hoNV=?, tenNV=?, gioiTinh=?, canCuoc=? , sdt = ? "
+            String sql = "UPDATE nhanvien "
+            		+ "SET hoNV=?, tenNV=?, gioiTinh=?, ngaySinh=? , sdt=?, luong=? "
             		+ "WHERE maNV=?";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, nv.getHoNV());
             pre.setString(2, nv.getTenNV());
             pre.setString(3, nv.getGioiTinh());
-            pre.setString(4, nv.getCanCuoc());
+            pre.setString(4, nv.getNgaySinh());
             pre.setInt(5, nv.getSdt());
-            pre.setInt(6, nv.getMaNV());
+                        pre.setInt(6, nv.getLuong());
+                                    pre.setInt(7, nv.getMaNV());
+
+
             result = pre.executeUpdate() > 0;
         } catch (SQLException ex) {
             return false;
@@ -95,13 +98,13 @@ public class NhanVienDAO {
     public boolean themNhanVien(NhanVien nv) {
         boolean result = false;
         try {
-            String sql = "INSERT INTO NhanVien(hoNV, tenNV, gioiTinh, canCuoc , sdt , luong) " +
+            String sql = "INSERT INTO nhanvien(hoNV, tenNV, gioiTinh, ngaySinh , sdt , luong) " +
                     "VALUES(?, ?, ?, ? , ? , ?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
             pre.setString(1, nv.getHoNV());
             pre.setString(2, nv.getTenNV());
             pre.setString(3, nv.getGioiTinh());
-            pre.setString(4, nv.getCanCuoc());
+            pre.setString(4, nv.getNgaySinh());
             pre.setInt(5, nv.getSdt());
             pre.setInt(6, nv.getLuong());
             result = pre.executeUpdate() > 0;
@@ -120,7 +123,7 @@ public class NhanVienDAO {
             pre.setString(1, nv.getHoNV());
             pre.setString(2, nv.getTenNV());
             pre.setString(3, nv.getGioiTinh());
-            pre.setString(4, nv.getCanCuoc());
+            pre.setString(4, nv.getNgaySinh());
             pre.setInt(5, nv.getSdt());
             pre.setInt(6, nv.getLuong());
             return true;

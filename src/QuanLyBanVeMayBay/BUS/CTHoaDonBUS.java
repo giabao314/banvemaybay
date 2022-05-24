@@ -5,23 +5,23 @@ import QuanLyBanVeMayBay.DAO.CTHoaDonDAO;
 import QuanLyBanVeMayBay.DTO.CTHoaDon;
 
 public class CTHoaDonBUS {
-	 private static ArrayList<CTHoaDon> listCTHoaDon;
-	    private static CTHoaDonDAO ctHDDAO = new CTHoaDonDAO();
-	    private HoaDonBUS hdBUS = new HoaDonBUS();
+	    ArrayList<CTHoaDon> listCTHoaDon = null;
+	    CTHoaDonDAO ctHDDAO = new CTHoaDonDAO();
+	    HoaDonBUS hdBUS = new HoaDonBUS();
 
 	    public CTHoaDonBUS() {
 	        docListCTHoaDon();
 	    }
 
-	    public static void docListCTHoaDon() {
-	       listCTHoaDon = ctHDDAO.getListCTHoaDon();
+	    public void docListCTHoaDon() {
+	       this.listCTHoaDon = ctHDDAO.getListCTHoaDon();
 	    }
 
-	    public static ArrayList<CTHoaDon> getListCTHoaDon() {
+	    public  ArrayList<CTHoaDon> getListCTHoaDon() {
 	        return listCTHoaDon;
 	    }
 
-	    public static ArrayList<CTHoaDon> getListCTHoaDonTheoMaHD(String maHD) {
+	    public  ArrayList<CTHoaDon> getListCTHoaDonTheoMaHD(String maHD) {
 	        int ma = Integer.parseInt(maHD);
 	        ArrayList<CTHoaDon> dsct = new ArrayList<>();
 
@@ -33,7 +33,7 @@ public class CTHoaDonBUS {
 	        return dsct;
 	    }
 
-	    public void addCTHoaDon(String maLoaiVe, String maVeKH ,  int soLgVe, String maKM , String thue , int thanhtien) {
+	    public void addCTHoaDon(int maLoaiVe, int maVeKH ,  int soLgVe, double thue , int thanhtien) {
 	        int ma = hdBUS.getMaHoaDonMoiNhat();
 
 	       
@@ -43,7 +43,6 @@ public class CTHoaDonBUS {
 	        cthd.setMaLoaiVe(maLoaiVe);
 	        cthd.setMaVeKH(maVeKH);
 	        cthd.setSoLuongVe(soLgVe);
-	        cthd.setMaKM(maKM);
 	        cthd.setThue(thue);
 	        cthd.setThanhTien(thanhtien);
 	        
